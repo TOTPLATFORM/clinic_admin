@@ -1,8 +1,9 @@
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../../domain/repos/search_repo.dart';
 import '../data_source/abstarctions/search_data_source.dart';
-import 'package:dartz/dartz.dart';
 
 class SearchRepoImpl implements SearchRepo {
   final SearchDataSource searchDataSource;

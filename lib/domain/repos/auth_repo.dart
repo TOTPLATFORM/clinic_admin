@@ -1,6 +1,7 @@
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../entities/login_entity.dart';
-import 'package:dartz/dartz.dart';
 
 abstract class AuthRepo {
   Future<Either<Failure, LoginEntity>> login({

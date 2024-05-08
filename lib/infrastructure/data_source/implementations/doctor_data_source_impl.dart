@@ -54,14 +54,11 @@ class DoctorDataSourceImpl implements DoctorDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>> addDoctor(
-      {required DoctorEntity doctorData}) async {
+  Future<Map<String, dynamic>> addDoctor({required Doctor doctorData,required int specializationId,required String password}) async {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     log("message: token: $token");
     try {
-      final res = await dioClient.post(
-          //TODO: add endPoint
-          "/Doctor/",
+      final res = await dioClient.post("/Doctor",
           options: Options(
             headers: {
               "Content-Type": "application/json",
@@ -69,7 +66,19 @@ class DoctorDataSourceImpl implements DoctorDataSource {
             },
           ),
           //TODO: check with backend
-          data: {doctorData.toJson()});
+          data: {
+            {
+              "doctorEmail": doctorData.doctorEmail,
+              "doctorFirstName": doctorData.doctorFirstName,
+              "doctorLastName": doctorData.doctorLastName,
+              "doctorPhoneNumber": doctorData.doctorPhoneNumber,
+              "password": password,
+              "dateOfBirth": doctorData,
+              "gender": doctorData.gender,
+              "userName": doctorData.userName,
+              "specializationId": specializationId
+            }
+          });
       return res.data;
     } catch (e) {
       rethrow;

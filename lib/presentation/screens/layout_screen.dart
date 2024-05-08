@@ -1,8 +1,8 @@
-import 'package:clinic_admin/core/theme/app_colors.dart';
-import 'package:clinic_admin/presentation/screens/calender_screen.dart';
-import 'package:clinic_admin/presentation/screens/home_screen.dart';
-import 'package:clinic_admin/presentation/screens/profile_screen.dart';
-import 'package:clinic_admin/presentation/screens/search_screen.dart';
+import '../../core/theme/app_colors.dart';
+import 'calender_screen.dart';
+import 'home_screen.dart';
+import 'profile_screen.dart';
+import 'search_screen.dart';
 import 'package:flutter/material.dart';
 
 class LayoutScreen extends StatefulWidget {

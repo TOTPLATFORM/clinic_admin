@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import '../../presentation/widgets/custom/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:top_snackbar_flutter/safe_area_values.dart';
 import 'package:top_snackbar_flutter/tap_bounce_container.dart';
+
+import '../../presentation/widgets/custom/custom_snack_bar.dart';
 
 enum SnackBarType { success, info, error }
 

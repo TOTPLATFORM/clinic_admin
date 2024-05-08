@@ -27,6 +27,8 @@ class Doctor with _$Doctor {
     String? doctorLastName,
     String? doctorPhoneNumber,
     String? userName,
+    String? dateOfBirth,
+    String? gender,
     Specialization? specialization,
   }) = _Doctor;
 

@@ -1,10 +1,11 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
+
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
 import '../../../core/utils/shared_keys.dart';
 import '../abstarctions/appointment_data_source.dart';
-import 'package:dio/dio.dart';
 
 class AppointmentDataSourceImpl implements AppointmentDataSource {
   final BaseDio dioClient;

@@ -1,9 +1,9 @@
-import 'package:clinic_admin/core/routes/routes.dart';
-import 'package:clinic_admin/core/theme/app_colors.dart';
-import 'package:clinic_admin/presentation/blocs/doctor/doctor_bloc.dart';
-import 'package:clinic_admin/presentation/blocs/search/search_bloc.dart';
-import 'package:clinic_admin/presentation/widgets/doctor_item.dart';
-import 'package:clinic_admin/presentation/widgets/tot_text_form_filed_search_atom.dart';
+import '../../core/routes/routes.dart';
+import '../../core/theme/app_colors.dart';
+import '../blocs/doctor/doctor_bloc.dart';
+import '../blocs/search/search_bloc.dart';
+import '../widgets/doctor_item.dart';
+import '../widgets/tot_text_form_filed_search_atom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

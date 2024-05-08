@@ -44,9 +44,14 @@ class DoctorRepoImpl implements DoctorRepo {
 
   @override
   Future<Either<Failure, DoctorEntity>> addDoctor(
-      {required DoctorEntity doctorData}) async {
+      {required Doctor doctorData,
+      required int specializationId,
+      required String password}) async {
     try {
-      final res = await doctorDataSource.addDoctor(doctorData: doctorData);
+      final res = await doctorDataSource.addDoctor(
+          doctorData: doctorData,
+          password: password,
+          specializationId: specializationId);
       return Right(DoctorEntity.fromJson(res));
     } catch (e) {
       return Left(ServerFailure(e.toString()));

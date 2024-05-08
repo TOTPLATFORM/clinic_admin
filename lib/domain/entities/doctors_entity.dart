@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'doctor_entity.dart';
+
 part 'doctors_entity.freezed.dart';
 part 'doctors_entity.g.dart';
 
@@ -17,21 +19,6 @@ class DoctorsEntity with _$DoctorsEntity {
 
   factory DoctorsEntity.fromJson(Map<String, dynamic> json) =>
       _$DoctorsEntityFromJson(json);
-}
-
-@freezed
-class Doctor with _$Doctor {
-  const factory Doctor({
-    String? id,
-    String? doctorEmail,
-    String? doctorFirstName,
-    String? doctorLastName,
-    String? doctorPhoneNumber,
-    String? userName,
-    Specialization? specialization,
-  }) = _Doctor;
-
-  factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
 }
 
 @freezed

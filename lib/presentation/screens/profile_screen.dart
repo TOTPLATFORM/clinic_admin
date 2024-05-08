@@ -1,8 +1,8 @@
-import 'package:clinic_admin/core/dependency_injection/di_container.dart';
-import 'package:clinic_admin/core/routes/routes.dart';
-import 'package:clinic_admin/core/theme/app_colors.dart';
-import 'package:clinic_admin/core/utils/shared_keys.dart';
-import 'package:clinic_admin/presentation/widgets/profile_item.dart';
+import '../../core/dependency_injection/di_container.dart';
+import '../../core/routes/routes.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/utils/shared_keys.dart';
+import '../widgets/profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';

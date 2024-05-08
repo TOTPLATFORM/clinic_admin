@@ -1,5 +1,6 @@
-import '../network/failure.dart';
 import 'package:dio/dio.dart';
+
+import '../network/failure.dart';
 
 class DioExceptionHandler {
   static Failure handle(DioException exception) {

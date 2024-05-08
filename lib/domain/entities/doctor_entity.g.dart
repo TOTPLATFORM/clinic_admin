@@ -40,6 +40,8 @@ _$DoctorImpl _$$DoctorImplFromJson(Map<String, dynamic> json) => _$DoctorImpl(
       doctorLastName: json['doctorLastName'] as String?,
       doctorPhoneNumber: json['doctorPhoneNumber'] as String?,
       userName: json['userName'] as String?,
+      dateOfBirth: json['dateOfBirth'] as String?,
+      gender: json['gender'] as String?,
       specialization: json['specialization'] == null
           ? null
           : Specialization.fromJson(
@@ -54,6 +56,8 @@ Map<String, dynamic> _$$DoctorImplToJson(_$DoctorImpl instance) =>
       'doctorLastName': instance.doctorLastName,
       'doctorPhoneNumber': instance.doctorPhoneNumber,
       'userName': instance.userName,
+      'dateOfBirth': instance.dateOfBirth,
+      'gender': instance.gender,
       'specialization': instance.specialization,
     };
 

@@ -33,30 +33,6 @@ Map<String, dynamic> _$$DoctorsEntityImplToJson(_$DoctorsEntityImpl instance) =>
       'validationErrors': instance.validationErrors,
     };
 
-_$DoctorImpl _$$DoctorImplFromJson(Map<String, dynamic> json) => _$DoctorImpl(
-      id: json['id'] as String?,
-      doctorEmail: json['doctorEmail'] as String?,
-      doctorFirstName: json['doctorFirstName'] as String?,
-      doctorLastName: json['doctorLastName'] as String?,
-      doctorPhoneNumber: json['doctorPhoneNumber'] as String?,
-      userName: json['userName'] as String?,
-      specialization: json['specialization'] == null
-          ? null
-          : Specialization.fromJson(
-              json['specialization'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$DoctorImplToJson(_$DoctorImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'doctorEmail': instance.doctorEmail,
-      'doctorFirstName': instance.doctorFirstName,
-      'doctorLastName': instance.doctorLastName,
-      'doctorPhoneNumber': instance.doctorPhoneNumber,
-      'userName': instance.userName,
-      'specialization': instance.specialization,
-    };
-
 _$SpecializationImpl _$$SpecializationImplFromJson(Map<String, dynamic> json) =>
     _$SpecializationImpl(
       id: (json['id'] as num?)?.toInt(),

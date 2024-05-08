@@ -8,5 +8,7 @@ abstract class DoctorRepo {
   Future<Either<Failure, DoctorEntity>> getDoctorById(
       {required String doctorId});
   Future<Either<Failure, DoctorEntity>> addDoctor(
-      {required DoctorEntity doctorData});
+      {required Doctor doctorData,
+      required int specializationId,
+      required String password});
 }

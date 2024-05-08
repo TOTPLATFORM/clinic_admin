@@ -1,10 +1,10 @@
-import 'package:clinic_admin/core/dependency_injection/di_container.dart';
-import 'package:clinic_admin/core/routes/routes.dart';
-import 'package:clinic_admin/core/theme/app_colors.dart';
-import 'package:clinic_admin/core/utils/shared_keys.dart';
-import 'package:clinic_admin/presentation/blocs/category/category_bloc.dart';
-import 'package:clinic_admin/presentation/blocs/doctor/doctor_bloc.dart';
-import 'package:clinic_admin/presentation/widgets/section_header_widget.dart';
+import '../../core/dependency_injection/di_container.dart';
+import '../../core/routes/routes.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/utils/shared_keys.dart';
+import '../blocs/category/category_bloc.dart';
+import '../blocs/doctor/doctor_bloc.dart';
+import '../widgets/section_header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

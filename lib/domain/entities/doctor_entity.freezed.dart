@@ -333,6 +333,8 @@ mixin _$Doctor {
   String? get doctorLastName => throw _privateConstructorUsedError;
   String? get doctorPhoneNumber => throw _privateConstructorUsedError;
   String? get userName => throw _privateConstructorUsedError;
+  String? get dateOfBirth => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
   Specialization? get specialization => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -352,6 +354,8 @@ abstract class $DoctorCopyWith<$Res> {
       String? doctorLastName,
       String? doctorPhoneNumber,
       String? userName,
+      String? dateOfBirth,
+      String? gender,
       Specialization? specialization});
 
   $SpecializationCopyWith<$Res>? get specialization;
@@ -376,6 +380,8 @@ class _$DoctorCopyWithImpl<$Res, $Val extends Doctor>
     Object? doctorLastName = freezed,
     Object? doctorPhoneNumber = freezed,
     Object? userName = freezed,
+    Object? dateOfBirth = freezed,
+    Object? gender = freezed,
     Object? specialization = freezed,
   }) {
     return _then(_value.copyWith(
@@ -402,6 +408,14 @@ class _$DoctorCopyWithImpl<$Res, $Val extends Doctor>
       userName: freezed == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
               as String?,
       specialization: freezed == specialization
           ? _value.specialization
@@ -437,6 +451,8 @@ abstract class _$$DoctorImplCopyWith<$Res> implements $DoctorCopyWith<$Res> {
       String? doctorLastName,
       String? doctorPhoneNumber,
       String? userName,
+      String? dateOfBirth,
+      String? gender,
       Specialization? specialization});
 
   @override
@@ -460,6 +476,8 @@ class __$$DoctorImplCopyWithImpl<$Res>
     Object? doctorLastName = freezed,
     Object? doctorPhoneNumber = freezed,
     Object? userName = freezed,
+    Object? dateOfBirth = freezed,
+    Object? gender = freezed,
     Object? specialization = freezed,
   }) {
     return _then(_$DoctorImpl(
@@ -487,6 +505,14 @@ class __$$DoctorImplCopyWithImpl<$Res>
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String?,
+      dateOfBirth: freezed == dateOfBirth
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as String?,
       specialization: freezed == specialization
           ? _value.specialization
           : specialization // ignore: cast_nullable_to_non_nullable
@@ -505,6 +531,8 @@ class _$DoctorImpl implements _Doctor {
       this.doctorLastName,
       this.doctorPhoneNumber,
       this.userName,
+      this.dateOfBirth,
+      this.gender,
       this.specialization});
 
   factory _$DoctorImpl.fromJson(Map<String, dynamic> json) =>
@@ -523,11 +551,15 @@ class _$DoctorImpl implements _Doctor {
   @override
   final String? userName;
   @override
+  final String? dateOfBirth;
+  @override
+  final String? gender;
+  @override
   final Specialization? specialization;
 
   @override
   String toString() {
-    return 'Doctor(id: $id, doctorEmail: $doctorEmail, doctorFirstName: $doctorFirstName, doctorLastName: $doctorLastName, doctorPhoneNumber: $doctorPhoneNumber, userName: $userName, specialization: $specialization)';
+    return 'Doctor(id: $id, doctorEmail: $doctorEmail, doctorFirstName: $doctorFirstName, doctorLastName: $doctorLastName, doctorPhoneNumber: $doctorPhoneNumber, userName: $userName, dateOfBirth: $dateOfBirth, gender: $gender, specialization: $specialization)';
   }
 
   @override
@@ -546,14 +578,26 @@ class _$DoctorImpl implements _Doctor {
                 other.doctorPhoneNumber == doctorPhoneNumber) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.specialization, specialization) ||
                 other.specialization == specialization));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, doctorEmail, doctorFirstName,
-      doctorLastName, doctorPhoneNumber, userName, specialization);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      doctorEmail,
+      doctorFirstName,
+      doctorLastName,
+      doctorPhoneNumber,
+      userName,
+      dateOfBirth,
+      gender,
+      specialization);
 
   @JsonKey(ignore: true)
   @override
@@ -577,6 +621,8 @@ abstract class _Doctor implements Doctor {
       final String? doctorLastName,
       final String? doctorPhoneNumber,
       final String? userName,
+      final String? dateOfBirth,
+      final String? gender,
       final Specialization? specialization}) = _$DoctorImpl;
 
   factory _Doctor.fromJson(Map<String, dynamic> json) = _$DoctorImpl.fromJson;
@@ -593,6 +639,10 @@ abstract class _Doctor implements Doctor {
   String? get doctorPhoneNumber;
   @override
   String? get userName;
+  @override
+  String? get dateOfBirth;
+  @override
+  String? get gender;
   @override
   Specialization? get specialization;
   @override
