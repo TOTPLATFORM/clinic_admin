@@ -108,10 +108,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       titleFontWeight: FontWeight.w400,
                       showButton: true,
                       title: 'Categories',
-                      subtitle: 'View all',
+                      // subtitle: 'View all',
                       subTitleColor: AppColors.grey,
                       onTap: () {},
-                      themeIcon: Icons.keyboard_arrow_right_sharp,
+                      // themeIcon: Icons.keyboard_arrow_right_sharp,
                       iconSize: 30,
                     );
                   });
@@ -197,10 +197,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 titleFontWeight: FontWeight.w400,
                 showButton: true,
                 title: 'Recommendation',
-                subtitle: 'View all',
+                // subtitle: 'View all',
                 subTitleColor: AppColors.grey,
                 onTap: () {},
-                themeIcon: Icons.keyboard_arrow_right_sharp,
+                // themeIcon: Icons.keyboard_arrow_right_sharp,
                 iconSize: 30,
               ),
             ),
@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListView.builder(
                         shrinkWrap: true,
                         padding: EdgeInsets.zero,
-                        itemCount: value.doctors?.value?.length,
+                        itemCount: 5,
                         itemBuilder: ((context, index) {
                           return DoctorItem(
                             imagePath: "assets/images/app_logo.png",

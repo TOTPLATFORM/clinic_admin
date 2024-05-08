@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../blocs/doctor/doctor_bloc.dart';
 import '../blocs/search/search_bloc.dart';
 import '../widgets/doctor_item.dart';
 import '../widgets/tot_text_form_filed_search_atom.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -78,7 +79,8 @@ class _SearchPageState extends State<SearchPage> {
                                       MediaQuery.sizeOf(context).height * 0.75,
                                   child: ListView.builder(
                                       padding: EdgeInsets.zero,
-                                      itemCount: searchValue.doctors?.value?.length,
+                                      itemCount:
+                                          searchValue.doctors?.value?.length,
                                       itemBuilder: ((context, index) {
                                         return DoctorItem(
                                           imagePath:
@@ -96,8 +98,8 @@ class _SearchPageState extends State<SearchPage> {
                                                   ?.specializationName ??
                                               "",
                                           onTap: () {
-                                            if (searchValue.doctors?.value![index]
-                                                    .id !=
+                                            if (searchValue.doctors
+                                                    ?.value![index].id !=
                                                 null) {
                                               context.pushNamed(
                                                   Routes.doctorDetails,

@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
+
 import '../../core/theme/app_colors.dart';
 import 'calender_screen.dart';
 import 'home_screen.dart';
 import 'profile_screen.dart';
-import 'search_screen.dart';
-import 'package:flutter/material.dart';
+import 'patients_screen.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({
@@ -60,8 +61,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.people),
+            label: 'Patients',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_month),

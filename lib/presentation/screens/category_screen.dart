@@ -1,4 +1,5 @@
 import 'package:clinic_admin/core/theme/app_colors.dart';
+import 'package:clinic_admin/presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -67,7 +68,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   shrinkWrap: true,
                   itemCount: value.doctors?.value?.length,
                   itemBuilder: ((context, index) {
+                    //TODO: change to remove doctor
                     return DoctorItem(
+                      onDeleteButton: () => context
+                          .read<DoctorBloc>()
+                          .add(const DoctorEvent.getAllDoctors()),
                       imagePath: "assets/images/app_logo.png",
                       doctorDescription:
                           value.doctors?.value![index].doctorEmail ?? "",
@@ -177,6 +182,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                     ],
                   ),
                   CustomTextFieldWithLabel(
+                    hintText: "Username",
                     controller: userNameController,
                     title: 'Username',
                     validatee: (v) {
@@ -187,6 +193,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                     },
                   ),
                   CustomTextFieldWithLabel(
+                    hintText: "First name",
                     controller: firstNameController,
                     title: 'First Name',
                     validatee: (v) {
@@ -197,6 +204,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                     },
                   ),
                   CustomTextFieldWithLabel(
+                    hintText: "Last name",
                     controller: lastNameController,
                     title: 'last Name',
                     validatee: (v) {
@@ -207,6 +215,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                     },
                   ),
                   CustomTextFieldWithLabel(
+                    hintText: "Email",
                     controller: emailController,
                     title: 'Email',
                     validatee: (v) {
@@ -217,6 +226,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                     },
                   ),
                   CustomTextFieldWithLabel(
+                    hintText: "Phone",
                     controller: phoneController,
                     title: 'Phone',
                     validatee: (v) {

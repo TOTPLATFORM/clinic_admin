@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../blocs/appointment/appointment_bloc.dart';
 import '../widgets/doctor_item.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class CalenderScreen extends StatefulWidget {
   const CalenderScreen({super.key});
