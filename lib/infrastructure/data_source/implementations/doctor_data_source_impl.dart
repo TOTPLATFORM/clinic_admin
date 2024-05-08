@@ -65,7 +65,6 @@ class DoctorDataSourceImpl implements DoctorDataSource {
               "Authorization": "Bearer $token",
             },
           ),
-          //TODO: check with backend
           data: {
             {
               "doctorEmail": doctorData.doctorEmail,

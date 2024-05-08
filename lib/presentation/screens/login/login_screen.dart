@@ -350,8 +350,6 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
 
   void _onPressedMethod() {
     if (formKey.currentState!.validate()) {
-      //TODO: Fix Auth
-
       context.read<AuthBloc>().add(
             AuthEvent.login(
               username: userNameController.text,

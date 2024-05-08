@@ -1,9 +1,10 @@
-import '../../core/routes/routes.dart';
-import '../blocs/doctor/doctor_bloc.dart';
-import '../widgets/doctor_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../core/routes/routes.dart';
+import '../blocs/doctor/doctor_bloc.dart';
+import '../widgets/doctor_item.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -31,13 +32,15 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("Search"),
+        title: const Text("Patients"),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
             children: [
+              //TODO: List all Patients
               BlocBuilder<DoctorBloc, DoctorState>(
                 builder: (context, state) {
                   return state.maybeMap(orElse: () {
