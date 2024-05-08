@@ -71,7 +71,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   shrinkWrap: true,
                   itemCount: value.doctors?.value?.length,
                   itemBuilder: ((context, index) {
+                    //TODO: change to remove doctor
                     return DoctorItem(
+                      onDeleteButton: () => context
+                          .read<DoctorBloc>()
+                          .add(const DoctorEvent.getAllDoctors()),
                       imagePath: "assets/images/app_logo.png",
                       doctorDescription:
                           value.doctors?.value![index].doctorEmail ?? "",
@@ -216,6 +220,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                           }
                           return null;
                         },
+
                       ),
                       CustomTextFieldWithLabel(
                         hintText: 'Enter last name',

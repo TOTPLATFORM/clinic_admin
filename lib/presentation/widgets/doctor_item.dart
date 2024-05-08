@@ -1,8 +1,10 @@
-import '../../core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/theme/app_colors.dart';
 
 class DoctorItem extends StatelessWidget {
   final GestureTapCallback? onTap;
+  final void Function()? onDeleteButton;
   final String imagePath;
   final String doctorName;
   final String doctorType;
@@ -21,6 +23,7 @@ class DoctorItem extends StatelessWidget {
     this.price,
     this.showPrice = false,
     this.color,
+    this.onDeleteButton,
   });
 
   @override
@@ -70,6 +73,14 @@ class DoctorItem extends StatelessWidget {
                         color: AppColors.redColor,
                         fontWeight: FontWeight.bold))
                 : const SizedBox.shrink(),
+            onDeleteButton != null
+                ? IconButton(
+                    onPressed: () => onDeleteButton!.call(),
+                    icon: const Icon(
+                      Icons.delete_outlined,
+                      color: AppColors.redColor,
+                    ))
+                : const SizedBox.shrink()
           ],
         ),
       ),
