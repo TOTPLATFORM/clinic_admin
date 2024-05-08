@@ -118,9 +118,21 @@ class _CalenderScreenState extends State<CalenderScreen>
                                 SizedBox(
                                     width: MediaQuery.sizeOf(context).width *
                                         0.12),
-                                Text(value.getAppointmentsData?.value![index]
-                                        .patientName ??
-                                    ""),
+                                ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                      minWidth:
+                                          MediaQuery.sizeOf(context).width *
+                                              0.12,
+                                      maxWidth:
+                                          MediaQuery.sizeOf(context).width *
+                                              0.17),
+                                  child: Text(
+                                    value.getAppointmentsData?.value![index]
+                                            .patientName ??
+                                        "",
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                )
                               ],
                             )
                           ],
