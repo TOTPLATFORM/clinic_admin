@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../core/dependency_injection/di_container.dart';
 import '../../core/utils/shared_keys.dart';
 import '../../core/utils/show_snack_bar.dart';
 import '../blocs/update_personal_data/update_personal_data_bloc.dart';
 import '../widgets/custom/custom_text_form.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class EditProfileScreenBody extends StatefulWidget {
   const EditProfileScreenBody({super.key});
@@ -71,6 +72,7 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
                     height: 20,
                   ),
                   CustomTextFieldWithLabel(
+                    hintText: "enter user name",
                     title: 'Enter Your User Name',
                     controller: userNameController,
                   ),
@@ -78,23 +80,28 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
                     height: 10,
                   ),
                   CustomTextFieldWithLabel(
-                      title: 'Enter Your Email', controller: emailController),
+                      hintText: "enter email",
+                      title: 'Enter Your Email',
+                      controller: emailController),
                   const SizedBox(
                     height: 10,
                   ),
                   CustomTextFieldWithLabel(
+                      hintText: "enter first name",
                       title: 'Enter Your First Name',
                       controller: firstNameController),
                   const SizedBox(
                     height: 10,
                   ),
                   CustomTextFieldWithLabel(
+                      hintText: "enter last name",
                       title: 'Enter Your Last Name',
                       controller: lastNameController),
                   const SizedBox(
                     height: 10,
                   ),
                   CustomTextFieldWithLabel(
+                    hintText: "enter phone",
                     title: 'Enter Your Phone Number',
                     controller: phoneController,
                   ),
@@ -102,7 +109,9 @@ class _EditProfileScreenBodyState extends State<EditProfileScreenBody> {
                     height: 10,
                   ),
                   CustomTextFieldWithLabel(
-                      title: 'Enter Your Password', controller: passController),
+                      hintText: "enter password",
+                      title: 'Enter Your Password',
+                      controller: passController),
                   const SizedBox(height: 10),
                   DataSaveButton(
                     onPressed: () {

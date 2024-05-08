@@ -237,6 +237,7 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                           ],
                         ),
                         CustomTextFieldWithLabel(
+                          hintText: "Username",
                           controller: userNameController,
                           title: 'Username',
                           validatee: (v) {
@@ -272,6 +273,14 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                               cursorColor: AppColors.totColor,
                               onChanged: (value) {},
                               decoration: InputDecoration(
+                                isDense: true,
+                                hintText: "Enter your password",
+                                border: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.blackColor)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.blackColor)),
                                 suffixIcon: TOTIconButtonAtom.displayMedium(
                                   codePoint: isSecure ? 0xe6be : 0xe6bd,
                                   iconColor: AppColors.blackColor,
@@ -283,12 +292,6 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                                     );
                                   },
                                 ),
-                                border: const UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: AppColors.totColor)),
-                                focusedBorder: const UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: AppColors.grey)),
                               ),
                             ),
                           ],
@@ -483,6 +486,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                           ],
                         ),
                         CustomTextFieldWithLabel(
+                          hintText: 'Enter Your User Name',
                           controller: userNameController,
                           title: 'User Name',
                           validatee: (v) {
@@ -493,6 +497,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                           },
                         ),
                         CustomTextFieldWithLabel(
+                          hintText: 'Enter Your first Name',
                           controller: firstNameController,
                           title: 'First Name',
                           validatee: (v) {
@@ -503,6 +508,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                           },
                         ),
                         CustomTextFieldWithLabel(
+                          hintText: 'Enter Your last Name',
                           controller: lastNameController,
                           title: 'last Name',
                           validatee: (v) {
@@ -513,6 +519,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                           },
                         ),
                         CustomTextFieldWithLabel(
+                          hintText: 'Enter Your email',
                           controller: emailController,
                           title: 'email',
                           validatee: (v) {
@@ -523,6 +530,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                           },
                         ),
                         CustomTextFieldWithLabel(
+                          hintText: 'Enter Your phone',
                           controller: phoneController,
                           title: 'phone',
                           validatee: (v) {
@@ -573,12 +581,14 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                               cursorColor: AppColors.totColor,
                               onChanged: (value) {},
                               decoration: const InputDecoration(
-                                border: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: AppColors.totColor)),
-                                focusedBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: AppColors.grey)),
+                                isDense: true,
+                                hintText: "Enter your password",
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.blackColor)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.blackColor)),
                               ),
                             ),
                           ],
@@ -624,12 +634,14 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                               cursorColor: AppColors.totColor,
                               onChanged: (value) {},
                               decoration: const InputDecoration(
-                                border: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: AppColors.totColor)),
-                                focusedBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: AppColors.grey)),
+                                isDense: true,
+                                hintText: "Enter your password",
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.blackColor)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: AppColors.blackColor)),
                               ),
                             ),
                           ],

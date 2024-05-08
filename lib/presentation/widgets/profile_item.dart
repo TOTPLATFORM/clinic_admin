@@ -8,24 +8,25 @@ class ProfileItem extends StatelessWidget {
   final bool hasNotification;
   final int iconCode;
   final VoidCallback onPressed;
-  const ProfileItem(
-      {super.key,
-      required this.text,
-      required this.iconCode,
-      required this.onPressed,
-      this.hasNotification = false});
+  const ProfileItem({
+    super.key,
+    required this.text,
+    required this.iconCode,
+    required this.onPressed,
+    this.hasNotification = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        width: MediaQuery.sizeOf(context).width,
-        height: MediaQuery.sizeOf(context).height * 0.08,
-        decoration: BoxDecoration(
-            color: AppColors.white, borderRadius: BorderRadius.circular(15)),
+    return Container(
+      padding: const EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height * 0.08,
+      decoration: BoxDecoration(
+          color: AppColors.white, borderRadius: BorderRadius.circular(15)),
+      child: InkWell(
+        onTap: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
