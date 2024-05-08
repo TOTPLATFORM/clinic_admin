@@ -1,5 +1,5 @@
 import '../core/base_types/src/base_query.dart';
-import '../core/primitives/inpust/no_params.dart';
+import '../core/primitives/inputs/no_params.dart';
 import '../../core/network/failure.dart';
 import '../../domain/entities/category_entity.dart';
 import '../../domain/entities/doctors_entity.dart';

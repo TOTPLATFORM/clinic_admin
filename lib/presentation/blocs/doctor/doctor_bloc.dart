@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../app/contracts/doctor.dart';
-import '../../../app/core/primitives/inpust/no_params.dart';
+import '../../../app/core/primitives/inputs/no_params.dart';
 import '../../../domain/entities/doctor_entity.dart';
 import '../../../domain/entities/doctors_entity.dart';
 
