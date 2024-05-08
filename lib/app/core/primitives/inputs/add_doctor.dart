@@ -8,8 +8,8 @@ class AddDoctorInputs with EquatableMixin {
   final String username;
   final String email;
   final String phone;
-  final String gender;
-  final String dateOfBirth;
+  final String? gender;
+  final String? dateOfBirth;
 
   AddDoctorInputs(
       {required this.password,
@@ -19,8 +19,8 @@ class AddDoctorInputs with EquatableMixin {
       required this.username,
       required this.email,
       required this.phone,
-      required this.gender,
-      required this.dateOfBirth});
+       this.gender,
+       this.dateOfBirth});
 
   @override
   List<Object?> get props => [

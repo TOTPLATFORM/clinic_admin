@@ -10,6 +10,7 @@ void registerCommands() {
   getIt.registerSingleton<AddAppointmentCommand>(AppointmentCommandImpl(
     repo: getIt(),
   ));
+
   getIt
       .registerSingleton<UpdateAppointmentCommand>(UpdateAppointmentCommandImpl(
     repo: getIt(),
