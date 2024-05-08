@@ -1,5 +1,5 @@
 import '../contracts/auth.dart';
-import '../core/primitives/inpust/login_input.dart';
+import '../core/primitives/inputs/login_input.dart';
 import '../../core/network/failure.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repos/auth_repo.dart';
