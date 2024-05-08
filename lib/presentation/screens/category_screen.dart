@@ -1,3 +1,4 @@
+import 'package:clinic_admin/app/core/primitives/inputs/add_doctor.dart';
 import 'package:clinic_admin/core/theme/app_colors.dart';
 import 'package:clinic_admin/presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(22))),
               builder: (_) {
-                return const _AddDocBtmSheet();
+                return _AddDocBtmSheet(
+                  categoryId: widget.categoryId,
+                );
               }).then((value) {});
         },
       ),
@@ -97,7 +100,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
 }
 
 class _AddDocBtmSheet extends StatefulWidget {
-  const _AddDocBtmSheet();
+  final String categoryId;
+  const _AddDocBtmSheet({required this.categoryId});
 
   @override
   State<_AddDocBtmSheet> createState() => _AddDocBtmSheetState();
@@ -144,237 +148,264 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      expand: false,
-      initialChildSize: 0.9,
-      minChildSize: 0.50,
-      maxChildSize: 0.90,
-      builder: (context, scrollController) {
-        return AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            decoration: BoxDecoration(
-                color: const Color(0xFFefefee),
-                borderRadius: BorderRadius.circular(20)),
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              controller: scrollController,
-              child: Form(
-                key: formKey,
-                child: Column(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.arrow_back),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      const Spacer(),
-                      const Text(
-                        'Add Doctor',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                  CustomTextFieldWithLabel(
-                    hintText: "Username",
-                    controller: userNameController,
-                    title: 'Username',
-                    validatee: (v) {
-                      if (v!.isEmpty) {
-                        return 'Please enter username';
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomTextFieldWithLabel(
-                    hintText: "First name",
-                    controller: firstNameController,
-                    title: 'First Name',
-                    validatee: (v) {
-                      if (v!.isEmpty) {
-                        return 'Please enter first name';
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomTextFieldWithLabel(
-                    hintText: "Last name",
-                    controller: lastNameController,
-                    title: 'last Name',
-                    validatee: (v) {
-                      if (v!.isEmpty) {
-                        return 'Please enter first name';
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomTextFieldWithLabel(
-                    hintText: "Email",
-                    controller: emailController,
-                    title: 'Email',
-                    validatee: (v) {
-                      if (v!.isEmpty) {
-                        return 'Please enter email';
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomTextFieldWithLabel(
-                    hintText: "Phone",
-                    controller: phoneController,
-                    title: 'Phone',
-                    validatee: (v) {
-                      if (v!.isEmpty) {
-                        return 'Please enter phone';
-                      }
-                      return null;
-                    },
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Password',
-                          style: TextStyle(
-                              color: AppColors.blackColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: passController,
-                        validator: (v) {
-                          if (v!.isEmpty) {
-                            return 'Please enter password';
-                          }
-                          return null;
-                        },
-                        obscureText: isSecure,
-                        cursorColor: AppColors.totColor,
-                        onChanged: (value) {},
-                        decoration: InputDecoration(
-                          suffixIcon: TOTIconButtonAtom.displayMedium(
-                            codePoint: isSecure ? 0xe6be : 0xe6bd,
-                            iconColor: AppColors.blackColor,
+    return BlocConsumer<DoctorBloc, DoctorState>(
+      listener: (context, state) {
+        state.maybeMap(
+            orElse: () {},
+            success: (value) {
+              if (value.addDoctor) {
+                Navigator.pop(context);
+                context.read<CategoryBloc>().add(
+                    CategoryEvent.getDoctorsBySpecialityId(
+                        specialityId: widget.categoryId));
+              }
+            });
+      },
+      builder: (context, doctorState) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.9,
+          minChildSize: 0.50,
+          maxChildSize: 0.90,
+          builder: (context, scrollController) {
+            return AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                decoration: BoxDecoration(
+                    color: const Color(0xFFefefee),
+                    borderRadius: BorderRadius.circular(20)),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(16),
+                  controller: scrollController,
+                  child: Form(
+                    key: formKey,
+                    child: Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.arrow_back),
                             onPressed: () {
-                              setState(
-                                () {
-                                  isSecure = !isSecure;
-                                },
-                              );
+                              Navigator.pop(context);
                             },
                           ),
-                          border: const UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: AppColors.totColor)),
-                          focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.grey)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          'Confirm Password',
-                          style: TextStyle(
-                              color: AppColors.blackColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: confirmPassController,
-                        validator: (v) {
-                          if (v!.isEmpty) {
-                            return 'Please enter password';
-                          }
-                          return null;
-                        },
-                        obscureText: isSecure,
-                        cursorColor: AppColors.totColor,
-                        onChanged: (value) {},
-                        decoration: InputDecoration(
-                          suffixIcon: TOTIconButtonAtom.displayMedium(
-                            codePoint: isSecure ? 0xe6be : 0xe6bd,
-                            iconColor: AppColors.blackColor,
-                            onPressed: () {
-                              setState(
-                                () {
-                                  isSecure = !isSecure;
-                                },
-                              );
-                            },
-                          ),
-                          border: const UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: AppColors.totColor)),
-                          focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: AppColors.grey)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.07,
-                  ),
-                  ElevatedButton(
-                      onPressed: _onPressedMethod,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.totColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        fixedSize: Size(
-                          MediaQuery.sizeOf(context).width * 0.9,
-                          50,
-                        ),
-                      ),
-                      child:
-                          //TODO: add bloc
-
-                          // state.maybeMap
+                          const Spacer(),
                           const Text(
-                        'Add Doctor',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 16,
-                        ),
+                            'Add Doctor',
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                      CustomTextFieldWithLabel(
+                        hintText: 'Enter user name',
+                        controller: userNameController,
+                        title: 'Username',
+                        validatee: (v) {
+                          if (v!.isEmpty) {
+                            return 'Please enter username';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextFieldWithLabel(
+                        hintText: 'Enter first name',
+                        controller: firstNameController,
+                        title: 'First Name',
+                        validatee: (v) {
+                          if (v!.isEmpty) {
+                            return 'Please enter first name';
+                          }
+                          return null;
+                        },
 
-                        // loading: () {
-                        //   return const SizedBox(
-                        //     height: 20,
-                        //     width: 20,
-                        //     child: CircularProgressIndicator(
-                        //       color: AppColors.white,
-                        //       strokeWidth: 3,
-                        //     ),
-                        //   );
-                        // },
-                      )),
-                ]),
-              ),
-            )
+                      ),
+                      CustomTextFieldWithLabel(
+                        hintText: 'Enter last name',
+                        controller: lastNameController,
+                        title: 'last Name',
+                        validatee: (v) {
+                          if (v!.isEmpty) {
+                            return 'Please enter first name';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextFieldWithLabel(
+                        hintText: 'Enter email',
+                        controller: emailController,
+                        title: 'Email',
+                        validatee: (v) {
+                          if (v!.isEmpty) {
+                            return 'Please enter email';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextFieldWithLabel(
+                        hintText: 'Enter phone',
+                        controller: phoneController,
+                        title: 'Phone',
+                        validatee: (v) {
+                          if (v!.isEmpty) {
+                            return 'Please enter phone';
+                          }
+                          return null;
+                        },
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Password',
+                              style: TextStyle(
+                                  color: AppColors.blackColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: passController,
+                            validator: (v) {
+                              if (v!.isEmpty) {
+                                return 'Please enter password';
+                              }
+                              return null;
+                            },
+                            obscureText: isSecure,
+                            cursorColor: AppColors.totColor,
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                              suffixIcon: TOTIconButtonAtom.displayMedium(
+                                codePoint: isSecure ? 0xe6be : 0xe6bd,
+                                iconColor: AppColors.blackColor,
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      isSecure = !isSecure;
+                                    },
+                                  );
+                                },
+                              ),
+                              border: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: AppColors.totColor)),
+                              focusedBorder: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: AppColors.grey)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Confirm Password',
+                              style: TextStyle(
+                                  color: AppColors.blackColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: confirmPassController,
+                            validator: (v) {
+                              if (v!.isEmpty) {
+                                return 'Please enter password';
+                              }
+                              return null;
+                            },
+                            obscureText: isSecure,
+                            cursorColor: AppColors.totColor,
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                              suffixIcon: TOTIconButtonAtom.displayMedium(
+                                codePoint: isSecure ? 0xe6be : 0xe6bd,
+                                iconColor: AppColors.blackColor,
+                                onPressed: () {
+                                  setState(
+                                    () {
+                                      isSecure = !isSecure;
+                                    },
+                                  );
+                                },
+                              ),
+                              border: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: AppColors.totColor)),
+                              focusedBorder: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: AppColors.grey)),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 0.07,
+                      ),
+                      ElevatedButton(
+                          onPressed: _onPressedMethod,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.totColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            fixedSize: Size(
+                              MediaQuery.sizeOf(context).width * 0.9,
+                              50,
+                            ),
+                          ),
+                          child: doctorState.maybeMap(
+                            orElse: () {
+                              return const Text(
+                                'Add Doctor',
+                                style: TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 16,
+                                ),
+                              );
+                            },
+                            loading: (v) {
+                              return const SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: AppColors.white,
+                                  strokeWidth: 3,
+                                ),
+                              );
+                            },
+                          )),
+                    ]),
+                  ),
+                )
 
-            // },
-            );
+                // },
+                );
+          },
+        );
       },
     );
   }
 
   void _onPressedMethod() {
     if (formKey.currentState!.validate()) {
-      //TODO: add event of adding doctor
+      context.read<DoctorBloc>().add(DoctorEvent.addDoctor(
+              doctorData: AddDoctorInputs(
+            password: passController.text,
+            specializationId: int.parse(widget.categoryId),
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
+            username: userNameController.text,
+            email: emailController.text,
+            phone: phoneController.text,
+          )));
     }
   }
 }
