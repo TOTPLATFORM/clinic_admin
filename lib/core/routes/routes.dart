@@ -1,7 +1,7 @@
 abstract class Routes {
   static const splash = "splash";
   static const login = "login";
-  static const homeScreen = "home";
+  static const layout = "layout";
   static const updateAppointment = "updateAppointment";
   static const editPersonal = "editPersonal";
   static const order = "order";

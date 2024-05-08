@@ -199,7 +199,7 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
               listener: (context, state) {
                 state.maybeMap(
                   success: (model) async {
-                    context.pushNamed(Routes.homeScreen);
+                    context.pushNamed(Routes.layout);
                     ShowSnackbar.showCheckTopSnackBar(
                       context,
                       text: 'Welcome, back',
@@ -349,18 +349,12 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
     if (formKey.currentState!.validate()) {
       //TODO: Fix Auth
 
-      context.pushNamed(Routes.homeScreen);
-      ShowSnackbar.showCheckTopSnackBar(
-        context,
-        text: 'Welcome, back',
-        type: SnackBarType.success,
-      );
-      // context.read<AuthBloc>().add(
-      //       AuthEvent.login(
-      //         username: userNameController.text,
-      //         password: passController.text,
-      //       ),
-      //     );
+      context.read<AuthBloc>().add(
+            AuthEvent.login(
+              username: userNameController.text,
+              password: passController.text,
+            ),
+          );
     }
   }
 }

@@ -46,7 +46,7 @@ class AppointmentDataSourceImpl implements AppointmentDataSource {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
 
     final response = await dioClient.get(
-      '/Appointment/Patient',
+      '/Appointment',
       options: Options(
         headers: {
           "Authorization": "Bearer $token",

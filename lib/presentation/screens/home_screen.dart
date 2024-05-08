@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String userName = preferences.getString(SharedKeys.userName) ?? " ";
-    List<String> names = ["Doctors", "Appointments", "Patients"];
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -25,30 +25,8 @@ class HomeScreen extends StatelessWidget {
       body: Container(
           padding: const EdgeInsets.only(top: 50, bottom: 30),
           color: AppColors.grayShade100,
-          child: Column(
-            children: [
-              GridView.builder(
-                shrinkWrap: true,
-                itemCount: names.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 10,
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          "assets/images/doctor.png",
-                          width: MediaQuery.sizeOf(context).width / 2,
-                          height: MediaQuery.sizeOf(context).height / 5,
-                        ),
-                        Text(names[index])
-                      ],
-                    ),
-                  );
-                },
-              )
-            ],
+          child: const Column(
+            children: [],
           )),
     );
   }

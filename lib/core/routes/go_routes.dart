@@ -3,7 +3,6 @@
 // import 'package:clinic_admin/presentation/screens/doctor_details_screen.dart';
 // import 'package:clinic_admin/presentation/screens/edit_personal_data_screen.dart';
 // import 'package:clinic_admin/presentation/screens/layout_screen.dart';
-import 'package:clinic_admin/presentation/screens/home_screen.dart';
 import 'package:clinic_admin/presentation/screens/login/login_screen.dart';
 // import 'package:clinic_admin/presentation/screens/search_page.dart';
 // import 'package:clinic_admin/presentation/screens/splash_screen.dart';
@@ -11,6 +10,7 @@ import 'package:clinic_admin/presentation/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../presentation/screens/layout_screen.dart';
 import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -86,10 +86,10 @@ final GoRouter allRoutes = GoRouter(
       },
     ),
     GoRoute(
-      path: Routes.homeScreen.withSlash,
-      name: Routes.homeScreen,
+      path: Routes.layout.withSlash,
+      name: Routes.layout,
       builder: (context, state) {
-        return const HomeScreen();
+        return const LayoutScreen();
       },
     ),
     // GoRoute(
