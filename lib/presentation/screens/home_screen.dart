@@ -1,16 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tot_atomic_design/tot_atomic_design.dart';
+
 import '../../core/dependency_injection/di_container.dart';
 import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/shared_keys.dart';
 import '../blocs/category/category_bloc.dart';
 import '../blocs/doctor/doctor_bloc.dart';
-import '../widgets/section_header_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:tot_atomic_design/tot_atomic_design.dart';
-
 import '../widgets/doctor_item.dart';
+import '../widgets/section_header_widget.dart';
 import '../widgets/tot_text_form_filed_search_atom.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 10),
                         const Text(
-                          "Find Your Doctor",
+                          "Doctors",
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
