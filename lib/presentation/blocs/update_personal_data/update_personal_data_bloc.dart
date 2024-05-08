@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import '../../../app/contracts/update_personal_data.dart';
-import '../../../app/core/primitives/inpust/register_input.dart';
+import '../../../app/core/primitives/inputs/register_input.dart';
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/utils/shared_keys.dart';
 import '../../../domain/entities/login_entity.dart';

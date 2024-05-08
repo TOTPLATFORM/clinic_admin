@@ -1,5 +1,5 @@
 import '../contracts/appointment.dart';
-import '../core/primitives/inpust/add_appointment_input.dart';
+import '../core/primitives/inputs/add_appointment_input.dart';
 import '../../core/network/failure.dart';
 import '../../domain/entities/appointment_entity.dart';
 import '../../domain/repos/appointment_repo.dart';

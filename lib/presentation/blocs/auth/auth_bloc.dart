@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../app/contracts/auth.dart';
-import '../../../app/core/primitives/inpust/login_input.dart';
-import '../../../app/core/primitives/inpust/register_input.dart';
+import '../../../app/core/primitives/inputs/login_input.dart';
+import '../../../app/core/primitives/inputs/register_input.dart';
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/utils/shared_keys.dart';
 

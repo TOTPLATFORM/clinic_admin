@@ -4,7 +4,7 @@ import '../../core/network/failure.dart';
 import '../../domain/entities/category_entity.dart';
 import '../../domain/repos/category_repo.dart';
 import '../contracts/category.dart';
-import '../core/primitives/inpust/no_params.dart';
+import '../core/primitives/inputs/no_params.dart';
 
 class GetCategoryQueryImpl implements GetCategoryQuery {
   final CategoryRepo categoryRepo;
