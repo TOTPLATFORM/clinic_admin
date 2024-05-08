@@ -147,7 +147,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 GestureDetector(
                                   onTap: () {
                                     context.pushNamed(Routes.category, extra: {
-                                      "categoryId": index.toString(),
+                                      "categoryId":  value
+                                              .categories
+                                              ?.value?[index]
+                                              .id.toString() ??
+                                          "",
                                       "categoryName": value
                                               .categories
                                               ?.value?[index]

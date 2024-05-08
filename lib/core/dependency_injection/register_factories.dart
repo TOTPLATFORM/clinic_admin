@@ -21,8 +21,10 @@ void registerFactories() {
   );
   getIt.registerFactory<DoctorBloc>(
     () => DoctorBloc(
+      addDoctorQuery: getIt(),
       getDoctorQuery: getIt(),
       getDoctorByIdQuery: getIt(),
+
     ),
   );
   getIt.registerFactory<AppointmentBloc>(

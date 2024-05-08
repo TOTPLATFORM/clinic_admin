@@ -1,3 +1,5 @@
+import 'package:clinic_admin/app/queries/add_doctor_query_impl.dart';
+
 import '../../app/contracts/appointment.dart';
 import '../../app/contracts/auth.dart';
 import '../../app/contracts/category.dart';
@@ -19,6 +21,9 @@ void registerQueries() {
       authRepo: getIt(),
     ),
   );
+    getIt.registerSingleton<AddDoctorQuery>(AddDoctorQueryImpl(
+    doctorRepo: getIt(),
+  ));
   getIt.registerSingleton<RegisterQuery>(
     RegisterQueryImpl(
       authRepo: getIt(),

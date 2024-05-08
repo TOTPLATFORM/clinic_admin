@@ -54,7 +54,10 @@ class DoctorDataSourceImpl implements DoctorDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>> addDoctor({required Doctor doctorData,required int specializationId,required String password}) async {
+  Future<Map<String, dynamic>> addDoctor(
+      {required Doctor doctorData,
+      required int specializationId,
+      required String password}) async {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     log("message: token: $token");
     try {
@@ -66,17 +69,13 @@ class DoctorDataSourceImpl implements DoctorDataSource {
             },
           ),
           data: {
-            {
-              "doctorEmail": doctorData.doctorEmail,
-              "doctorFirstName": doctorData.doctorFirstName,
-              "doctorLastName": doctorData.doctorLastName,
-              "doctorPhoneNumber": doctorData.doctorPhoneNumber,
-              "password": password,
-              "dateOfBirth": doctorData,
-              "gender": doctorData.gender,
-              "userName": doctorData.userName,
-              "specializationId": specializationId
-            }
+            "doctorEmail": doctorData.doctorEmail,
+            "doctorFirstName": doctorData.doctorFirstName,
+            "doctorLastName": doctorData.doctorLastName,
+            "doctorPhoneNumber": doctorData.doctorPhoneNumber,
+            "password": password,
+            "userName": doctorData.userName,
+            "specializationId": specializationId
           });
       return res.data;
     } catch (e) {

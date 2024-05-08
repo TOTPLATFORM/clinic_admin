@@ -1,6 +1,6 @@
-import 'presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nested/nested.dart';
 
 import 'core/dependency_injection/di_container.dart';
 import 'core/routes/go_routes.dart';
@@ -8,8 +8,7 @@ import 'core/utils/app_config.dart';
 import 'presentation/blocs/appointment/appointment_bloc.dart';
 import 'presentation/blocs/auth/auth_bloc.dart';
 import 'presentation/blocs/category/category_bloc.dart';
-import 'package:nested/nested.dart';
-
+import 'presentation/blocs/doctor/doctor_bloc.dart';
 import 'presentation/blocs/search/search_bloc.dart';
 import 'presentation/blocs/update_personal_data/update_personal_data_bloc.dart';
 
@@ -87,6 +86,7 @@ class MainApp extends StatelessWidget {
       BlocProvider(
         create: (context) {
           return DoctorBloc(
+            addDoctorQuery: getIt(),
             getDoctorQuery: getIt(),
             getDoctorByIdQuery: getIt(),
           )..add(
