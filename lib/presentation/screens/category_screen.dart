@@ -199,7 +199,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                           const Spacer(),
                         ],
                       ),
-                      CustomTextFieldWithLabel(
+                      LabledTextField(
                         hintText: 'Enter user name',
                         controller: userNameController,
                         title: 'Username',
@@ -210,7 +210,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                           return null;
                         },
                       ),
-                      CustomTextFieldWithLabel(
+                      LabledTextField(
                         hintText: 'Enter first name',
                         controller: firstNameController,
                         title: 'First Name',
@@ -220,9 +220,8 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                           }
                           return null;
                         },
-
                       ),
-                      CustomTextFieldWithLabel(
+                      LabledTextField(
                         hintText: 'Enter last name',
                         controller: lastNameController,
                         title: 'last Name',
@@ -233,7 +232,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                           return null;
                         },
                       ),
-                      CustomTextFieldWithLabel(
+                      LabledTextField(
                         hintText: 'Enter email',
                         controller: emailController,
                         title: 'Email',
@@ -244,7 +243,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                           return null;
                         },
                       ),
-                      CustomTextFieldWithLabel(
+                      LabledTextField(
                         hintText: 'Enter phone',
                         controller: phoneController,
                         title: 'Phone',

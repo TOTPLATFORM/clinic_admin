@@ -236,7 +236,7 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                             const Spacer(),
                           ],
                         ),
-                        CustomTextFieldWithLabel(
+                        LabledTextField(
                           hintText: "Username",
                           controller: userNameController,
                           title: 'Username',
@@ -483,7 +483,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                             const Spacer(),
                           ],
                         ),
-                        CustomTextFieldWithLabel(
+                        LabledTextField(
                           hintText: 'Enter Your User Name',
                           controller: userNameController,
                           title: 'User Name',
@@ -494,7 +494,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                             return null;
                           },
                         ),
-                        CustomTextFieldWithLabel(
+                        LabledTextField(
                           hintText: 'Enter Your first Name',
                           controller: firstNameController,
                           title: 'First Name',
@@ -505,7 +505,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                             return null;
                           },
                         ),
-                        CustomTextFieldWithLabel(
+                        LabledTextField(
                           hintText: 'Enter Your last Name',
                           controller: lastNameController,
                           title: 'last Name',
@@ -516,7 +516,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                             return null;
                           },
                         ),
-                        CustomTextFieldWithLabel(
+                        LabledTextField(
                           hintText: 'Enter Your email',
                           controller: emailController,
                           title: 'email',
@@ -527,7 +527,7 @@ class _RegisterBtmSheetState extends State<_RegisterBtmSheet> {
                             return null;
                           },
                         ),
-                        CustomTextFieldWithLabel(
+                        LabledTextField(
                           hintText: 'Enter Your phone',
                           controller: phoneController,
                           title: 'phone',

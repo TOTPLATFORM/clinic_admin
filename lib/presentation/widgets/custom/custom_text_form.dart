@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 
-class CustomTextFieldWithLabel extends StatelessWidget {
+class LabledTextField extends StatelessWidget {
   final TextEditingController controller;
   final String title;
   final String hintText;
   final String? Function(String?)? validatee;
-  const CustomTextFieldWithLabel({
+    final String? Function(String?)? validator;
+  final VoidCallback? onTap;
+  final TextInputType? keyboardType;
+  const LabledTextField({
     super.key,
     required this.controller,
     required this.title,
-    this.validatee, required this.hintText,
+    this.validatee,
+    required this.hintText, this.validator, this.onTap, this.keyboardType,
   });
 
   @override
@@ -28,10 +32,12 @@ class CustomTextFieldWithLabel extends StatelessWidget {
             style: const TextStyle(
                 color: AppColors.blackColor,
                 fontSize: 12,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.bold,),
           ),
         ),
         TextFormField(
+          keyboardType: keyboardType,
+          onTap: onTap,
           controller: controller,
           validator: validatee,
           cursorColor: AppColors.blackColor,

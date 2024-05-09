@@ -45,7 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 return const CircularProgressIndicator.adaptive();
               }, success: (value) {
                 return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.82,
+                  height: MediaQuery.sizeOf(context).height * 0.8,
                   child: ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,

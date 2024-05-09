@@ -3,7 +3,6 @@ import '../../presentation/blocs/auth/auth_bloc.dart';
 import '../../presentation/blocs/category/category_bloc.dart';
 import '../../presentation/blocs/doctor/doctor_bloc.dart';
 import '../../presentation/blocs/search/search_bloc.dart';
-import '../../presentation/blocs/update_personal_data/update_personal_data_bloc.dart';
 import 'di_container.dart';
 
 void registerFactories() {
@@ -40,9 +39,5 @@ void registerFactories() {
       searchDoctorByTextCommand: getIt(),
     ),
   );
-  getIt.registerFactory<UpdatePersonalDataBloc>(
-    () => UpdatePersonalDataBloc(
-      updatePersonalDataQuery: getIt(),
-    ),
-  );
+ 
 }
