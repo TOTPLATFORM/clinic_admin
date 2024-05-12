@@ -15,7 +15,7 @@ class PatientDataSourceImpl implements PatientDataSource {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     try {
       final res = await _dioClient.get(
-        "Patient",
+        "/Patient",
         options: Options(
           headers: {
             "Content-Type": "application/json",

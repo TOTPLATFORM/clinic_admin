@@ -1,3 +1,5 @@
+import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
+
 import '../../presentation/blocs/appointment/appointment_bloc.dart';
 import '../../presentation/blocs/auth/auth_bloc.dart';
 import '../../presentation/blocs/category/category_bloc.dart';
@@ -23,7 +25,6 @@ void registerFactories() {
       addDoctorQuery: getIt(),
       getDoctorQuery: getIt(),
       getDoctorByIdQuery: getIt(),
-
     ),
   );
   getIt.registerFactory<AppointmentBloc>(
@@ -39,5 +40,9 @@ void registerFactories() {
       searchDoctorByTextCommand: getIt(),
     ),
   );
- 
+  getIt.registerFactory<UpdatePersonalDataBloc>(
+      () => UpdatePersonalDataBloc(updatePersonalDataQuery: getIt()));
+  getIt.registerFactory<PatientsBloc>(
+      () => PatientsBloc(getPatientsQuery: getIt()));
+
 }

@@ -1,3 +1,6 @@
+import 'package:clinic_admin/infrastructure/data_source/abstarctions/patients_data_source.dart';
+import 'package:clinic_admin/infrastructure/data_source/implementations/patients_data_source_impl.dart';
+
 import 'di_container.dart';
 import '../../infrastructure/data_source/abstarctions/appointment_data_source.dart';
 import '../../infrastructure/data_source/abstarctions/auth_data_source.dart';
@@ -31,4 +34,6 @@ void registerDataSources() {
   getIt.registerSingleton<UpdatePersonalDataSource>(
     UpdataPesonalDataSourceImpl(dioClient: getIt()),
   );
+  getIt.registerSingleton<PatientDataSource>(
+      PatientDataSourceImpl(dioClient: getIt()));
 }

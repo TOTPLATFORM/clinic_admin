@@ -4,7 +4,7 @@ import '../network/failure.dart';
 
 class DioExceptionHandler {
   static Failure handle(DioException exception) {
-    final String message = exception.response?.statusMessage ??
+  final String message = exception.response?.statusMessage ??
         "Something went wrong, please try again later";
     switch (exception.type) {
       case DioExceptionType.connectionTimeout:

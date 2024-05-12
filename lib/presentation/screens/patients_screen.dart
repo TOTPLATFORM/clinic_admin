@@ -1,9 +1,7 @@
+import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../core/routes/routes.dart';
-import '../blocs/doctor/doctor_bloc.dart';
 import '../widgets/doctor_item.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -36,8 +34,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: Column(
         children: [
-          //TODO: List all Patients
-          BlocBuilder<DoctorBloc, DoctorState>(
+          BlocBuilder<PatientsBloc, PatientsState>(
             builder: (context, state) {
               return state.maybeMap(orElse: () {
                 return Container();
@@ -49,26 +46,22 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
-                      itemCount: value.doctors?.value?.length,
+                      itemCount: value.patientEntity.value?.length,
                       itemBuilder: ((context, index) {
                         return DoctorItem(
-                          //TODO: Delete Patient
-
-                          onDeleteButton: () {},
                           imagePath: "assets/images/app_logo.png",
                           doctorDescription:
-                              value.doctors?.value![index].doctorEmail ?? "",
+                              value.patientEntity.value![index].patientEmail ??
+                                  "",
                           doctorName:
-                              value.doctors?.value![index].userName ?? "",
-                          doctorType: value.doctors?.value![index]
-                                  .specialization?.specializationName ??
-                              "",
-                          onTap: () {
-                            if (value.doctors?.value![index].id != null) {
-                              context.pushNamed(Routes.doctorDetails,
-                                  extra: value.doctors?.value?[index].id);
-                            }
-                          },
+                              "${value.patientEntity.value![index].patientFirstName} ${value.patientEntity.value![index].patientLastName}",
+                          doctorType: "",
+                          // onTap: () {
+                          //   if (value.patientEntity?.value![index].id != null) {
+                          //     context.pushNamed(Routes.doctorDetails,
+                          //         extra: value.doctors?.value?[index].id);
+                          //   }
+                          // },
                         );
                       })),
                 );
