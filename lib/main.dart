@@ -9,6 +9,7 @@ import 'presentation/blocs/appointment/appointment_bloc.dart';
 import 'presentation/blocs/auth/auth_bloc.dart';
 import 'presentation/blocs/category/category_bloc.dart';
 import 'presentation/blocs/doctor/doctor_bloc.dart';
+import 'presentation/blocs/patient/patients_bloc.dart';
 import 'presentation/blocs/search/search_bloc.dart';
 
 const String baseUrl = "http://192.168.1.66:5252/api";
@@ -45,6 +46,10 @@ class MainApp extends StatelessWidget {
 
   List<SingleChildWidget> get providers {
     return [
+      BlocProvider(
+        create: (context) => PatientsBloc(getPatientsQuery: getIt())
+          ..add(const PatientsEvent.getAll()),
+      ),
       BlocProvider(
         create: (context) {
           return AuthBloc(loginQuery: getIt(), registerQuery: getIt());
