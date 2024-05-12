@@ -39,7 +39,8 @@ class _SearchScreenState extends State<SearchScreen> {
               return state.maybeMap(orElse: () {
                 return Container();
               }, loading: (value) {
-                return const CircularProgressIndicator.adaptive();
+                return const Center(
+                    child: CircularProgressIndicator.adaptive());
               }, success: (value) {
                 return SizedBox(
                   height: MediaQuery.sizeOf(context).height * 0.8,

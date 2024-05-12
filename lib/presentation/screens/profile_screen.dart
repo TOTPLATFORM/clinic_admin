@@ -1,11 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tot_atomic_design/tot_atomic_design.dart';
+
 import '../../core/dependency_injection/di_container.dart';
 import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/shared_keys.dart';
 import '../widgets/profile_item.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:tot_atomic_design/tot_atomic_design.dart';
 
 class ProfileSrceen extends StatelessWidget {
   const ProfileSrceen({super.key});
@@ -36,14 +37,6 @@ class ProfileSrceen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          ProfileItem(
-            iconCode: 0xf08ae,
-            text: "Edit Profile",
-            hasNotification: false,
-            onPressed: () {
-              context.pushNamed(Routes.editPersonal);
-            },
-          ),
           const SizedBox(
             height: 15,
           ),
