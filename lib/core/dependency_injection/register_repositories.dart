@@ -1,3 +1,6 @@
+import 'package:clinic_admin/domain/repos/patients_repo.dart';
+import 'package:clinic_admin/infrastructure/repositories/patients_repo_impl.dart';
+
 import 'di_container.dart';
 import '../../domain/repos/appointment_repo.dart';
 import '../../domain/repos/auth_repo.dart';
@@ -43,4 +46,6 @@ void registerRepositories() {
       updatePersonalDataSource: getIt(),
     ),
   );
+  getIt.registerSingleton<PatientsRepo>(
+      PatientsRepoImpl(patientDataSource: getIt()));
 }

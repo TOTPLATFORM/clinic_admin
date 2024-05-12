@@ -6,7 +6,7 @@ part 'patient_entity.g.dart';
 @freezed
 abstract class PatientEntity with _$PatientEntity {
   factory PatientEntity({
-    List<PatientEntity>? value,
+    List<Patient>? value,
     int? status,
     bool? isSuccess,
     String? successMessage,

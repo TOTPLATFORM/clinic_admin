@@ -1,4 +1,6 @@
+import 'package:clinic_admin/app/contracts/patients.dart';
 import 'package:clinic_admin/app/queries/add_doctor_query_impl.dart';
+import 'package:clinic_admin/app/queries/get_all_patients_query_impl.dart';
 
 import '../../app/contracts/appointment.dart';
 import '../../app/contracts/auth.dart';
@@ -21,7 +23,7 @@ void registerQueries() {
       authRepo: getIt(),
     ),
   );
-    getIt.registerSingleton<AddDoctorQuery>(AddDoctorQueryImpl(
+  getIt.registerSingleton<AddDoctorQuery>(AddDoctorQueryImpl(
     doctorRepo: getIt(),
   ));
   getIt.registerSingleton<RegisterQuery>(
@@ -45,6 +47,7 @@ void registerQueries() {
     GetAppointmentsQueryImpl(repo: getIt()),
   );
   getIt.registerSingleton<UpdatePersonalDataQuery>(
-    UpdatePersonalDataQueryImpl(updatePersonalDataRepo: getIt()),
-  );
+      UpdatePersonalDataQueryImpl(updatePersonalDataRepo: getIt()));
+  getIt.registerSingleton<GetPatientsQuery>(
+      GetPatientsQueryImpl(patientsRepo: getIt()));
 }

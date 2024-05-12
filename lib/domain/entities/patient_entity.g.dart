@@ -9,7 +9,7 @@ part of 'patient_entity.dart';
 _$PatientEntityImpl _$$PatientEntityImplFromJson(Map<String, dynamic> json) =>
     _$PatientEntityImpl(
       value: (json['value'] as List<dynamic>?)
-          ?.map((e) => PatientEntity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Patient.fromJson(e as Map<String, dynamic>))
           .toList(),
       status: (json['status'] as num?)?.toInt(),
       isSuccess: json['isSuccess'] as bool?,
