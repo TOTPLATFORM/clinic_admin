@@ -54,14 +54,13 @@ class DateTimePickerState extends State<DateTimePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         ElevatedButton(
           onPressed: _pickDate,
           child: const Text('Select Date'),
         ),
-        const SizedBox(width: 20),
         ElevatedButton(
           onPressed: _pickTime,
           child: const Text('Select Time'),

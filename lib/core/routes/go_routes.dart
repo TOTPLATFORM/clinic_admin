@@ -1,7 +1,6 @@
 import 'package:clinic_admin/presentation/screens/appointment_screen.dart';
 import 'package:clinic_admin/presentation/screens/category_screen.dart';
 import 'package:clinic_admin/presentation/screens/doctor_details_screen.dart';
-import 'package:clinic_admin/presentation/screens/edit_personal_data_screen.dart';
 import 'package:clinic_admin/presentation/screens/layout_screen.dart';
 import 'package:clinic_admin/presentation/screens/login/login_screen.dart';
 import 'package:clinic_admin/presentation/screens/search_page.dart';
@@ -25,13 +24,7 @@ final GoRouter allRoutes = GoRouter(
         return const SplashScreen();
       },
     ),
-    GoRoute(
-      path: Routes.editPersonal.withSlash,
-      name: Routes.editPersonal,
-      builder: (context, state) {
-        return const EditProfileScreenBody();
-      },
-    ),
+   
     GoRoute(
       path: Routes.category.withSlash,
       name: Routes.category,
