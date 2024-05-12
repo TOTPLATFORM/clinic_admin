@@ -1,3 +1,5 @@
+import 'package:clinic_admin/core/dependency_injection/di_container.dart';
+import 'package:clinic_admin/core/utils/shared_keys.dart';
 import 'package:clinic_admin/presentation/widgets/date_time_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -121,6 +123,24 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                 startTime = DateFormat('hh:mm:ss').format(p0);
                                 endTime = DateFormat('hh:mm:ss').format(p0);
                                 date = DateFormat('yyyy-MM-dd').format(p0);
+                                if (date == null || startTime == null) {
+                                  ShowSnackbar.showCheckTopSnackBar(
+                                    context,
+                                    text: 'please select date and time',
+                                    type: SnackBarType.error,
+                                  );
+                                }
+                                context.read<AppointmentBloc>().add(
+                                      AppointmentEvent.addAppointment(
+                                        data: date ?? "",
+                                        startTime: startTime ?? "",
+                                        endTime: endTime ?? "",
+                                        patientId: preferences
+                                                .getString(SharedKeys.id) ??
+                                            "",
+                                        doctorId: value.doctor?.value?.id ?? "",
+                                      ),
+                                    );
                               },
                               dateValidator: (text) => date,
                               timeValidator: (text) => startTime,

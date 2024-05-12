@@ -1,5 +1,6 @@
 import 'package:clinic_admin/app/core/primitives/inputs/add_doctor.dart';
 import 'package:clinic_admin/core/theme/app_colors.dart';
+import 'package:clinic_admin/core/utils/show_snack_bar.dart';
 import 'package:clinic_admin/presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -158,7 +159,19 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                 context.read<CategoryBloc>().add(
                     CategoryEvent.getDoctorsBySpecialityId(
                         specialityId: widget.categoryId));
+                ShowSnackbar.showCheckTopSnackBar(
+                  context,
+                  text: "Doctor added successfully",
+                  type: SnackBarType.success,
+                );
               }
+            },
+            failure: (value) {
+              ShowSnackbar.showCheckTopSnackBar(
+                context,
+                text: value.message,
+                type: SnackBarType.error,
+              );
             });
       },
       builder: (context, doctorState) {
