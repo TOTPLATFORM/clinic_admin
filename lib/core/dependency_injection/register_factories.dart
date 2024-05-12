@@ -40,8 +40,6 @@ void registerFactories() {
       searchDoctorByTextCommand: getIt(),
     ),
   );
-  getIt.registerFactory<UpdatePersonalDataBloc>(
-      () => UpdatePersonalDataBloc(updatePersonalDataQuery: getIt()));
   getIt.registerFactory<PatientsBloc>(
       () => PatientsBloc(getPatientsQuery: getIt()));
 

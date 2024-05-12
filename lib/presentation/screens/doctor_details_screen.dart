@@ -1,7 +1,13 @@
+import 'dart:developer';
+
 import 'package:clinic_admin/core/dependency_injection/di_container.dart';
 import 'package:clinic_admin/core/utils/shared_keys.dart';
+import 'package:clinic_admin/domain/entities/patient_entity.dart';
+import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
 import 'package:clinic_admin/presentation/widgets/date_time_form.dart';
+import 'package:clinic_admin/presentation/widgets/drop_down_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -22,6 +28,9 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
   String? date;
   String? startTime;
   String? endTime;
+  String? selectedValue;
+  String? selectedPatientId;
+
   @override
   @override
   void initState() {
@@ -57,6 +66,16 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                 loading: (state) =>
                     const Center(child: CircularProgressIndicator()),
                 success: (value) {
+                  final PatientEntity patients =
+                      context.read<PatientsBloc>().state.maybeMap(
+                            success: (value) => value.patientEntity,
+                            orElse: () => PatientEntity(),
+                          );
+                  Map<String, dynamic> patientsMap = {
+                    for (var element in patients.value ?? [])
+                      if (element.patientFirstName != null)
+                        element.patientFirstName!: element.id
+                  };
                   return Scaffold(
                     appBar: AppBar(
                       title: Text(value.doctor?.value?.userName ?? ""),
@@ -117,6 +136,21 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                             const SizedBox(
                               height: 10,
                             ),
+                            CustomDropdown<String>(
+                              items: patients.value?.map((patient) {
+                                    return patient.patientFirstName ?? "";
+                                  }).toList() ??
+                                  [],
+                              initialValue: selectedValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value;
+                                  selectedPatientId = patientsMap[value];
+                                });
+                                log("$patientsMap");
+                              },
+                              displayItem: (item) => item,
+                            ),
                             DateTimeForm(
                               buttonText: "Book Appointment",
                               onValidation: (p0, p1) {
@@ -135,9 +169,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                         data: date ?? "",
                                         startTime: startTime ?? "",
                                         endTime: endTime ?? "",
-                                        patientId: preferences
-                                                .getString(SharedKeys.id) ??
-                                            "",
+                                        patientId: selectedPatientId ?? "",
                                         doctorId: value.doctor?.value?.id ?? "",
                                       ),
                                     );
