@@ -12,20 +12,26 @@ part 'doctor_event.dart';
 part 'doctor_state.dart';
 
 class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
-  final GetDoctorsQuery getDoctorQuery;
-  final GetDoctorByIdQuery getDoctorByIdQuery;
-  final AddDoctorQuery addDoctorQuery;
+  final GetDoctorsQuery _getDoctorQuery;
+  final GetDoctorByIdQuery _getDoctorByIdQuery;
+  final AddDoctorQuery _addDoctorQuery;
+  final DeleteDoctorCommand _deleteDoctorCommand;
 
   DoctorBloc(
-      {required this.getDoctorQuery,
-      required this.getDoctorByIdQuery,
-      required this.addDoctorQuery})
-      : super(const DoctorState.initial()) {
+      {required GetDoctorsQuery getDoctorQuery,
+      required GetDoctorByIdQuery getDoctorByIdQuery,
+      required DeleteDoctorCommand deleteDoctorCommand,
+      required AddDoctorQuery addDoctorQuery})
+      : _deleteDoctorCommand = deleteDoctorCommand,
+        _addDoctorQuery = addDoctorQuery,
+        _getDoctorByIdQuery = getDoctorByIdQuery,
+        _getDoctorQuery = getDoctorQuery,
+        super(const DoctorState.initial()) {
     on<DoctorEvent>((event, emit) async {
       await event.maybeMap(
         orElse: () {},
         addDoctor: (value) async {
-          final res = await addDoctorQuery.call(AddDoctorInputs(
+          final res = await _addDoctorQuery.call(AddDoctorInputs(
             password: value.doctorData.password,
             specializationId: value.doctorData.specializationId,
             firstName: value.doctorData.firstName,
@@ -34,35 +40,42 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
             email: value.doctorData.email,
             phone: value.doctorData.phone,
           ));
-          res.fold(
-            (l) {
-              emit(DoctorState.failure(message: l.message));
-            },
-            (r) {
-              if (r.isSuccess == true) {
-                state.maybeMap(
-                  orElse: () {},
-                  success: (value) {
-                    emit(
-                      value.copyWith(doctor: r,
-                      addDoctor: true
-                      ),
-                    );
-                    add(const DoctorEvent.getAllDoctors());
-                  },
-                );
-              } else {
-                emit(DoctorState.failure(message: r.errors?[0] ?? ""));
-              }
-            },
-          );
+          res.fold((l) => emit(DoctorState.failure(message: l.message)), (r) {
+            if (r.isSuccess == true) {
+              state.maybeMap(
+                orElse: () {},
+                success: (value) async {
+                  emit(value.copyWith(doctor: r, addDoctor: true));
+                  add(const DoctorEvent.getAllDoctors());
+                },
+              );
+            } else {
+              emit(DoctorState.failure(message: r.errors?[0] ?? ""));
+            }
+          });
+        },
+        deleteDoctor: (value) async {
+          final result = await _deleteDoctorCommand.call(value.id);
+          await result
+              .fold((l) async => emit(DoctorState.failure(message: l.message)),
+                  (r) async {
+            if (r.isSuccess == true) {
+              state.maybeMap(
+                orElse: () {},
+                success: (value) async {
+                  emit(value.copyWith(doctor: r, deleteDoctor: true));
+                  add(const DoctorEvent.getAllDoctors());
+                },
+              );
+            } else {
+              emit(DoctorState.failure(message: r.errors?[0] ?? ""));
+            }
+          });
         },
         getDoctorById: (value) async {
-          final result = await getDoctorByIdQuery.call(value.id);
+          final result = await _getDoctorByIdQuery.call(value.id);
           await result.fold(
-            (l) async {
-              emit(DoctorState.failure(message: l.message));
-            },
+            (l) async => emit(DoctorState.failure(message: l.message)),
             (r) async {
               if (r.isSuccess == true) {
                 state.maybeMap(
@@ -76,7 +89,7 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
         },
         getAllDoctors: (value) async {
           emit(const DoctorState.loading());
-          final result = await getDoctorQuery.call(NoParams());
+          final result = await _getDoctorQuery.call(NoParams());
           result.fold(
             (l) {
               emit(DoctorState.failure(message: l.message));

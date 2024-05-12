@@ -15,5 +15,8 @@ abstract class GetDoctorsQuery
 abstract class GetDoctorByIdQuery
     extends BaseQuery<Future<Either<Failure, DoctorEntity>>, String> {}
 
+abstract class DeleteDoctorCommand
+    extends BaseQuery<Future<Either<Failure, DoctorEntity>>, String> {}
+
 abstract class AddDoctorQuery
     extends BaseQuery<Future<Either<Failure, DoctorEntity>>, AddDoctorInputs> {}

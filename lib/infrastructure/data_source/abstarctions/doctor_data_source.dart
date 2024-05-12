@@ -8,4 +8,5 @@ abstract class DoctorDataSource {
     required int specializationId,
     required String password,
   });
+  Future<Map<String, dynamic>> deleteDoctor({required String doctorId});
 }

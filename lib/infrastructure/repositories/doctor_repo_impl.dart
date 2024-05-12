@@ -1,9 +1,10 @@
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/doctor_entity.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../../domain/repos/doctor_repo.dart';
 import '../data_source/abstarctions/doctor_data_source.dart';
-import 'package:dartz/dartz.dart';
 
 class DoctorRepoImpl implements DoctorRepo {
   final DoctorDataSource doctorDataSource;
@@ -55,6 +56,21 @@ class DoctorRepoImpl implements DoctorRepo {
       return Right(DoctorEntity.fromJson(res));
     } catch (e) {
       return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, DoctorEntity>> deleteDoctor(
+      {required String doctorId}) async {
+    try {
+      final res = await doctorDataSource.deleteDoctor(doctorId: doctorId);
+      return Right(
+        DoctorEntity.fromJson(res),
+      );
+    } catch (e) {
+      return Left(
+        ServerFailure(e.toString()),
+      );
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:clinic_admin/app/core/primitives/inputs/add_doctor.dart';
 import 'package:clinic_admin/core/theme/app_colors.dart';
+import 'package:clinic_admin/core/utils/show_snack_bar.dart';
 import 'package:clinic_admin/presentation/blocs/doctor/doctor_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,11 +72,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   shrinkWrap: true,
                   itemCount: value.doctors?.value?.length,
                   itemBuilder: ((context, index) {
-                    //TODO: change to remove doctor
                     return DoctorItem(
-                      onDeleteButton: () => context
-                          .read<DoctorBloc>()
-                          .add(const DoctorEvent.getAllDoctors()),
+                      onDeleteButton: () {
+                        context.read<DoctorBloc>().add(DoctorEvent.deleteDoctor(
+                            id: value.doctors?.value?[index].id ?? ""));
+                        context.read<DoctorBloc>().state.maybeWhen(
+                              orElse: () {},
+                              success:
+                                  (doctors, doctor, addDoctor, deleteDoctor) {
+                                deleteDoctor
+                                    ? ShowSnackbar.showCheckTopSnackBar(context,
+                                        text: "Doctor Deleted Successfully",
+                                        type: SnackBarType.success)
+                                    : {};
+                              },
+                            );
+                      },
                       imagePath: "assets/images/app_logo.png",
                       doctorDescription:
                           value.doctors?.value![index].doctorEmail ?? "",
@@ -220,7 +232,6 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                           }
                           return null;
                         },
-
                       ),
                       CustomTextFieldWithLabel(
                         hintText: 'Enter last name',

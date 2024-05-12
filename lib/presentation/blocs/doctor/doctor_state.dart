@@ -7,8 +7,8 @@ class DoctorState with _$DoctorState {
   const factory DoctorState.success({
     DoctorsEntity? doctors,
     DoctorEntity? doctor,
-        @Default(false) bool addDoctor,
-
+    @Default(false) bool addDoctor,
+    @Default(false) bool deleteDoctor,
   }) = _Success;
   const factory DoctorState.failure({
     required String message,
