@@ -6,12 +6,15 @@ class CustomDropdown<T> extends StatelessWidget {
   final Function(T?)? onChanged;
   final String Function(T) displayItem;
 
+  final String? hintText;
+
   const CustomDropdown({
     super.key,
     required this.items,
     this.initialValue,
     this.onChanged,
     required this.displayItem,
+    this.hintText = "Select",
   });
 
   @override
@@ -21,11 +24,15 @@ class CustomDropdown<T> extends StatelessWidget {
       child: DropdownButtonFormField<T>(
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black, ),
+            borderSide: const BorderSide(
+              color: Colors.black,
+            ),
             borderRadius: BorderRadius.circular(8),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black, ),
+            borderSide: const BorderSide(
+              color: Colors.black,
+            ),
             borderRadius: BorderRadius.circular(8),
           ),
         ),
@@ -35,7 +42,7 @@ class CustomDropdown<T> extends StatelessWidget {
         elevation: 16,
         style: const TextStyle(color: Colors.black),
         borderRadius: BorderRadius.circular(5),
-        hint: const Text("Select item"),
+        hint: Text(hintText!),
         onChanged: onChanged,
         items: items.map<DropdownMenuItem<T>>((T value) {
           return DropdownMenuItem<T>(
