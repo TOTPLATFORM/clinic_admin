@@ -1,13 +1,10 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/core/dependency_injection/di_container.dart';
-import 'package:clinic_admin/core/utils/shared_keys.dart';
 import 'package:clinic_admin/domain/entities/patient_entity.dart';
 import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
 import 'package:clinic_admin/presentation/widgets/date_time_form.dart';
 import 'package:clinic_admin/presentation/widgets/drop_down_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -137,6 +134,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                               height: 10,
                             ),
                             CustomDropdown<String>(
+                              hintText: "Select Patient",
                               items: patients.value?.map((patient) {
                                     return patient.patientFirstName ?? "";
                                   }).toList() ??
