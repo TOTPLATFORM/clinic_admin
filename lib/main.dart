@@ -1,3 +1,4 @@
+import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nested/nested.dart';
@@ -86,10 +87,13 @@ class MainApp extends StatelessWidget {
             addDoctorQuery: getIt(),
             getDoctorQuery: getIt(),
             getDoctorByIdQuery: getIt(),
-          )..add(
-              const DoctorEvent.getAllDoctors(),
-            );
+            deleteDoctorCommand: getIt(),
+          )..add(const DoctorEvent.getAllDoctors());
         },
+      ),
+      BlocProvider(
+        create: (context) => PatientsBloc(getPatientsQuery: getIt())
+          ..add(const PatientsEvent.getAll()),
       )
     ];
   }

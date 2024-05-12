@@ -72,11 +72,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   shrinkWrap: true,
                   itemCount: value.doctors?.value?.length,
                   itemBuilder: ((context, index) {
-                    //TODO: change to remove doctor
                     return DoctorItem(
-                      onDeleteButton: () => context
-                          .read<DoctorBloc>()
-                          .add(const DoctorEvent.getAllDoctors()),
+                      onDeleteButton: () {
+                        context.read<DoctorBloc>().add(DoctorEvent.deleteDoctor(
+                            id: value.doctors?.value?[index].id ?? ""));
+                        context.read<DoctorBloc>().state.maybeWhen(
+                              orElse: () {},
+                              success:
+                                  (doctors, doctor, addDoctor, deleteDoctor) {
+                                deleteDoctor
+                                    ? ShowSnackbar.showCheckTopSnackBar(context,
+                                        text: "Doctor Deleted Successfully",
+                                        type: SnackBarType.success)
+                                    : {};
+                              },
+                            );
+                      },
                       imagePath: "assets/images/app_logo.png",
                       doctorDescription:
                           value.doctors?.value![index].doctorEmail ?? "",

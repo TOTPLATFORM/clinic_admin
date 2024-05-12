@@ -50,4 +50,5 @@ void registerQueries() {
       UpdatePersonalDataQueryImpl(updatePersonalDataRepo: getIt()));
   getIt.registerSingleton<GetPatientsQuery>(
       GetPatientsQueryImpl(patientsRepo: getIt()));
+  
 }

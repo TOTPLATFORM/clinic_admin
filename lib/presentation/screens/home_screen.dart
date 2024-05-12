@@ -139,27 +139,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                         itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            margin:
-                                const EdgeInsets.only(left: 15.0, right: 15.0),
-                            child: Column(
-                              children: <Widget>[
-                                GestureDetector(
-                                  onTap: () {
-                                    context.pushNamed(Routes.category, extra: {
-                                      "categoryId":  value
-                                              .categories
-                                              ?.value?[index]
-                                              .id.toString() ??
-                                          "",
-                                      "categoryName": value
-                                              .categories
-                                              ?.value?[index]
-                                              .specializationName ??
-                                          ""
-                                    });
-                                  },
-                                  child: Container(
+                          return GestureDetector(
+                            onTap: () {
+                              context.pushNamed(Routes.category, extra: {
+                                "categoryId": value.categories?.value?[index].id
+                                        .toString() ??
+                                    "",
+                                "categoryName": value.categories?.value?[index]
+                                        .specializationName ??
+                                    ""
+                              });
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                  left: 15.0, right: 15.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
@@ -174,15 +170,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       height: 30,
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 4.0),
-                                TOTTextAtom.titleMedium(
-                                  value.categories?.value?[index]
-                                          .specializationName ??
-                                      "",
-                                  color: Colors.black,
-                                )
-                              ],
+                                  const SizedBox(height: 4.0),
+                                  TOTTextAtom.titleMedium(
+                                    value.categories?.value?[index]
+                                            .specializationName ??
+                                        "",
+                                    color: Colors.black,
+                                  )
+                                ],
+                              ),
                             ),
                           );
                         },

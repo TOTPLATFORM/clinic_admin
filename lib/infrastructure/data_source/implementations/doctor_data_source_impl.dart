@@ -82,4 +82,24 @@ class DoctorDataSourceImpl implements DoctorDataSource {
       rethrow;
     }
   }
+
+  @override
+  Future<Map<String, dynamic>> deleteDoctor({required String doctorId}) async {
+    final String token = preferences.getString(SharedKeys.accessToken) ?? "";
+    log("message: token: $token");
+    try {
+      final res = await dioClient.delete(
+        "/Doctor/?id=$doctorId",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          },
+        ),
+      );
+      return res.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
