@@ -20,7 +20,7 @@ PatientEntity _$PatientEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PatientEntity {
-  List<PatientEntity>? get value => throw _privateConstructorUsedError;
+  List<Patient>? get value => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
   bool? get isSuccess => throw _privateConstructorUsedError;
   String? get successMessage => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $PatientEntityCopyWith<$Res> {
       _$PatientEntityCopyWithImpl<$Res, PatientEntity>;
   @useResult
   $Res call(
-      {List<PatientEntity>? value,
+      {List<Patient>? value,
       int? status,
       bool? isSuccess,
       String? successMessage,
@@ -75,7 +75,7 @@ class _$PatientEntityCopyWithImpl<$Res, $Val extends PatientEntity>
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as List<PatientEntity>?,
+              as List<Patient>?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -113,7 +113,7 @@ abstract class _$$PatientEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<PatientEntity>? value,
+      {List<Patient>? value,
       int? status,
       bool? isSuccess,
       String? successMessage,
@@ -145,7 +145,7 @@ class __$$PatientEntityImplCopyWithImpl<$Res>
       value: freezed == value
           ? _value._value
           : value // ignore: cast_nullable_to_non_nullable
-              as List<PatientEntity>?,
+              as List<Patient>?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ class __$$PatientEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PatientEntityImpl implements _PatientEntity {
   _$PatientEntityImpl(
-      {final List<PatientEntity>? value,
+      {final List<Patient>? value,
       this.status,
       this.isSuccess,
       this.successMessage,
@@ -192,9 +192,9 @@ class _$PatientEntityImpl implements _PatientEntity {
   factory _$PatientEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$PatientEntityImplFromJson(json);
 
-  final List<PatientEntity>? _value;
+  final List<Patient>? _value;
   @override
-  List<PatientEntity>? get value {
+  List<Patient>? get value {
     final value = _value;
     if (value == null) return null;
     if (_value is EqualUnmodifiableListView) return _value;
@@ -282,7 +282,7 @@ class _$PatientEntityImpl implements _PatientEntity {
 
 abstract class _PatientEntity implements PatientEntity {
   factory _PatientEntity(
-      {final List<PatientEntity>? value,
+      {final List<Patient>? value,
       final int? status,
       final bool? isSuccess,
       final String? successMessage,
@@ -294,7 +294,7 @@ abstract class _PatientEntity implements PatientEntity {
       _$PatientEntityImpl.fromJson;
 
   @override
-  List<PatientEntity>? get value;
+  List<Patient>? get value;
   @override
   int? get status;
   @override
