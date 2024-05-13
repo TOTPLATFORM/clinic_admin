@@ -70,7 +70,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               success: (value) {
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: value.doctors?.value?.length,
+                  itemCount: value.doctors?.value?.length ?? 0,
                   itemBuilder: ((context, index) {
                     return DoctorItem(
                       onDeleteButton: () {
@@ -318,7 +318,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                                   borderSide:
                                       BorderSide(color: AppColors.totColor)),
                               focusedBorder: const UnderlineInputBorder(
-                                  borderSide:
+                                  borderSide: 
                                       BorderSide(color: AppColors.grey)),
                             ),
                           ),

@@ -80,7 +80,7 @@ class _SearchPageState extends State<SearchPage> {
                                   child: ListView.builder(
                                       padding: EdgeInsets.zero,
                                       itemCount:
-                                          searchValue.doctors?.value?.length,
+                                          searchValue.doctors?.value?.length ?? 0,
                                       itemBuilder: ((context, index) {
                                         return DoctorItem(
                                           imagePath:

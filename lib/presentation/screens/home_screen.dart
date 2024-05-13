@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.topLeft,
                       color: AppColors.addCountColor,
                       child: ListView.builder(
-                        itemCount: value.categories?.value?.length,
+                        itemCount: value.categories?.value?.length ?? 0,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -213,28 +213,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 }, success: (value) {
                   return SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.48,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        padding: EdgeInsets.zero,
-                        itemCount: 5,
-                        itemBuilder: ((context, index) {
-                          return DoctorItem(
-                            imagePath: "assets/images/app_logo.png",
-                            doctorDescription:
-                                value.doctors?.value![index].doctorEmail ?? "",
-                            doctorName:
-                                value.doctors?.value![index].userName ?? "",
-                            doctorType: value.doctors?.value![index]
-                                    .specialization?.specializationName ??
-                                "",
-                            onTap: () {
-                              if (value.doctors?.value![index].id != null) {
-                                context.pushNamed(Routes.doctorDetails,
-                                    extra: value.doctors?.value?[index].id);
-                              }
-                            },
-                          );
-                        })),
+                    child: value.doctors!.value!.isEmpty
+                        ? const Center(
+                            child: Text("No Doctors found."),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            itemCount: 5,
+                            itemBuilder: ((context, index) {
+                              return DoctorItem(
+                                imagePath: "assets/images/app_logo.png",
+                                doctorDescription:
+                                    value.doctors?.value![index].doctorEmail ??
+                                        "",
+                                doctorName:
+                                    value.doctors?.value![index].userName ?? "",
+                                doctorType: value.doctors?.value![index]
+                                        .specialization?.specializationName ??
+                                    "",
+                                onTap: () {
+                                  if (value.doctors?.value![index].id != null) {
+                                    context.pushNamed(Routes.doctorDetails,
+                                        extra: value.doctors?.value?[index].id);
+                                  }
+                                },
+                              );
+                            })),
                   );
                 });
               },

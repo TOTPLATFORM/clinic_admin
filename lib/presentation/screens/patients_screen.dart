@@ -47,7 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: ListView.builder(
                       shrinkWrap: true,
                       padding: EdgeInsets.zero,
-                      itemCount: value.patientEntity.value?.length,
+                      itemCount: value.patientEntity.value?.length ?? 0,
                       itemBuilder: ((context, index) {
                         return DoctorItem(
                           imagePath: "assets/images/app_logo.png",

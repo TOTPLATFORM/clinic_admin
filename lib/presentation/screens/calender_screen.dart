@@ -57,7 +57,7 @@ class _CalenderScreenState extends State<CalenderScreen>
             success: (value) {
               return ListView.builder(
                 padding: EdgeInsets.zero,
-                itemCount: value.getAppointmentsData?.value?.length,
+                itemCount: value.getAppointmentsData?.value?.length ?? 0,
                 itemBuilder: ((context, index) {
                   return Container(
                     margin: const EdgeInsets.all(10),
