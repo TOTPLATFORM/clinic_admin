@@ -32,44 +32,48 @@ class _SearchScreenState extends State<SearchScreen> {
         automaticallyImplyLeading: false,
         title: const Text("Patients"),
       ),
-      body: Column(
-        children: [
-          BlocBuilder<PatientsBloc, PatientsState>(
-            builder: (context, state) {
-              return state.maybeMap(orElse: () {
-                return Container();
-              }, loading: (value) {
-                return const Center(
-                    child: CircularProgressIndicator.adaptive());
-              }, success: (value) {
-                return SizedBox(
-                  height: MediaQuery.sizeOf(context).height * 0.8,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      itemCount: value.patientEntity.value?.length ?? 0,
-                      itemBuilder: ((context, index) {
-                        return DoctorItem(
-                          imagePath: "assets/images/app_logo.png",
-                          doctorDescription:
-                              value.patientEntity.value![index].patientEmail ??
-                                  "",
-                          doctorName:
-                              "${value.patientEntity.value![index].patientFirstName} ${value.patientEntity.value![index].patientLastName}",
-                          doctorType: "",
-                          // onTap: () {
-                          //   if (value.patientEntity?.value![index].id != null) {
-                          //     context.pushNamed(Routes.doctorDetails,
-                          //         extra: value.doctors?.value?[index].id);
-                          //   }
-                          // },
-                        );
-                      })),
-                );
-              });
-            },
-          )
-        ],
+      body: RefreshIndicator(
+        onRefresh: () async =>
+            context.read<PatientsBloc>().add(const PatientsEvent.getAll()),
+        child: Column(
+          children: [
+            BlocBuilder<PatientsBloc, PatientsState>(
+              builder: (context, state) {
+                return state.maybeMap(orElse: () {
+                  return Container();
+                }, loading: (value) {
+                  return const Center(
+                      child: CircularProgressIndicator.adaptive());
+                }, success: (value) {
+                  return SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 0.8,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.zero,
+                        itemCount: value.patientEntity.value?.length ?? 0,
+                        itemBuilder: ((context, index) {
+                          return DoctorItem(
+                            imagePath: "assets/images/app_logo.png",
+                            doctorDescription: value
+                                    .patientEntity.value![index].patientEmail ??
+                                "",
+                            doctorName:
+                                "${value.patientEntity.value![index].patientFirstName} ${value.patientEntity.value![index].patientLastName}",
+                            doctorType: "",
+                            // onTap: () {
+                            //   if (value.patientEntity?.value![index].id != null) {
+                            //     context.pushNamed(Routes.doctorDetails,
+                            //         extra: value.doctors?.value?[index].id);
+                            //   }
+                            // },
+                          );
+                        })),
+                  );
+                });
+              },
+            )
+          ],
+        ),
       ),
     );
   }

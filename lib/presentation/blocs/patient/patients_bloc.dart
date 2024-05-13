@@ -15,6 +15,7 @@ class PatientsBloc extends Bloc<PatientsEvent, PatientsState> {
         super(_Loading()) {
     on<PatientsEvent>((event, emit) async {
       await event.when(getAll: () async {
+        emit(_Loading());
         final response = await _getPatientsQuery.call(NoParams());
         response.fold(
           (l) => emit(_Failure(l.message)),
