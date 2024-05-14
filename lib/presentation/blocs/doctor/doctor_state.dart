@@ -9,6 +9,7 @@ class DoctorState with _$DoctorState {
     DoctorEntity? doctor,
     @Default(false) bool addDoctor,
     @Default(false) bool deleteDoctor,
+    @Default(false) bool isLoading,
   }) = _Success;
   const factory DoctorState.failure({
     required String message,

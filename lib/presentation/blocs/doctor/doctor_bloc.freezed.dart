@@ -645,7 +645,7 @@ mixin _$DoctorState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)
+            bool addDoctor, bool deleteDoctor, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) =>
@@ -655,7 +655,7 @@ mixin _$DoctorState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) =>
@@ -665,7 +665,7 @@ mixin _$DoctorState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -757,7 +757,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)
+            bool addDoctor, bool deleteDoctor, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -770,7 +770,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -783,7 +783,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -877,7 +877,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)
+            bool addDoctor, bool deleteDoctor, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -890,7 +890,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -903,7 +903,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -966,7 +966,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       {DoctorsEntity? doctors,
       DoctorEntity? doctor,
       bool addDoctor,
-      bool deleteDoctor});
+      bool deleteDoctor,
+      bool isLoading});
 
   $DoctorsEntityCopyWith<$Res>? get doctors;
   $DoctorEntityCopyWith<$Res>? get doctor;
@@ -987,6 +988,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
     Object? doctor = freezed,
     Object? addDoctor = null,
     Object? deleteDoctor = null,
+    Object? isLoading = null,
   }) {
     return _then(_$SuccessImpl(
       doctors: freezed == doctors
@@ -1004,6 +1006,10 @@ class __$$SuccessImplCopyWithImpl<$Res>
       deleteDoctor: null == deleteDoctor
           ? _value.deleteDoctor
           : deleteDoctor // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -1040,7 +1046,8 @@ class _$SuccessImpl implements _Success {
       {this.doctors,
       this.doctor,
       this.addDoctor = false,
-      this.deleteDoctor = false});
+      this.deleteDoctor = false,
+      this.isLoading = false});
 
   @override
   final DoctorsEntity? doctors;
@@ -1052,10 +1059,13 @@ class _$SuccessImpl implements _Success {
   @override
   @JsonKey()
   final bool deleteDoctor;
+  @override
+  @JsonKey()
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'DoctorState.success(doctors: $doctors, doctor: $doctor, addDoctor: $addDoctor, deleteDoctor: $deleteDoctor)';
+    return 'DoctorState.success(doctors: $doctors, doctor: $doctor, addDoctor: $addDoctor, deleteDoctor: $deleteDoctor, isLoading: $isLoading)';
   }
 
   @override
@@ -1068,12 +1078,14 @@ class _$SuccessImpl implements _Success {
             (identical(other.addDoctor, addDoctor) ||
                 other.addDoctor == addDoctor) &&
             (identical(other.deleteDoctor, deleteDoctor) ||
-                other.deleteDoctor == deleteDoctor));
+                other.deleteDoctor == deleteDoctor) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, doctors, doctor, addDoctor, deleteDoctor);
+  int get hashCode => Object.hash(
+      runtimeType, doctors, doctor, addDoctor, deleteDoctor, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -1087,11 +1099,11 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)
+            bool addDoctor, bool deleteDoctor, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
-    return success(doctors, doctor, addDoctor, deleteDoctor);
+    return success(doctors, doctor, addDoctor, deleteDoctor, isLoading);
   }
 
   @override
@@ -1100,11 +1112,11 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
-    return success?.call(doctors, doctor, addDoctor, deleteDoctor);
+    return success?.call(doctors, doctor, addDoctor, deleteDoctor, isLoading);
   }
 
   @override
@@ -1113,13 +1125,13 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(doctors, doctor, addDoctor, deleteDoctor);
+      return success(doctors, doctor, addDoctor, deleteDoctor, isLoading);
     }
     return orElse();
   }
@@ -1167,12 +1179,14 @@ abstract class _Success implements DoctorState {
       {final DoctorsEntity? doctors,
       final DoctorEntity? doctor,
       final bool addDoctor,
-      final bool deleteDoctor}) = _$SuccessImpl;
+      final bool deleteDoctor,
+      final bool isLoading}) = _$SuccessImpl;
 
   DoctorsEntity? get doctors;
   DoctorEntity? get doctor;
   bool get addDoctor;
   bool get deleteDoctor;
+  bool get isLoading;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1245,7 +1259,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)
+            bool addDoctor, bool deleteDoctor, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -1258,7 +1272,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -1271,7 +1285,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(DoctorsEntity? doctors, DoctorEntity? doctor,
-            bool addDoctor, bool deleteDoctor)?
+            bool addDoctor, bool deleteDoctor, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),

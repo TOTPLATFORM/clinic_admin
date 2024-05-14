@@ -46,6 +46,12 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
           );
         },
         getDoctorsBySpecialityId: (value) async {
+          state.maybeMap(
+            orElse: () {},
+            success: (s) => emit(
+              s.copyWith(isLoading: true),
+            ),
+          );
           final result =
               await getDoctorBySpecialtyQuery.call(value.specialityId);
           await result.fold(
@@ -58,10 +64,12 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
             },
             (r) async {
               if (r.isSuccess == true) {
+                await Future.delayed(const Duration(seconds: 1));
+
                 state.maybeMap(
                   orElse: () {},
                   success: (s) => emit(
-                    s.copyWith(doctors: r),
+                    s.copyWith(doctors: r, isLoading: false),
                   ),
                 );
               } else {

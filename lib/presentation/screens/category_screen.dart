@@ -67,20 +67,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
               loading: (value) {
                 return const Center(child: CircularProgressIndicator());
               },
-              success: (value) {
+              success: (successState) {
+                if (successState.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (successState.doctors?.value?.isEmpty ?? true) {
+                  return const Center(
+                    child: Text(
+                      "Empty Data",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                  );
+                }
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: value.doctors?.value?.length ?? 0,
+                  itemCount: successState.doctors?.value?.length ?? 0,
                   itemBuilder: ((context, index) {
                     return DoctorItem(
                       onDeleteButton: () {
                         context.read<DoctorBloc>().add(DoctorEvent.deleteDoctor(
-                            id: value.doctors?.value?[index].id ?? ""));
-                        context.read<DoctorBloc>().state.maybeWhen(
+                            id: successState.doctors?.value?[index].id ?? ""));
+                        context.read<DoctorBloc>().state.maybeMap(
                               orElse: () {},
-                              success:
-                                  (doctors, doctor, addDoctor, deleteDoctor) {
-                                deleteDoctor
+                              success: (v) {
+                                v.deleteDoctor
                                     ? ShowSnackbar.showCheckTopSnackBar(context,
                                         text: "Doctor Deleted Successfully",
                                         type: SnackBarType.success)
@@ -90,15 +100,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       },
                       imagePath: "assets/images/app_logo.png",
                       doctorDescription:
-                          value.doctors?.value![index].doctorEmail ?? "",
-                      doctorName: value.doctors?.value![index].userName ?? "",
-                      doctorType: value.doctors?.value![index].specialization
-                              ?.specializationName ??
+                          successState.doctors?.value![index].doctorEmail ?? "",
+                      doctorName:
+                          successState.doctors?.value![index].userName ?? "",
+                      doctorType: successState.doctors?.value![index]
+                              .specialization?.specializationName ??
                           "",
                       onTap: () {
-                        if (value.doctors?.value![index].id != null) {
+                        if (successState.doctors?.value![index].id != null) {
                           context.pushNamed(Routes.doctorDetails,
-                              extra: value.doctors?.value?[index].id);
+                              extra: successState.doctors?.value?[index].id);
                         }
                       },
                     );
@@ -318,7 +329,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                                   borderSide:
                                       BorderSide(color: AppColors.totColor)),
                               focusedBorder: const UnderlineInputBorder(
-                                  borderSide: 
+                                  borderSide:
                                       BorderSide(color: AppColors.grey)),
                             ),
                           ),

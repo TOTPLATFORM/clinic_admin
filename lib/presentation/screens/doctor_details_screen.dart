@@ -73,6 +73,10 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                       if (element.patientFirstName != null)
                         element.patientFirstName!: element.id
                   };
+                  if (value.isLoading) {
+                    return const Scaffold(
+                        body: Center(child: CircularProgressIndicator()));
+                  }
                   return Scaffold(
                     appBar: AppBar(
                       title: Text(value.doctor?.value?.userName ?? ""),

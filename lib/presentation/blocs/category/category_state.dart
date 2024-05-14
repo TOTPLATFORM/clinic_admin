@@ -7,6 +7,7 @@ class CategoryState with _$CategoryState {
   const factory CategoryState.success({
     CategoryEntity? categories,
     DoctorsEntity? doctors,
+    @Default(false) bool isLoading,
   }) = _Success;
   const factory CategoryState.failure({
     required String message,

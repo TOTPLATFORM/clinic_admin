@@ -112,27 +112,27 @@ class _CalenderScreenState extends State<CalenderScreen>
                                       width: 5,
                                     ),
                                     Text(value.getAppointmentsData
-                                            ?.value![index].endTime ??
+                                            ?.value![index].startTime ??
                                         ""),
                                   ],
                                 ),
                                 SizedBox(
                                     width: MediaQuery.sizeOf(context).width *
-                                        0.12),
-                                ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                      minWidth:
-                                          MediaQuery.sizeOf(context).width *
-                                              0.12,
-                                      maxWidth:
-                                          MediaQuery.sizeOf(context).width *
-                                              0.17),
-                                  child: Text(
-                                    value.getAppointmentsData?.value![index]
-                                            .patientName ??
-                                        "",
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                                        0.09),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.share_arrival_time_sharp),
+                                    SizedBox(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                0.025),
+                                    Text(
+                                      value.getAppointmentsData?.value![index]
+                                              .endTime ??
+                                          "",
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
                                 )
                               ],
                             )

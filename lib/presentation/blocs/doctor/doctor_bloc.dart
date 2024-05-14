@@ -40,7 +40,8 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
             email: value.doctorData.email,
             phone: value.doctorData.phone,
           ));
-          res.fold((l) => emit(DoctorState.failure(message: l.message)), (r) {
+          res.fold((l) async => emit(DoctorState.failure(message: l.message)),
+              (r) async {
             if (r.isSuccess == true) {
               state.maybeMap(
                 orElse: () {},
@@ -73,14 +74,23 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
           });
         },
         getDoctorById: (value) async {
+          state.maybeMap(
+            orElse: () {},
+            success: (s) => emit(
+              s.copyWith(isLoading: true),
+            ),
+          );
           final result = await _getDoctorByIdQuery.call(value.id);
           await result.fold(
             (l) async => emit(DoctorState.failure(message: l.message)),
             (r) async {
               if (r.isSuccess == true) {
+                await Future.delayed(const Duration(seconds: 1));
+
                 state.maybeMap(
                     orElse: () {},
-                    success: (value) => emit(value.copyWith(doctor: r)));
+                    success: (value) =>
+                        emit(value.copyWith(doctor: r, isLoading: false)));
               } else {
                 emit(DoctorState.failure(message: r.errors?[0] ?? ""));
               }
