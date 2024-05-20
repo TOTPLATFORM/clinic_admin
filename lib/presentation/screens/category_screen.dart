@@ -9,7 +9,7 @@ import 'package:tot_atomic_design/tot_atomic_design.dart';
 
 import '../../core/routes/routes.dart';
 import '../blocs/category/category_bloc.dart';
-import '../widgets/custom/custom_text_form.dart';
+import '../widgets/custom/labled_text_form.dart';
 import '../widgets/doctor_item.dart';
 
 class CategoryScreen extends StatefulWidget {

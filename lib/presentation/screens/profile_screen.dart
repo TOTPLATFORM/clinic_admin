@@ -8,8 +8,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/shared_keys.dart';
 import '../widgets/profile_item.dart';
 
-class ProfileSrceen extends StatelessWidget {
-  const ProfileSrceen({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +51,14 @@ class ProfileSrceen extends StatelessWidget {
           ),
           const SizedBox(
             height: 15,
+          ),
+          ProfileItem(
+            iconCode: 0xee2d,
+            text: "Time Slot",
+            hasNotification: false,
+            onPressed: () {
+              context.pushNamed(Routes.timeSlots);
+            },
           ),
         ]),
       ),

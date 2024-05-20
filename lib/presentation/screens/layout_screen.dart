@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import 'calender_screen.dart';
 import 'home_screen.dart';
-import 'profile_screen.dart';
 import 'patients_screen.dart';
+import 'profile_screen.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({
@@ -39,7 +39,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
     const HomeScreen(),
     const SearchScreen(),
     const CalenderScreen(),
-    const ProfileSrceen(),
+    const ProfileScreen(),
   ];
 
   @override

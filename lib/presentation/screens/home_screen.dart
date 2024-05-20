@@ -220,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         : ListView.builder(
                             shrinkWrap: true,
                             padding: EdgeInsets.zero,
-                            itemCount: 5,
+                            itemCount: value.doctors?.value?.length ?? 0,
                             itemBuilder: ((context, index) {
                               return DoctorItem(
                                 imagePath: "assets/images/app_logo.png",

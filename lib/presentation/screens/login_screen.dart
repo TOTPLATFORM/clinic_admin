@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
 
-import '../../../core/routes/routes.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../core/utils/show_snack_bar.dart';
-import '../../blocs/auth/auth_bloc.dart';
-import '../../widgets/custom/custom_text_form.dart';
+import '../../core/routes/routes.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/utils/show_snack_bar.dart';
+import '../blocs/auth/auth_bloc.dart';
+import '../widgets/custom/labled_text_form.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routeName = 'login';

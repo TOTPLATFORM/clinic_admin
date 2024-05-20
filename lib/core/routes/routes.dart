@@ -37,6 +37,8 @@ abstract class Routes {
   static const orderDetails = "orderDetails";
   static const orderReturn = "orderReturn";
   static const contact = "contact";
+  static const timeSlots = "timeSlots";
+  static const addTimeSlots = "addTimeSlots";
   static const account = "account";
   static const changePassword = "changePassword";
   static const onlinePayment = "onlinePayment";
