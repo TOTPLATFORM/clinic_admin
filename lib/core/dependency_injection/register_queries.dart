@@ -1,6 +1,9 @@
 import 'package:clinic_admin/app/contracts/patients.dart';
+import 'package:clinic_admin/app/contracts/time_slot.dart';
 import 'package:clinic_admin/app/queries/add_doctor_query_impl.dart';
+import 'package:clinic_admin/app/queries/add_time_slot_query_impl.dart';
 import 'package:clinic_admin/app/queries/get_all_patients_query_impl.dart';
+import 'package:clinic_admin/app/queries/get_time_slots_query_impl.dart';
 
 import '../../app/contracts/appointment.dart';
 import '../../app/contracts/auth.dart';
@@ -50,5 +53,9 @@ void registerQueries() {
       UpdatePersonalDataQueryImpl(updatePersonalDataRepo: getIt()));
   getIt.registerSingleton<GetPatientsQuery>(
       GetPatientsQueryImpl(patientsRepo: getIt()));
+  getIt.registerSingleton<GetTimeSlotsQuery>(
+      GetTimeSlotsQueryImpl(timeSlotRepo: getIt()));
+  getIt.registerSingleton<AddTimeSlotQuery>(
+      AddTimeSlotQueryImpl(timeSlotRepo: getIt()));
   
 }

@@ -157,7 +157,8 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                               buttonText: "Book Appointment",
                               onValidation: (p0, p1) {
                                 startTime = DateFormat('hh:mm:ss').format(p0);
-                                endTime = DateFormat('hh:mm:ss').format(p0);
+                                endTime = DateFormat('hh:mm:ss')
+                                    .format(p0.add(const Duration(hours: 1)));
                                 date = DateFormat('yyyy-MM-dd').format(p0);
                                 if (date == null || startTime == null) {
                                   ShowSnackbar.showCheckTopSnackBar(

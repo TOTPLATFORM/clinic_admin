@@ -1,5 +1,7 @@
 import 'package:clinic_admin/infrastructure/data_source/abstarctions/patients_data_source.dart';
+import 'package:clinic_admin/infrastructure/data_source/abstarctions/time_slot_data_source.dart';
 import 'package:clinic_admin/infrastructure/data_source/implementations/patients_data_source_impl.dart';
+import 'package:clinic_admin/infrastructure/data_source/implementations/time_slot_data_source_impl.dart';
 
 import 'di_container.dart';
 import '../../infrastructure/data_source/abstarctions/appointment_data_source.dart';
@@ -36,4 +38,6 @@ void registerDataSources() {
   );
   getIt.registerSingleton<PatientDataSource>(
       PatientDataSourceImpl(dioClient: getIt()));
+  getIt.registerSingleton<TimeSlotDataSource>(
+      TimeSlotDataSourceImpl(baseDio: getIt()));
 }

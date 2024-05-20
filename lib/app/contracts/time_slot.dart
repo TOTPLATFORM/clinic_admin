@@ -11,3 +11,5 @@ abstract class GetTimeSlotsQuery
     extends BaseQuery<Future<Either<Failure, GetTimeSlotsEntity>>, NoParams> {}
 abstract class AddTimeSlotQuery
     extends BaseQuery<Future<Either<Failure, TimeSlotEntity>>, TimeSlotRequest> {}
+abstract class DeleteTimeSlotCommand
+    extends BaseQuery<Future<Either<Failure, TimeSlotEntity>>, String> {}

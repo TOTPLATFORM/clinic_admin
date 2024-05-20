@@ -44,4 +44,20 @@ class TimeSlotDataSourceImpl implements TimeSlotDataSource {
 
     return response.data;
   }
+
+  @override
+  Future<Map<String, dynamic>> deleteTimeSlot(
+      {required String timeSlotId}) async {
+    final String token = preferences.getString(SharedKeys.accessToken) ?? "";
+    final response = await _baseDio.delete(
+      '/TimeSlot?id=$timeSlotId',
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+    return response.data;
+  }
 }

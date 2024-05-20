@@ -1,4 +1,5 @@
 import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
+import 'package:clinic_admin/presentation/blocs/time_slot/time_slot_bloc.dart';
 
 import '../../presentation/blocs/appointment/appointment_bloc.dart';
 import '../../presentation/blocs/auth/auth_bloc.dart';
@@ -18,6 +19,14 @@ void registerFactories() {
     () => CategoryBloc(
       getCategoryQuery: getIt(),
       getDoctorBySpecialtyQuery: getIt(),
+    ),
+  );
+  getIt.registerFactory<TimeSlotBloc>(
+    () => TimeSlotBloc(
+      addTimeSlot: getIt(),
+       
+      deleteTimeSlotCommand: getIt(),
+      getTimeSlotsQuery: getIt(),
     ),
   );
   getIt.registerFactory<DoctorBloc>(
