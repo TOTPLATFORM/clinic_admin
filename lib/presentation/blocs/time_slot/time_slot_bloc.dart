@@ -18,30 +18,48 @@ class TimeSlotBloc extends Bloc<TimeSlotEvent, TimeSlotState> {
       {required this.addTimeSlot,
       required this.getTimeSlotsQuery,
       required this.deleteTimeSlotCommand})
-      : super(const TimeSlotState.initial()) {
+      : super(TimeSlotState.initial()) {
     on<TimeSlotEvent>(
       (event, emit) async {
         await event.maybeMap(
           orElse: () {},
           deleteTimeSlot: (value) async {
-            emit(const TimeSlotState.loading());
-            final result = await deleteTimeSlotCommand.call( value.timeSlotId.toString());
+            final result =
+                await deleteTimeSlotCommand.call(value.timeSlotId.toString());
             await result.fold(
               (l) async {
-                emit(TimeSlotState.failure(message: l.message));
+                state.maybeMap(
+                  orElse: () {
+                    add(const TimeSlotEvent.getAllTimeSlots());
+                  },
+                  success: (successState) {
+                    final slots = successState.slots;
+                    emit(
+                      TimeSlotState.success(
+                        slots: slots,
+                        errorMessage: l.message,
+                        deleted: false,
+                      ),
+                    );
+                  },
+                );
               },
               (r) async {
-                if (r.isSuccess == true) {
-                  emit(const TimeSlotState.success(deleted: true));
-                  add(const TimeSlotEvent.getAllTimeSlots());
-                } else {
-                  emit(TimeSlotState.failure(message: r.errors![0]));
-                }
+                state.maybeMap(
+                  orElse: () {
+                    add(const TimeSlotEvent.getAllTimeSlots());
+                  },
+                  success: (successState) {
+                    emit(_Success(slots: successState.slots, deleted: true));
+
+                    add(const TimeSlotEvent.getAllTimeSlots());
+                  },
+                );
               },
             );
           },
           addTimeSlot: (value) async {
-            emit(const TimeSlotState.loading());
+            emit(TimeSlotState.loading());
             final result = await addTimeSlot.call(value.timeSlot);
             await result.fold(
               (l) async {
@@ -50,7 +68,7 @@ class TimeSlotBloc extends Bloc<TimeSlotEvent, TimeSlotState> {
               (r) async {
                 if (r.isSuccess == true) {
                   Future.delayed(const Duration(seconds: 2));
-                  emit(const TimeSlotState.success());
+                  emit(TimeSlotState.success());
                   add(const TimeSlotEvent.getAllTimeSlots());
                 } else {
                   emit(TimeSlotState.failure(message: r.errors![0]));
@@ -59,7 +77,7 @@ class TimeSlotBloc extends Bloc<TimeSlotEvent, TimeSlotState> {
             );
           },
           getAllTimeSlots: (value) async {
-            emit(const TimeSlotState.loading());
+            emit(TimeSlotState.loading());
             final result = await getTimeSlotsQuery.call(NoParams());
             await result.fold(
               (l) async {

@@ -488,7 +488,9 @@ mixin _$TimeSlotState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(List<TimeSlot>? slots, bool deleted) success,
+    required TResult Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -496,7 +498,9 @@ mixin _$TimeSlotState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult? Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -504,7 +508,8 @@ mixin _$TimeSlotState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult Function(List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -572,7 +577,7 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  _$InitialImpl();
 
   @override
   String toString() {
@@ -580,21 +585,14 @@ class _$InitialImpl implements _Initial {
   }
 
   @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(List<TimeSlot>? slots, bool deleted) success,
+    required TResult Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)
+        success,
   }) {
     return initial();
   }
@@ -605,7 +603,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult? Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
   }) {
     return initial?.call();
   }
@@ -616,7 +616,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult Function(List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -664,7 +665,7 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements TimeSlotState {
-  const factory _Initial() = _$InitialImpl;
+  factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -686,7 +687,7 @@ class __$$LoadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+  _$LoadingImpl();
 
   @override
   String toString() {
@@ -694,21 +695,14 @@ class _$LoadingImpl implements _Loading {
   }
 
   @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(List<TimeSlot>? slots, bool deleted) success,
+    required TResult Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)
+        success,
   }) {
     return loading();
   }
@@ -719,7 +713,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult? Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
   }) {
     return loading?.call();
   }
@@ -730,7 +726,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult Function(List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -778,7 +775,7 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements TimeSlotState {
-  const factory _Loading() = _$LoadingImpl;
+  factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -815,26 +812,15 @@ class __$$FailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailureImpl implements _Failure {
-  const _$FailureImpl({required this.message});
+  _$FailureImpl({required this.message});
 
   @override
-  final String message;
+  String message;
 
   @override
   String toString() {
     return 'TimeSlotState.failure(message: $message)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -848,7 +834,9 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(List<TimeSlot>? slots, bool deleted) success,
+    required TResult Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)
+        success,
   }) {
     return failure(message);
   }
@@ -859,7 +847,9 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult? Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
   }) {
     return failure?.call(message);
   }
@@ -870,7 +860,8 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult Function(List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -918,9 +909,10 @@ class _$FailureImpl implements _Failure {
 }
 
 abstract class _Failure implements TimeSlotState {
-  const factory _Failure({required final String message}) = _$FailureImpl;
+  factory _Failure({required String message}) = _$FailureImpl;
 
   String get message;
+  set message(String value);
   @JsonKey(ignore: true)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -932,7 +924,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<TimeSlot>? slots, bool deleted});
+  $Res call({List<TimeSlot>? slots, bool deleted, String? errorMessage});
 }
 
 /// @nodoc
@@ -948,16 +940,21 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? slots = freezed,
     Object? deleted = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$SuccessImpl(
       slots: freezed == slots
-          ? _value._slots
+          ? _value.slots
           : slots // ignore: cast_nullable_to_non_nullable
               as List<TimeSlot>?,
       deleted: null == deleted
           ? _value.deleted
           : deleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -965,40 +962,20 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({final List<TimeSlot>? slots, this.deleted = false})
-      : _slots = slots;
+  _$SuccessImpl({this.slots, this.deleted = false, this.errorMessage});
 
-  final List<TimeSlot>? _slots;
   @override
-  List<TimeSlot>? get slots {
-    final value = _slots;
-    if (value == null) return null;
-    if (_slots is EqualUnmodifiableListView) return _slots;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  List<TimeSlot>? slots;
   @override
   @JsonKey()
-  final bool deleted;
+  bool deleted;
+  @override
+  String? errorMessage;
 
   @override
   String toString() {
-    return 'TimeSlotState.success(slots: $slots, deleted: $deleted)';
+    return 'TimeSlotState.success(slots: $slots, deleted: $deleted, errorMessage: $errorMessage)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._slots, _slots) &&
-            (identical(other.deleted, deleted) || other.deleted == deleted));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_slots), deleted);
 
   @JsonKey(ignore: true)
   @override
@@ -1012,9 +989,11 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) failure,
-    required TResult Function(List<TimeSlot>? slots, bool deleted) success,
+    required TResult Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)
+        success,
   }) {
-    return success(slots, deleted);
+    return success(slots, deleted, errorMessage);
   }
 
   @override
@@ -1023,9 +1002,11 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? failure,
-    TResult? Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult? Function(
+            List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
   }) {
-    return success?.call(slots, deleted);
+    return success?.call(slots, deleted, errorMessage);
   }
 
   @override
@@ -1034,11 +1015,12 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? failure,
-    TResult Function(List<TimeSlot>? slots, bool deleted)? success,
+    TResult Function(List<TimeSlot>? slots, bool deleted, String? errorMessage)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(slots, deleted);
+      return success(slots, deleted, errorMessage);
     }
     return orElse();
   }
@@ -1082,11 +1064,17 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements TimeSlotState {
-  const factory _Success({final List<TimeSlot>? slots, final bool deleted}) =
-      _$SuccessImpl;
+  factory _Success(
+      {List<TimeSlot>? slots,
+      bool deleted,
+      String? errorMessage}) = _$SuccessImpl;
 
   List<TimeSlot>? get slots;
+  set slots(List<TimeSlot>? value);
   bool get deleted;
+  set deleted(bool value);
+  String? get errorMessage;
+  set errorMessage(String? value);
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;

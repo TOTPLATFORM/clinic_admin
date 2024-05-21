@@ -1,12 +1,13 @@
 part of 'time_slot_bloc.dart';
 
-@freezed
+@unfreezed
 class TimeSlotState with _$TimeSlotState {
-  const factory TimeSlotState.initial() = _Initial;
-  const factory TimeSlotState.loading() = _Loading;
-  const factory TimeSlotState.failure({required String message}) = _Failure;
-  const factory TimeSlotState.success({
+  factory TimeSlotState.initial() = _Initial;
+  factory TimeSlotState.loading() = _Loading;
+  factory TimeSlotState.failure({required String message}) = _Failure;
+  factory TimeSlotState.success({
     List<TimeSlot>? slots,
     @Default(false) bool deleted,
+    String? errorMessage,
   }) = _Success;
 }

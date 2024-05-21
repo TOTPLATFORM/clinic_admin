@@ -85,7 +85,6 @@ class _AddTimeSlotScreenState extends State<AddTimeSlotScreen> {
             state.maybeMap(
               orElse: () {},
               success: (value) {
-                Navigator.pop(context);
                 ShowSnackbar.showCheckTopSnackBar(context,
                     text: 'Time slot added successfully',
                     type: SnackBarType.success);

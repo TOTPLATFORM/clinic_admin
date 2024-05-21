@@ -43,8 +43,15 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen> {
                 ShowSnackbar.showCheckTopSnackBar(
                   context,
                   text: 'Time slot deleted successfully',
+                  type: SnackBarType.success,
                 );
-                
+              }
+
+              if (value.errorMessage != null) {
+                ShowSnackbar.showCheckTopSnackBar(context,
+                    text: value.errorMessage ?? 'Something went wrong',
+                    type: SnackBarType.error
+                    );
               }
             },
           );
