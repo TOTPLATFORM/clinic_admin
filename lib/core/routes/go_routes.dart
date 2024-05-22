@@ -52,14 +52,17 @@ final GoRouter allRoutes = GoRouter(
         if (data != null) {
           final String appointmentId = data["appointmentId"] as String;
           final String doctorId = data["doctorId"] as String;
+          final String patientId = data["patientId"] as String;
           return UpdateAppointmentScreen(
             appointmentId: appointmentId,
             doctorId: doctorId,
+            patientId: patientId,
           );
         }
         return const UpdateAppointmentScreen(
           appointmentId: "id",
           doctorId: "name",
+          patientId: "patientId",
         );
       },
     ),

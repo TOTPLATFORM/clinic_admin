@@ -37,6 +37,12 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime convertToDateTime(TimeOfDay timeOfDay) {
+      final now = DateTime.now();
+      return DateTime(
+          now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
+    }
+
     return BlocConsumer<AppointmentBloc, AppointmentState>(
       listener: (context, appointmentState) {
         appointmentState.maybeMap(
@@ -156,9 +162,16 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                             DateTimeForm(
                               buttonText: "Book Appointment",
                               onValidation: (p0, p1) {
-                                startTime = DateFormat('hh:mm:ss').format(p0);
-                                endTime = DateFormat('hh:mm:ss').format(p0);
-                                date = DateFormat('yyyy-MM-dd').format(p0);
+                                DateTime dateTime = convertToDateTime(p1);
+                                startTime =
+                                    DateFormat('hh:mm:ss').format(dateTime);
+                                endTime = DateFormat('hh:mm:ss').format(
+                                    dateTime.add(const Duration(hours: 1)));
+                                date =
+                                    DateFormat('yyyy-MM-dd').format(dateTime);
+                                log("startTime: ::$startTime");
+                                log("date: ::$date");
+                                log("endTime: ::$endTime");
                                 if (date == null || startTime == null) {
                                   ShowSnackbar.showCheckTopSnackBar(
                                     context,

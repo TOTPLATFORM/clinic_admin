@@ -1,8 +1,6 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/core/dependency_injection/di_container.dart';
 import 'package:clinic_admin/core/theme/app_colors.dart';
-import 'package:clinic_admin/core/utils/shared_keys.dart';
 import 'package:clinic_admin/core/utils/show_snack_bar.dart';
 import 'package:clinic_admin/presentation/blocs/appointment/appointment_bloc.dart';
 import 'package:clinic_admin/presentation/widgets/date_time_picker.dart';
@@ -13,10 +11,13 @@ import 'package:intl/intl.dart';
 class UpdateAppointmentScreen extends StatefulWidget {
   final String appointmentId;
   final String doctorId;
+  final String patientId;
+
   const UpdateAppointmentScreen({
     super.key,
     required this.appointmentId,
     required this.doctorId,
+    required this.patientId,
   });
 
   @override
@@ -72,9 +73,6 @@ class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
                 const Spacer(),
                 ElevatedButton(
                     onPressed: () {
-                      log("selectedTime: ::$startTime");
-                      log("selectedTime: ::$date");
-                      log("selectedTime: ::$endTime");
                       if (date == null || startTime == null) {
                         ShowSnackbar.showCheckTopSnackBar(
                           context,
@@ -88,8 +86,7 @@ class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
                               data: date!,
                               startTime: startTime!,
                               endTime: endTime!,
-                              patientId:
-                                  preferences.getString(SharedKeys.id) ?? "",
+                              patientId: widget.patientId,
                               doctorId: widget.doctorId,
                             ),
                           );
