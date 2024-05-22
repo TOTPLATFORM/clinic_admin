@@ -87,7 +87,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Center(
+                            Center( 
                               child: Image.asset(
                                 "assets/images/doctor.png",
                               ),
