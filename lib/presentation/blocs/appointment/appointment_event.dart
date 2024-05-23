@@ -3,13 +3,13 @@ part of 'appointment_bloc.dart';
 @freezed
 class AppointmentEvent with _$AppointmentEvent {
   const factory AppointmentEvent.addAppointment({
-      required String scheduleId,
+      required int scheduleId,
       
       required String patientId,
       required String doctorId,
     }) = _AddAppointment;
   const factory AppointmentEvent.updateAppointment({
-      required String scheduleId,
+      required int scheduleId,
       
       required String patientId,
       required String doctorId,

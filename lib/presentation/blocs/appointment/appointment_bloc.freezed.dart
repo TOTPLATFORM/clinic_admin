@@ -18,11 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppointmentEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String scheduleId, String patientId, String doctorId)
+    required TResult Function(int scheduleId, String patientId, String doctorId)
         addAppointment,
-    required TResult Function(String scheduleId, String patientId,
-            String doctorId, String appointmentId)
+    required TResult Function(int scheduleId, String patientId, String doctorId,
+            String appointmentId)
         updateAppointment,
     required TResult Function() getAppointment,
     required TResult Function(String appointmentId) deleteAppointment,
@@ -30,9 +29,9 @@ mixin _$AppointmentEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String scheduleId, String patientId, String doctorId)?
+    TResult? Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult? Function(String scheduleId, String patientId, String doctorId,
+    TResult? Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult? Function()? getAppointment,
@@ -41,9 +40,9 @@ mixin _$AppointmentEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String scheduleId, String patientId, String doctorId)?
+    TResult Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult Function(String scheduleId, String patientId, String doctorId,
+    TResult Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult Function()? getAppointment,
@@ -102,7 +101,7 @@ abstract class _$$AddAppointmentImplCopyWith<$Res> {
           $Res Function(_$AddAppointmentImpl) then) =
       __$$AddAppointmentImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String scheduleId, String patientId, String doctorId});
+  $Res call({int scheduleId, String patientId, String doctorId});
 }
 
 /// @nodoc
@@ -124,7 +123,7 @@ class __$$AddAppointmentImplCopyWithImpl<$Res>
       scheduleId: null == scheduleId
           ? _value.scheduleId
           : scheduleId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       patientId: null == patientId
           ? _value.patientId
           : patientId // ignore: cast_nullable_to_non_nullable
@@ -146,7 +145,7 @@ class _$AddAppointmentImpl implements _AddAppointment {
       required this.doctorId});
 
   @override
-  final String scheduleId;
+  final int scheduleId;
   @override
   final String patientId;
   @override
@@ -183,11 +182,10 @@ class _$AddAppointmentImpl implements _AddAppointment {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String scheduleId, String patientId, String doctorId)
+    required TResult Function(int scheduleId, String patientId, String doctorId)
         addAppointment,
-    required TResult Function(String scheduleId, String patientId,
-            String doctorId, String appointmentId)
+    required TResult Function(int scheduleId, String patientId, String doctorId,
+            String appointmentId)
         updateAppointment,
     required TResult Function() getAppointment,
     required TResult Function(String appointmentId) deleteAppointment,
@@ -198,9 +196,9 @@ class _$AddAppointmentImpl implements _AddAppointment {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String scheduleId, String patientId, String doctorId)?
+    TResult? Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult? Function(String scheduleId, String patientId, String doctorId,
+    TResult? Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult? Function()? getAppointment,
@@ -212,9 +210,9 @@ class _$AddAppointmentImpl implements _AddAppointment {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String scheduleId, String patientId, String doctorId)?
+    TResult Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult Function(String scheduleId, String patientId, String doctorId,
+    TResult Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult Function()? getAppointment,
@@ -267,11 +265,11 @@ class _$AddAppointmentImpl implements _AddAppointment {
 
 abstract class _AddAppointment implements AppointmentEvent {
   const factory _AddAppointment(
-      {required final String scheduleId,
+      {required final int scheduleId,
       required final String patientId,
       required final String doctorId}) = _$AddAppointmentImpl;
 
-  String get scheduleId;
+  int get scheduleId;
   String get patientId;
   String get doctorId;
   @JsonKey(ignore: true)
@@ -286,7 +284,7 @@ abstract class _$$UpdateAppointmentImplCopyWith<$Res> {
       __$$UpdateAppointmentImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String scheduleId,
+      {int scheduleId,
       String patientId,
       String doctorId,
       String appointmentId});
@@ -312,7 +310,7 @@ class __$$UpdateAppointmentImplCopyWithImpl<$Res>
       scheduleId: null == scheduleId
           ? _value.scheduleId
           : scheduleId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       patientId: null == patientId
           ? _value.patientId
           : patientId // ignore: cast_nullable_to_non_nullable
@@ -339,7 +337,7 @@ class _$UpdateAppointmentImpl implements _UpdateAppointment {
       required this.appointmentId});
 
   @override
-  final String scheduleId;
+  final int scheduleId;
   @override
   final String patientId;
   @override
@@ -381,11 +379,10 @@ class _$UpdateAppointmentImpl implements _UpdateAppointment {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String scheduleId, String patientId, String doctorId)
+    required TResult Function(int scheduleId, String patientId, String doctorId)
         addAppointment,
-    required TResult Function(String scheduleId, String patientId,
-            String doctorId, String appointmentId)
+    required TResult Function(int scheduleId, String patientId, String doctorId,
+            String appointmentId)
         updateAppointment,
     required TResult Function() getAppointment,
     required TResult Function(String appointmentId) deleteAppointment,
@@ -396,9 +393,9 @@ class _$UpdateAppointmentImpl implements _UpdateAppointment {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String scheduleId, String patientId, String doctorId)?
+    TResult? Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult? Function(String scheduleId, String patientId, String doctorId,
+    TResult? Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult? Function()? getAppointment,
@@ -411,9 +408,9 @@ class _$UpdateAppointmentImpl implements _UpdateAppointment {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String scheduleId, String patientId, String doctorId)?
+    TResult Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult Function(String scheduleId, String patientId, String doctorId,
+    TResult Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult Function()? getAppointment,
@@ -466,12 +463,12 @@ class _$UpdateAppointmentImpl implements _UpdateAppointment {
 
 abstract class _UpdateAppointment implements AppointmentEvent {
   const factory _UpdateAppointment(
-      {required final String scheduleId,
+      {required final int scheduleId,
       required final String patientId,
       required final String doctorId,
       required final String appointmentId}) = _$UpdateAppointmentImpl;
 
-  String get scheduleId;
+  int get scheduleId;
   String get patientId;
   String get doctorId;
   String get appointmentId;
@@ -518,11 +515,10 @@ class _$GetAppointmentImpl implements _GetAppointment {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String scheduleId, String patientId, String doctorId)
+    required TResult Function(int scheduleId, String patientId, String doctorId)
         addAppointment,
-    required TResult Function(String scheduleId, String patientId,
-            String doctorId, String appointmentId)
+    required TResult Function(int scheduleId, String patientId, String doctorId,
+            String appointmentId)
         updateAppointment,
     required TResult Function() getAppointment,
     required TResult Function(String appointmentId) deleteAppointment,
@@ -533,9 +529,9 @@ class _$GetAppointmentImpl implements _GetAppointment {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String scheduleId, String patientId, String doctorId)?
+    TResult? Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult? Function(String scheduleId, String patientId, String doctorId,
+    TResult? Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult? Function()? getAppointment,
@@ -547,9 +543,9 @@ class _$GetAppointmentImpl implements _GetAppointment {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String scheduleId, String patientId, String doctorId)?
+    TResult Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult Function(String scheduleId, String patientId, String doctorId,
+    TResult Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult Function()? getAppointment,
@@ -670,11 +666,10 @@ class _$DeleteAppointmentImpl implements _DeleteAppointment {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            String scheduleId, String patientId, String doctorId)
+    required TResult Function(int scheduleId, String patientId, String doctorId)
         addAppointment,
-    required TResult Function(String scheduleId, String patientId,
-            String doctorId, String appointmentId)
+    required TResult Function(int scheduleId, String patientId, String doctorId,
+            String appointmentId)
         updateAppointment,
     required TResult Function() getAppointment,
     required TResult Function(String appointmentId) deleteAppointment,
@@ -685,9 +680,9 @@ class _$DeleteAppointmentImpl implements _DeleteAppointment {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String scheduleId, String patientId, String doctorId)?
+    TResult? Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult? Function(String scheduleId, String patientId, String doctorId,
+    TResult? Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult? Function()? getAppointment,
@@ -699,9 +694,9 @@ class _$DeleteAppointmentImpl implements _DeleteAppointment {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String scheduleId, String patientId, String doctorId)?
+    TResult Function(int scheduleId, String patientId, String doctorId)?
         addAppointment,
-    TResult Function(String scheduleId, String patientId, String doctorId,
+    TResult Function(int scheduleId, String patientId, String doctorId,
             String appointmentId)?
         updateAppointment,
     TResult Function()? getAppointment,

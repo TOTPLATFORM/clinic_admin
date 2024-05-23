@@ -25,7 +25,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
   String? endTime;
   String? selectedValue;
   String? selectedPatientId;
-  String? scheduleId;
+  int? scheduleId;
 
   @override
   @override
@@ -188,7 +188,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                         },
                                         onChanged: (value) {
                                           log("$value");
-                                          scheduleId = value.toString();
+                                          scheduleId = value as int;
                                         });
                                   },
                                 );
@@ -240,7 +240,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                 onPressed: () {
                                   context.read<AppointmentBloc>().add(
                                       AppointmentEvent.addAppointment(
-                                          scheduleId: scheduleId ?? "",
+                                          scheduleId: scheduleId ?? 0,
                                           patientId: selectedPatientId ?? "",
                                           doctorId:
                                               value.doctor?.value?.id ?? ""));

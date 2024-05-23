@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class AddAppointmentInput extends Equatable {
   final String doctorId;
   final String patientId;
-  final String scheduleId;
+  final int scheduleId;
   final String? appointmentId;
 
   const AddAppointmentInput({

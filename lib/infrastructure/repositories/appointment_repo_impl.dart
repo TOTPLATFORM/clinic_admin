@@ -14,7 +14,7 @@ class AppointmentRepoImpl implements AppointmentRepo {
   Future<Either<Failure, AppointmentEntity>> addAppointment({
   required String doctorId,
     required String patientId,
-    required String scheduleId,
+    required int scheduleId,
   }) async {
     try {
       final response = await appointmentDataSource.addAppointment(
@@ -53,7 +53,7 @@ class AppointmentRepoImpl implements AppointmentRepo {
   @override
   Future<Either<Failure, AppointmentEntity>> updateAppointment({
     required String doctorId,
-    required String scheduleId,
+    required int scheduleId,
     required String appointmentId,
         required String patientId,
 

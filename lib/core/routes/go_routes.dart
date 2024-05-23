@@ -56,15 +56,18 @@ final GoRouter allRoutes = GoRouter(
         if (data != null) {
           final String appointmentId = data["appointmentId"] as String;
           final String doctorId = data["doctorId"] as String;
-          final String scheduleId = data["scheduleId"] as String;
+          final String patientId = data["patientId"] as String;
+          final int scheduleId = data["scheduleId"] as int;
           return UpdateAppointmentScreen(
+            patientId: patientId,
             scheduleId: scheduleId,
             appointmentId: appointmentId,
             doctorId: doctorId,
           );
         }
         return const UpdateAppointmentScreen(
-          scheduleId: "scheduleId",
+          scheduleId: 1,
+          patientId: "",
           appointmentId: "id",
           doctorId: "name",
         );

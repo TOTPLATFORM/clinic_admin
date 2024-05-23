@@ -16,7 +16,7 @@ class AppointmentDataSourceImpl implements AppointmentDataSource {
   Future<Map<String, dynamic>> addAppointment({
     required String doctorId,
     required String patientId,
-    required String scheduleId,
+    required int scheduleId,
   }) async {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     final response = await dioClient.post(
@@ -61,7 +61,7 @@ class AppointmentDataSourceImpl implements AppointmentDataSource {
   Future<Map<String, dynamic>> updateAppointment({
     required String doctorId,
     required String patientId,
-    required String scheduleId,
+    required int scheduleId,
     required String appointmentId,
   }) async {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
