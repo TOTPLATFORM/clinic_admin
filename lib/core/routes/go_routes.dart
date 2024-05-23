@@ -1,3 +1,4 @@
+import 'package:clinic_admin/core/dependency_injection/di_container.dart';
 import 'package:clinic_admin/presentation/screens/add_time_slot_screen.dart';
 import 'package:clinic_admin/presentation/screens/appointment_screen.dart';
 import 'package:clinic_admin/presentation/screens/category_screen.dart';
@@ -11,12 +12,14 @@ import 'package:clinic_admin/presentation/screens/update_appointment.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../utils/shared_keys.dart';
 import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
-
+final token = preferences.getString(SharedKeys.accessToken);
 final GoRouter allRoutes = GoRouter(
-  initialLocation: Routes.login.withSlash,
+  initialLocation:
+      (token == null) ? Routes.login.withSlash : Routes.layout.withSlash,
   navigatorKey: navigatorKey,
   routes: <RouteBase>[
     GoRoute(
@@ -53,12 +56,15 @@ final GoRouter allRoutes = GoRouter(
         if (data != null) {
           final String appointmentId = data["appointmentId"] as String;
           final String doctorId = data["doctorId"] as String;
+          final String scheduleId = data["scheduleId"] as String;
           return UpdateAppointmentScreen(
+            scheduleId: scheduleId,
             appointmentId: appointmentId,
             doctorId: doctorId,
           );
         }
         return const UpdateAppointmentScreen(
+          scheduleId: "scheduleId",
           appointmentId: "id",
           doctorId: "name",
         );

@@ -7,12 +7,14 @@ import '../../domain/repos/appointment_repo.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../../domain/repos/category_repo.dart';
 import '../../domain/repos/doctor_repo.dart';
+import '../../domain/repos/schedule_repo.dart';
 import '../../domain/repos/search_repo.dart';
 import '../../domain/repos/update_personal_data_repo.dart';
 import '../../infrastructure/repositories/appointment_repo_impl.dart';
 import '../../infrastructure/repositories/auth_repo_impl.dart';
 import '../../infrastructure/repositories/category_repo_impl.dart';
 import '../../infrastructure/repositories/doctor_repo_impl.dart';
+import '../../infrastructure/repositories/schedule_repo_impl.dart';
 import '../../infrastructure/repositories/search_repo_impl.dart';
 import '../../infrastructure/repositories/update_personal_data_impl.dart';
 import 'di_container.dart';
@@ -23,6 +25,8 @@ void registerRepositories() {
       authDataSource: getIt(),
     ),
   );
+  getIt.registerSingleton<ScheduleRepo>(
+      ScheduleRepoImpl(scheduleDataSource: getIt()));
   getIt.registerSingleton<CategoryRepo>(
     CategoryRepoImpl(
       categoryDataSource: getIt(),

@@ -98,7 +98,7 @@ class _CalenderScreenState extends State<CalenderScreen>
                                       width: 5,
                                     ),
                                     Text(value.getAppointmentsData
-                                            ?.value![index].date ??
+                                            ?.value![index].day ??
                                         ""),
                                   ],
                                 ),
@@ -183,7 +183,11 @@ class _CalenderScreenState extends State<CalenderScreen>
                                           .getAppointmentsData?.value![index].id
                                           .toString(),
                                       "doctorId": value.getAppointmentsData
-                                          ?.value![index].doctorId
+                                          ?.value![index].doctorId,
+                                      "patientId": value.getAppointmentsData
+                                          ?.value![index].patientId,
+                                      "scheduleId": value.getAppointmentsData
+                                          ?.value![index].scheduleId
                                     });
                               },
                               style: ElevatedButton.styleFrom(
@@ -213,113 +217,6 @@ class _CalenderScreenState extends State<CalenderScreen>
             },
           );
         },
-      ),
-    );
-  }
-}
-
-class AppointmentItem extends StatelessWidget {
-  const AppointmentItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: AppColors.grayShade200)),
-      width: double.infinity,
-      child: Column(
-        children: [
-          DoctorItem(
-            color: AppColors.grayShade200,
-            imagePath: "assets/images/app_logo.png",
-            doctorDescription: "discription",
-            doctorName: "doctor name",
-            doctorType: "doctor type",
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Row(
-                    children: [
-                      Icon(Icons.calendar_month),
-                      Text("data"),
-                    ],
-                  ),
-                  SizedBox(width: MediaQuery.sizeOf(context).width * 0.2),
-                  const Row(
-                    children: [
-                      Icon(Icons.access_time_rounded),
-                      Text("time"),
-                    ],
-                  ),
-                  SizedBox(width: MediaQuery.sizeOf(context).width * 0.2),
-                  const Text("State"),
-                ],
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFBCCBF9),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                      10,
-                    )),
-                    fixedSize: Size(
-                      MediaQuery.sizeOf(context).width * 0.35,
-                      50,
-                    ),
-                  ),
-                  child: const Text(
-                    'Cancle',
-                    style: TextStyle(
-                      color: AppColors.blackColor,
-                      fontSize: 16,
-                    ),
-                  )),
-              ElevatedButton(
-                onPressed: () {
-                  context.pushNamed(Routes.updateAppointment, extra: "5");
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.totColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  fixedSize: Size(
-                    MediaQuery.sizeOf(context).width * 0.35,
-                    50,
-                  ),
-                ),
-                child: const Text(
-                  'Reschedule',
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
       ),
     );
   }

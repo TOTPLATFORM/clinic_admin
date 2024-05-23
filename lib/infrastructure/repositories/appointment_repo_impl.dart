@@ -12,19 +12,15 @@ class AppointmentRepoImpl implements AppointmentRepo {
   AppointmentRepoImpl({required this.appointmentDataSource});
   @override
   Future<Either<Failure, AppointmentEntity>> addAppointment({
-    required String doctorId,
+  required String doctorId,
     required String patientId,
-    required String date,
-    required String startTime,
-    required String endTime,
+    required String scheduleId,
   }) async {
     try {
       final response = await appointmentDataSource.addAppointment(
         doctorId: doctorId,
         patientId: patientId,
-        date: date,
-        startTime: startTime,
-        endTime: endTime,
+        scheduleId: scheduleId,
       );
       return Right(
         AppointmentEntity.fromJson(response),
@@ -57,19 +53,16 @@ class AppointmentRepoImpl implements AppointmentRepo {
   @override
   Future<Either<Failure, AppointmentEntity>> updateAppointment({
     required String doctorId,
-    required String patientId,
-    required String date,
-    required String startTime,
-    required String endTime,
+    required String scheduleId,
     required String appointmentId,
+        required String patientId,
+
   }) async {
     try {
       final response = await appointmentDataSource.updateAppointment(
           doctorId: doctorId,
           patientId: patientId,
-          date: date,
-          startTime: startTime,
-          endTime: endTime,
+          scheduleId: scheduleId,
           appointmentId: appointmentId);
       return Right(
         AppointmentEntity.fromJson(response),

@@ -3,27 +3,16 @@ import 'package:equatable/equatable.dart';
 class AddAppointmentInput extends Equatable {
   final String doctorId;
   final String patientId;
-  final String startTime;
-  final String endTime;
-  final String date;
+  final String scheduleId;
   final String? appointmentId;
 
-  const AddAppointmentInput( {
+  const AddAppointmentInput({
     required this.doctorId,
-    required this.date,
-    required this.startTime,
-    required this.endTime,
+    required this.scheduleId,
     required this.patientId,
     this.appointmentId,
   });
 
   @override
-  List<Object?> get props => [
-        doctorId,
-        date,
-        startTime,
-        endTime,
-        patientId,
-        appointmentId
-      ];
+  List<Object?> get props => [doctorId, scheduleId, patientId, appointmentId];
 }

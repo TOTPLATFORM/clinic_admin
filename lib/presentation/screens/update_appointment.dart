@@ -13,10 +13,11 @@ import 'package:intl/intl.dart';
 class UpdateAppointmentScreen extends StatefulWidget {
   final String appointmentId;
   final String doctorId;
+  final String scheduleId;
   const UpdateAppointmentScreen({
     super.key,
     required this.appointmentId,
-    required this.doctorId,
+    required this.doctorId, required this.scheduleId,
   });
 
   @override
@@ -85,12 +86,11 @@ class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
                       context.read<AppointmentBloc>().add(
                             AppointmentEvent.updateAppointment(
                               appointmentId: widget.appointmentId,
-                              data: date!,
-                              startTime: startTime!,
-                              endTime: endTime!,
+                             
                               patientId:
                                   preferences.getString(SharedKeys.id) ?? "",
                               doctorId: widget.doctorId,
+                               scheduleId:widget.scheduleId ,
                             ),
                           );
                     },

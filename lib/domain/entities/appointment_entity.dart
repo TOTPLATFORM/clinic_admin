@@ -24,11 +24,12 @@ class Appointment with _$Appointment {
     int? id,
     String? startTime,
     String? endTime,
-    String? date,
+    String? day,
     String? patientName,
     String? patientId,
     String? doctorName,
     String? doctorId,
+    int? scheduleId,
   }) = _Appointment;
 
   factory Appointment.fromJson(Map<String, dynamic> json) => _$AppointmentFromJson(json);

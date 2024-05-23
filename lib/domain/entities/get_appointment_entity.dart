@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'appointment_entity.dart';
+
 part 'get_appointment_entity.freezed.dart';
 part 'get_appointment_entity.g.dart';
 
@@ -18,18 +20,4 @@ class GetAppointmentsEntity with _$GetAppointmentsEntity {
   factory GetAppointmentsEntity.fromJson(Map<String, dynamic> json) => _$GetAppointmentsEntityFromJson(json);
 }
 
-@freezed
-class Appointment with _$Appointment {
-  factory Appointment({
-    int? id,
-    String? startTime,
-    String? endTime,
-    String? date,
-    String? patientName,
-    String? patientId,
-    String? doctorName,
-    String? doctorId,
-  }) = _Appointment;
 
-  factory Appointment.fromJson(Map<String, dynamic> json) => _$AppointmentFromJson(json);
-}
