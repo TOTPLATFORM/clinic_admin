@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../core/network/failure.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repos/auth_repo.dart';
-import '../data_source/abstarctions/auth_data_source.dart';
+import '../data_source/abstractions/auth_data_source.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final AuthDataSource authDataSource;

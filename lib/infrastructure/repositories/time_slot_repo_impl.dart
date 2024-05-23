@@ -5,7 +5,7 @@ import 'package:clinic_admin/domain/entities/time_slot_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../domain/repos/time_slot_repo.dart';
-import '../data_source/abstarctions/time_slot_data_source.dart';
+import '../data_source/abstractions/time_slot_data_source.dart';
 
 class TimeSlotRepoImpl implements TimeSlotRepo {
   final TimeSlotDataSource _timeSlotDataSource;

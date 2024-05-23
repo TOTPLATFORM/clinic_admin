@@ -84,20 +84,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   itemCount: successState.doctors?.value?.length ?? 0,
                   itemBuilder: ((context, index) {
                     return DoctorItem(
-                      onDeleteButton: () {
-                        context.read<DoctorBloc>().add(DoctorEvent.deleteDoctor(
-                            id: successState.doctors?.value?[index].id ?? ""));
-                        context.read<DoctorBloc>().state.maybeMap(
-                              orElse: () {},
-                              success: (v) {
-                                v.deleteDoctor
-                                    ? ShowSnackbar.showCheckTopSnackBar(context,
-                                        text: "Doctor Deleted Successfully",
-                                        type: SnackBarType.success)
-                                    : {};
-                              },
-                            );
-                      },
                       imagePath: "assets/images/app_logo.png",
                       doctorDescription:
                           successState.doctors?.value![index].doctorEmail ?? "",
@@ -384,38 +370,50 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                       SizedBox(
                         height: MediaQuery.sizeOf(context).height * 0.07,
                       ),
-                      ElevatedButton(
-                          onPressed: _onPressedMethod,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.totColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            fixedSize: Size(
-                              MediaQuery.sizeOf(context).width * 0.9,
-                              50,
-                            ),
-                          ),
-                          child: doctorState.maybeMap(
+                      BlocBuilder<DoctorBloc, DoctorState>(
+                        builder: (context, state) {
+                          return state.maybeMap(
                             orElse: () {
-                              return const Text(
-                                'Add Doctor',
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 16,
-                                ),
-                              );
+                              return ElevatedButton(
+                                  onPressed: _onPressedMethod,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.totColor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    fixedSize: Size(
+                                      MediaQuery.sizeOf(context).width * 0.9,
+                                      50,
+                                    ),
+                                  ),
+                                  child: doctorState.maybeMap(
+                                    orElse: () {
+                                      return const Text(
+                                        'Add Doctor',
+                                        style: TextStyle(
+                                          color: AppColors.white,
+                                          fontSize: 16,
+                                        ),
+                                      );
+                                    },
+                                    loading: (v) {
+                                      return const SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(
+                                          color: AppColors.white,
+                                          strokeWidth: 3,
+                                        ),
+                                      );
+                                    },
+                                  ));
                             },
-                            loading: (v) {
-                              return const SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(
-                                  color: AppColors.white,
-                                  strokeWidth: 3,
-                                ),
-                              );
+                            loading: (value) {
+                              return const CircularProgressIndicator();
                             },
-                          )),
+                          );
+                        },
+                      ),
                     ]),
                   ),
                 )

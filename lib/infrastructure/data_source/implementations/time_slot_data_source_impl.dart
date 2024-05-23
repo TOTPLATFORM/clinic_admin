@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 
 import '../../../core/dio/base_dio.dart';
 import '../../../core/utils/shared_keys.dart';
-import '../abstarctions/time_slot_data_source.dart';
+import '../abstractions/time_slot_data_source.dart';
 
 class TimeSlotDataSourceImpl implements TimeSlotDataSource {
   final BaseDio _baseDio;

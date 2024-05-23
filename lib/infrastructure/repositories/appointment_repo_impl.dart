@@ -3,7 +3,7 @@ import '../../domain/entities/appointment_entity.dart';
 import '../../domain/entities/generic_entity.dart';
 import '../../domain/entities/get_appointment_entity.dart';
 import '../../domain/repos/appointment_repo.dart';
-import '../data_source/abstarctions/appointment_data_source.dart';
+import '../data_source/abstractions/appointment_data_source.dart';
 import 'package:dartz/dartz.dart';
 
 class AppointmentRepoImpl implements AppointmentRepo {

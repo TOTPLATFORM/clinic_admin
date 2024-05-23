@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../core/network/failure.dart';
 import '../../domain/entities/schedule_entity.dart';
 import '../../domain/repos/schedule_repo.dart';
-import '../data_source/abstarctions/schedule_data_source.dart';
+import '../data_source/abstractions/schedule_data_source.dart';
 
 class ScheduleRepoImpl implements ScheduleRepo {
   final ScheduleDataSource _scheduleDataSource;

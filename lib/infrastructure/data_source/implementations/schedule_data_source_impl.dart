@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
-import '../abstarctions/schedule_data_source.dart';
+import '../abstractions/schedule_data_source.dart';
 
 class ScheduleDataSourceImpl implements ScheduleDataSource {
   final BaseDio _dioClient;

@@ -2,7 +2,7 @@ import '../../core/network/failure.dart';
 import '../../domain/entities/category_entity.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../../domain/repos/category_repo.dart';
-import '../data_source/abstarctions/category_data_source.dart';
+import '../data_source/abstractions/category_data_source.dart';
 import 'package:dartz/dartz.dart';
 
 class CategoryRepoImpl implements CategoryRepo {

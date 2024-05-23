@@ -1,7 +1,7 @@
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
 import '../../../core/utils/shared_keys.dart';
-import '../abstarctions/search_data_source.dart';
+import '../abstractions/search_data_source.dart';
 import 'package:dio/dio.dart';
 
 class SearchDataSourceImpl implements SearchDataSource {

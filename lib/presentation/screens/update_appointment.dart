@@ -41,7 +41,6 @@ class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Rescheduled appointment"),
-        // title: Text(widget.appointmentId),
       ),
       body: BlocConsumer<AppointmentBloc, AppointmentState>(
         listener: (context, state) {
