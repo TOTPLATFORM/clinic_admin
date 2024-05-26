@@ -19,6 +19,13 @@ class DoctorDetailsScreen extends StatefulWidget {
   State<DoctorDetailsScreen> createState() => _DoctorDetailsScreenState();
 }
 
+List<String> doctorsPhoto = [
+  "assets/images/doctor1.jpg",
+  "assets/images/doctor2.jpg",
+  "assets/images/doctor3.jpg",
+  "assets/images/doctor4.jpg",
+];
+
 class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
   String? date;
   String? startTime;
@@ -65,6 +72,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                 loading: (state) =>
                     const Center(child: CircularProgressIndicator()),
                 success: (value) {
+                  doctorsPhoto.shuffle();
                   final PatientEntity patients =
                       context.read<PatientsBloc>().state.maybeMap(
                             success: (value) => value.patientEntity,
@@ -77,8 +85,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                   }
                   return Scaffold(
                     appBar: AppBar(
-                      title: Text(value.doctor?.value?.userName ?? ""),
-                    ),
+                        title: Text(value.doctor?.value?.userName ?? "")),
                     body: Container(
                       padding: const EdgeInsets.all(10),
                       child: SingleChildScrollView(
@@ -87,12 +94,13 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                           children: [
                             Center(
                               child: Image.asset(
-                                "assets/images/doctor.png",
+                                doctorsPhoto.first,
+                                height: 300,
+                                width: MediaQuery.sizeOf(context).width * 0.9,
+                                fit: BoxFit.fill,
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
                             const Text(
                               'Doctor Name',
                               style: TextStyle(
@@ -104,9 +112,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                 fontSize: 15,
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
                             const Text(
                               'Doctor Type',
                               style: TextStyle(
@@ -120,9 +126,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                 fontSize: 15,
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
                             const Center(
                               child: Text(
                                 'select Date and Time',
@@ -132,9 +136,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                     color: AppColors.greenColor),
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
+                            const SizedBox(height: 10),
                             BlocBuilder<ScheduleBloc, ScheduleState>(
                               builder: (context, state) {
                                 return state.maybeMap(
@@ -194,9 +196,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                 );
                               },
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            const SizedBox(height: 20),
                             DropdownButtonFormField(
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(

@@ -1,6 +1,8 @@
+import 'package:clinic_admin/core/dependency_injection/di_container.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/failure.dart';
+import '../../core/utils/shared_keys.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repos/auth_repo.dart';
 import '../data_source/abstractions/auth_data_source.dart';
@@ -20,15 +22,15 @@ class AuthRepoImpl implements AuthRepo {
     try {
       final response =
           await authDataSource.login(username: username, password: password);
-      return Right(
-        LoginEntity.fromJson(response),
-      );
+      if ((response['value']['roles'] as List).first == "Admin") {
+        preferences.setString(
+            SharedKeys.accessToken, response['value']['token']);
+        return Right(LoginEntity.fromJson(response));
+      } else {
+        return const Left(BadRequestFailure("User not authoriezd"));
+      }
     } catch (e) {
-      return Left(
-        ServerFailure(
-          e.toString(),
-        ),
-      );
+      return Left(ServerFailure(e.toString()));
     }
   }
 
@@ -54,9 +56,7 @@ class AuthRepoImpl implements AuthRepo {
       );
     } catch (e) {
       return Left(
-        ServerFailure(
-          e.toString(),
-        ),
+        ServerFailure(e.toString()),
       );
     }
   }
