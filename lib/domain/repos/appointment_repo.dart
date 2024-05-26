@@ -9,9 +9,7 @@ abstract class AppointmentRepo {
   Future<Either<Failure, AppointmentEntity>> addAppointment({
     required String doctorId,
     required String patientId,
-    required String date,
-    required String startTime,
-    required String endTime,
+    required int scheduleId,
   });
   Future<Either<Failure, GetAppointmentsEntity>> getAppointment();
   Future<Either<Failure, GenericEntity>> deleteAppointment(
@@ -19,9 +17,7 @@ abstract class AppointmentRepo {
   Future<Either<Failure, AppointmentEntity>> updateAppointment({
     required String doctorId,
     required String patientId,
-    required String date,
-    required String startTime,
-    required String endTime,
+    required int scheduleId,
     required String appointmentId,
   });
 }

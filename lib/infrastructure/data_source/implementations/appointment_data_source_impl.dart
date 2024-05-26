@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
 import '../../../core/utils/shared_keys.dart';
-import '../abstarctions/appointment_data_source.dart';
+import '../abstractions/appointment_data_source.dart';
 
 class AppointmentDataSourceImpl implements AppointmentDataSource {
   final BaseDio dioClient;
@@ -13,12 +13,11 @@ class AppointmentDataSourceImpl implements AppointmentDataSource {
   AppointmentDataSourceImpl({required this.dioClient});
 
   @override
-  Future<Map<String, dynamic>> addAppointment(
-      {required String doctorId,
-      required String patientId,
-      required String date,
-      required String startTime,
-      required String endTime}) async {
+  Future<Map<String, dynamic>> addAppointment({
+    required String doctorId,
+    required String patientId,
+    required int scheduleId,
+  }) async {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     final response = await dioClient.post(
       '/Appointment',
@@ -29,9 +28,7 @@ class AppointmentDataSourceImpl implements AppointmentDataSource {
         },
       ),
       data: {
-        "startTime": startTime,
-        "endTime": endTime,
-        "date": date,
+        "scheduleId": scheduleId,
         "patientId": patientId,
         "doctorId": doctorId
       },
@@ -64,9 +61,7 @@ class AppointmentDataSourceImpl implements AppointmentDataSource {
   Future<Map<String, dynamic>> updateAppointment({
     required String doctorId,
     required String patientId,
-    required String date,
-    required String startTime,
-    required String endTime,
+    required int scheduleId,
     required String appointmentId,
   }) async {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
@@ -79,9 +74,7 @@ class AppointmentDataSourceImpl implements AppointmentDataSource {
         },
       ),
       data: {
-        "startTime": startTime,
-        "endTime": endTime,
-        "date": date,
+        "scheduleId": scheduleId,
         "patientId": patientId,
         "doctorId": doctorId
       },

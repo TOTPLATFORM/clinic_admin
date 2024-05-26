@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
 import '../../../core/utils/shared_keys.dart';
-import '../abstarctions/update_personal_data_source.dart';
+import '../abstractions/update_personal_data_source.dart';
 
 class UpdataPesonalDataSourceImpl implements UpdatePersonalDataSource {
   final BaseDio dioClient;

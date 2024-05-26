@@ -40,11 +40,12 @@ _$AppointmentImpl _$$AppointmentImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       startTime: json['startTime'] as String?,
       endTime: json['endTime'] as String?,
-      date: json['date'] as String?,
+      day: json['day'] as String?,
       patientName: json['patientName'] as String?,
       patientId: json['patientId'] as String?,
       doctorName: json['doctorName'] as String?,
       doctorId: json['doctorId'] as String?,
+      scheduleId: (json['scheduleId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$AppointmentImplToJson(_$AppointmentImpl instance) =>
@@ -52,9 +53,10 @@ Map<String, dynamic> _$$AppointmentImplToJson(_$AppointmentImpl instance) =>
       'id': instance.id,
       'startTime': instance.startTime,
       'endTime': instance.endTime,
-      'date': instance.date,
+      'day': instance.day,
       'patientName': instance.patientName,
       'patientId': instance.patientId,
       'doctorName': instance.doctorName,
       'doctorId': instance.doctorId,
+      'scheduleId': instance.scheduleId,
     };

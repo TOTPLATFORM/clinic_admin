@@ -1,20 +1,25 @@
+import 'package:clinic_admin/core/dependency_injection/di_container.dart';
+import 'package:clinic_admin/presentation/screens/add_time_slot_screen.dart';
 import 'package:clinic_admin/presentation/screens/appointment_screen.dart';
 import 'package:clinic_admin/presentation/screens/category_screen.dart';
 import 'package:clinic_admin/presentation/screens/doctor_details_screen.dart';
 import 'package:clinic_admin/presentation/screens/layout_screen.dart';
-import 'package:clinic_admin/presentation/screens/login/login_screen.dart';
+import 'package:clinic_admin/presentation/screens/login_screen.dart';
 import 'package:clinic_admin/presentation/screens/search_page.dart';
 import 'package:clinic_admin/presentation/screens/splash_screen.dart';
+import 'package:clinic_admin/presentation/screens/time_slots_screen.dart';
 import 'package:clinic_admin/presentation/screens/update_appointment.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../utils/shared_keys.dart';
 import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
-
+final token = preferences.getString(SharedKeys.accessToken);
 final GoRouter allRoutes = GoRouter(
-  initialLocation: Routes.login.withSlash,
+  initialLocation:
+      (token == null) ? Routes.login.withSlash : Routes.layout.withSlash,
   navigatorKey: navigatorKey,
   routes: <RouteBase>[
     GoRoute(
@@ -24,7 +29,6 @@ final GoRouter allRoutes = GoRouter(
         return const SplashScreen();
       },
     ),
-   
     GoRoute(
       path: Routes.category.withSlash,
       name: Routes.category,
@@ -53,13 +57,19 @@ final GoRouter allRoutes = GoRouter(
           final String appointmentId = data["appointmentId"] as String;
           final String doctorId = data["doctorId"] as String;
           final String patientId = data["patientId"] as String;
+          final int scheduleId = data["scheduleId"] as int;
+
           return UpdateAppointmentScreen(
+            patientId: patientId,
+            scheduleId: scheduleId,
             appointmentId: appointmentId,
             doctorId: doctorId,
             patientId: patientId,
           );
         }
         return const UpdateAppointmentScreen(
+          scheduleId: 1,
+          patientId: "",
           appointmentId: "id",
           doctorId: "name",
           patientId: "patientId",
@@ -71,6 +81,20 @@ final GoRouter allRoutes = GoRouter(
       name: Routes.search,
       builder: (context, state) {
         return const SearchPage();
+      },
+    ),
+    GoRoute(
+      path: Routes.timeSlots.withSlash,
+      name: Routes.timeSlots,
+      builder: (context, state) {
+        return const TimeSlotsScreen();
+      },
+    ),
+    GoRoute(
+      path: Routes.addTimeSlots.withSlash,
+      name: Routes.addTimeSlots,
+      builder: (context, state) {
+        return const AddTimeSlotScreen();
       },
     ),
     GoRoute(

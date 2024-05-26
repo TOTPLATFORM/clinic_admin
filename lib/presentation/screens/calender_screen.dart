@@ -98,7 +98,7 @@ class _CalenderScreenState extends State<CalenderScreen>
                                       width: 5,
                                     ),
                                     Text(value.getAppointmentsData
-                                            ?.value![index].date ??
+                                            ?.value![index].day ??
                                         ""),
                                   ],
                                 ),
@@ -185,7 +185,11 @@ class _CalenderScreenState extends State<CalenderScreen>
                                       "patientId": value.getAppointmentsData
                                           ?.value![index].patientId,
                                       "doctorId": value.getAppointmentsData
-                                          ?.value![index].doctorId
+                                          ?.value![index].doctorId,
+                                      "patientId": value.getAppointmentsData
+                                          ?.value![index].patientId,
+                                      "scheduleId": value.getAppointmentsData
+                                          ?.value![index].scheduleId
                                     });
                               },
                               style: ElevatedButton.styleFrom(

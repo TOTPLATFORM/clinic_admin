@@ -31,6 +31,7 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
       await event.maybeMap(
         orElse: () {},
         addDoctor: (value) async {
+          emit(const DoctorState.loading());
           final res = await _addDoctorQuery.call(AddDoctorInputs(
             password: value.doctorData.password,
             specializationId: value.doctorData.specializationId,
@@ -46,7 +47,7 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
               state.maybeMap(
                 orElse: () {},
                 success: (value) async {
-                  emit(value.copyWith(doctor: r, addDoctor: true));
+                  emit(value.copyWith(doctor: r, addDoctor: true,));
                   add(const DoctorEvent.getAllDoctors());
                 },
               );

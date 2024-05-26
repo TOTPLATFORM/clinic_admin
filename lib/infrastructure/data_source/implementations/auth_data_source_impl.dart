@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import '../../../core/dio/base_dio.dart';
-import '../abstarctions/auth_data_source.dart';
+import '../abstractions/auth_data_source.dart';
 
 class AuthDataSourceImpl implements AuthDataSource {
   final BaseDio dioClient;
@@ -46,6 +46,7 @@ class AuthDataSourceImpl implements AuthDataSource {
         'password': password,
       },
     );
+    
     return response.data;
   }
 }

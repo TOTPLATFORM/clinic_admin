@@ -34,27 +34,3 @@ Map<String, dynamic> _$$GetAppointmentsEntityImplToJson(
       'errors': instance.errors,
       'validationErrors': instance.validationErrors,
     };
-
-_$AppointmentImpl _$$AppointmentImplFromJson(Map<String, dynamic> json) =>
-    _$AppointmentImpl(
-      id: (json['id'] as num?)?.toInt(),
-      startTime: json['startTime'] as String?,
-      endTime: json['endTime'] as String?,
-      date: json['date'] as String?,
-      patientName: json['patientName'] as String?,
-      patientId: json['patientId'] as String?,
-      doctorName: json['doctorName'] as String?,
-      doctorId: json['doctorId'] as String?,
-    );
-
-Map<String, dynamic> _$$AppointmentImplToJson(_$AppointmentImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'startTime': instance.startTime,
-      'endTime': instance.endTime,
-      'date': instance.date,
-      'patientName': instance.patientName,
-      'patientId': instance.patientId,
-      'doctorName': instance.doctorName,
-      'doctorId': instance.doctorId,
-    };

@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../../../app/contracts/appointment.dart';
 import '../../../app/core/primitives/inputs/add_appointment_input.dart';
 import '../../../app/core/primitives/inputs/no_params.dart';
 import '../../../domain/entities/appointment_entity.dart';
 import '../../../domain/entities/get_appointment_entity.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'appointment_bloc.freezed.dart';
 part 'appointment_event.dart';
@@ -26,11 +27,9 @@ class AppointmentBloc extends Bloc<AppointmentEvent, AppointmentState> {
         orElse: () {},
         updateAppointment: (value) async {
           final res = await updateAppointmentCommand.call(AddAppointmentInput(
-              date: value.data,
+              scheduleId: value.scheduleId,
               doctorId: value.doctorId,
               patientId: value.patientId,
-              startTime: value.startTime,
-              endTime: value.endTime,
               appointmentId: value.appointmentId));
           await res.fold(
             (l) async {
@@ -84,9 +83,7 @@ class AppointmentBloc extends Bloc<AppointmentEvent, AppointmentState> {
         },
         addAppointment: (value) async {
           final res = await addAppointmentCommand.call(AddAppointmentInput(
-            date: value.data,
-            startTime: value.startTime,
-            endTime: value.endTime,
+            scheduleId: value.scheduleId,
             patientId: value.patientId,
             doctorId: value.doctorId,
           ));

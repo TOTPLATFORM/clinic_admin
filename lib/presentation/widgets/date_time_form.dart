@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:clinic_admin/core/theme/app_colors.dart';
-import 'package:clinic_admin/presentation/widgets/custom/custom_text_form.dart';
+import 'package:clinic_admin/presentation/widgets/custom/labled_text_form.dart';
 import 'package:clinic_admin/presentation/widgets/tot_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

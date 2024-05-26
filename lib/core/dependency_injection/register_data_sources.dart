@@ -1,13 +1,17 @@
-import 'package:clinic_admin/infrastructure/data_source/abstarctions/patients_data_source.dart';
+import 'package:clinic_admin/infrastructure/data_source/abstractions/patients_data_source.dart';
+import 'package:clinic_admin/infrastructure/data_source/abstractions/time_slot_data_source.dart';
 import 'package:clinic_admin/infrastructure/data_source/implementations/patients_data_source_impl.dart';
+import 'package:clinic_admin/infrastructure/data_source/implementations/time_slot_data_source_impl.dart';
 
+import '../../infrastructure/data_source/abstractions/schedule_data_source.dart';
+import '../../infrastructure/data_source/implementations/schedule_data_source_impl.dart';
 import 'di_container.dart';
-import '../../infrastructure/data_source/abstarctions/appointment_data_source.dart';
-import '../../infrastructure/data_source/abstarctions/auth_data_source.dart';
-import '../../infrastructure/data_source/abstarctions/category_data_source.dart';
-import '../../infrastructure/data_source/abstarctions/doctor_data_source.dart';
-import '../../infrastructure/data_source/abstarctions/search_data_source.dart';
-import '../../infrastructure/data_source/abstarctions/update_personal_data_source.dart';
+import '../../infrastructure/data_source/abstractions/appointment_data_source.dart';
+import '../../infrastructure/data_source/abstractions/auth_data_source.dart';
+import '../../infrastructure/data_source/abstractions/category_data_source.dart';
+import '../../infrastructure/data_source/abstractions/doctor_data_source.dart';
+import '../../infrastructure/data_source/abstractions/search_data_source.dart';
+import '../../infrastructure/data_source/abstractions/update_personal_data_source.dart';
 import '../../infrastructure/data_source/implementations/appointment_data_source_impl.dart';
 import '../../infrastructure/data_source/implementations/auth_data_source_impl.dart';
 import '../../infrastructure/data_source/implementations/category_data_source_impl.dart';
@@ -16,6 +20,9 @@ import '../../infrastructure/data_source/implementations/search_data_source_impl
 import '../../infrastructure/data_source/implementations/update_personal_data_source_impl.dart';
 
 void registerDataSources() {
+   getIt.registerSingleton<ScheduleDataSource>(
+    ScheduleDataSourceImpl(dioClient: getIt()),
+  );
   getIt.registerSingleton<AuthDataSource>(
     AuthDataSourceImpl(dioClient: getIt()),
   );
@@ -36,4 +43,6 @@ void registerDataSources() {
   );
   getIt.registerSingleton<PatientDataSource>(
       PatientDataSourceImpl(dioClient: getIt()));
+  getIt.registerSingleton<TimeSlotDataSource>(
+      TimeSlotDataSourceImpl(baseDio: getIt()));
 }

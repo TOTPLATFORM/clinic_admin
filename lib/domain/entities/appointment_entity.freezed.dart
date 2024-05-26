@@ -331,11 +331,12 @@ mixin _$Appointment {
   int? get id => throw _privateConstructorUsedError;
   String? get startTime => throw _privateConstructorUsedError;
   String? get endTime => throw _privateConstructorUsedError;
-  String? get date => throw _privateConstructorUsedError;
+  String? get day => throw _privateConstructorUsedError;
   String? get patientName => throw _privateConstructorUsedError;
   String? get patientId => throw _privateConstructorUsedError;
   String? get doctorName => throw _privateConstructorUsedError;
   String? get doctorId => throw _privateConstructorUsedError;
+  int? get scheduleId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -353,11 +354,12 @@ abstract class $AppointmentCopyWith<$Res> {
       {int? id,
       String? startTime,
       String? endTime,
-      String? date,
+      String? day,
       String? patientName,
       String? patientId,
       String? doctorName,
-      String? doctorId});
+      String? doctorId,
+      int? scheduleId});
 }
 
 /// @nodoc
@@ -376,11 +378,12 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
     Object? id = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
-    Object? date = freezed,
+    Object? day = freezed,
     Object? patientName = freezed,
     Object? patientId = freezed,
     Object? doctorName = freezed,
     Object? doctorId = freezed,
+    Object? scheduleId = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -395,9 +398,9 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
+      day: freezed == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
               as String?,
       patientName: freezed == patientName
           ? _value.patientName
@@ -415,6 +418,10 @@ class _$AppointmentCopyWithImpl<$Res, $Val extends Appointment>
           ? _value.doctorId
           : doctorId // ignore: cast_nullable_to_non_nullable
               as String?,
+      scheduleId: freezed == scheduleId
+          ? _value.scheduleId
+          : scheduleId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -431,11 +438,12 @@ abstract class _$$AppointmentImplCopyWith<$Res>
       {int? id,
       String? startTime,
       String? endTime,
-      String? date,
+      String? day,
       String? patientName,
       String? patientId,
       String? doctorName,
-      String? doctorId});
+      String? doctorId,
+      int? scheduleId});
 }
 
 /// @nodoc
@@ -452,11 +460,12 @@ class __$$AppointmentImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? startTime = freezed,
     Object? endTime = freezed,
-    Object? date = freezed,
+    Object? day = freezed,
     Object? patientName = freezed,
     Object? patientId = freezed,
     Object? doctorName = freezed,
     Object? doctorId = freezed,
+    Object? scheduleId = freezed,
   }) {
     return _then(_$AppointmentImpl(
       id: freezed == id
@@ -471,9 +480,9 @@ class __$$AppointmentImplCopyWithImpl<$Res>
           ? _value.endTime
           : endTime // ignore: cast_nullable_to_non_nullable
               as String?,
-      date: freezed == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
+      day: freezed == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
               as String?,
       patientName: freezed == patientName
           ? _value.patientName
@@ -491,6 +500,10 @@ class __$$AppointmentImplCopyWithImpl<$Res>
           ? _value.doctorId
           : doctorId // ignore: cast_nullable_to_non_nullable
               as String?,
+      scheduleId: freezed == scheduleId
+          ? _value.scheduleId
+          : scheduleId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -502,11 +515,12 @@ class _$AppointmentImpl implements _Appointment {
       {this.id,
       this.startTime,
       this.endTime,
-      this.date,
+      this.day,
       this.patientName,
       this.patientId,
       this.doctorName,
-      this.doctorId});
+      this.doctorId,
+      this.scheduleId});
 
   factory _$AppointmentImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppointmentImplFromJson(json);
@@ -518,7 +532,7 @@ class _$AppointmentImpl implements _Appointment {
   @override
   final String? endTime;
   @override
-  final String? date;
+  final String? day;
   @override
   final String? patientName;
   @override
@@ -527,10 +541,12 @@ class _$AppointmentImpl implements _Appointment {
   final String? doctorName;
   @override
   final String? doctorId;
+  @override
+  final int? scheduleId;
 
   @override
   String toString() {
-    return 'Appointment(id: $id, startTime: $startTime, endTime: $endTime, date: $date, patientName: $patientName, patientId: $patientId, doctorName: $doctorName, doctorId: $doctorId)';
+    return 'Appointment(id: $id, startTime: $startTime, endTime: $endTime, day: $day, patientName: $patientName, patientId: $patientId, doctorName: $doctorName, doctorId: $doctorId, scheduleId: $scheduleId)';
   }
 
   @override
@@ -542,7 +558,7 @@ class _$AppointmentImpl implements _Appointment {
             (identical(other.startTime, startTime) ||
                 other.startTime == startTime) &&
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
-            (identical(other.date, date) || other.date == date) &&
+            (identical(other.day, day) || other.day == day) &&
             (identical(other.patientName, patientName) ||
                 other.patientName == patientName) &&
             (identical(other.patientId, patientId) ||
@@ -550,13 +566,15 @@ class _$AppointmentImpl implements _Appointment {
             (identical(other.doctorName, doctorName) ||
                 other.doctorName == doctorName) &&
             (identical(other.doctorId, doctorId) ||
-                other.doctorId == doctorId));
+                other.doctorId == doctorId) &&
+            (identical(other.scheduleId, scheduleId) ||
+                other.scheduleId == scheduleId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, startTime, endTime, date,
-      patientName, patientId, doctorName, doctorId);
+  int get hashCode => Object.hash(runtimeType, id, startTime, endTime, day,
+      patientName, patientId, doctorName, doctorId, scheduleId);
 
   @JsonKey(ignore: true)
   @override
@@ -577,11 +595,12 @@ abstract class _Appointment implements Appointment {
       {final int? id,
       final String? startTime,
       final String? endTime,
-      final String? date,
+      final String? day,
       final String? patientName,
       final String? patientId,
       final String? doctorName,
-      final String? doctorId}) = _$AppointmentImpl;
+      final String? doctorId,
+      final int? scheduleId}) = _$AppointmentImpl;
 
   factory _Appointment.fromJson(Map<String, dynamic> json) =
       _$AppointmentImpl.fromJson;
@@ -593,7 +612,7 @@ abstract class _Appointment implements Appointment {
   @override
   String? get endTime;
   @override
-  String? get date;
+  String? get day;
   @override
   String? get patientName;
   @override
@@ -602,6 +621,8 @@ abstract class _Appointment implements Appointment {
   String? get doctorName;
   @override
   String? get doctorId;
+  @override
+  int? get scheduleId;
   @override
   @JsonKey(ignore: true)
   _$$AppointmentImplCopyWith<_$AppointmentImpl> get copyWith =>

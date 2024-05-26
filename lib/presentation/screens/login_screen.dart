@@ -1,14 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
 
-import '../../../core/routes/routes.dart';
-import '../../../core/theme/app_colors.dart';
-import '../../../core/utils/show_snack_bar.dart';
-import '../../blocs/auth/auth_bloc.dart';
-import '../../widgets/custom/custom_text_form.dart';
+import '../../core/routes/routes.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/utils/show_snack_bar.dart';
+import '../blocs/auth/auth_bloc.dart';
+import '../widgets/custom/labled_text_form.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routeName = 'login';
@@ -21,76 +23,88 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          Image.asset(
-            'assets/images/spalsh.png',
-            width: MediaQuery.sizeOf(context).width,
-            height: MediaQuery.sizeOf(context).height,
-            fit: BoxFit.fill,
-          ),
-          Positioned(
-            top: 50,
-            left: 30,
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(2),
-                  width: 40,
-                  height: 40,
-                  color: AppColors.white,
-                  child: Image.asset(
-                    'assets/images/tot_logo.png',
-                    width: 50,
-                    height: 50,
+      body: BlocListener<AuthBloc, AuthState>(
+        listener: (context, state) {
+          state.maybeWhen(
+              orElse: () {},
+              failure: (message) {
+                log("Failure $message");
+                return ShowSnackbar.showCheckTopSnackBar(
+                  context,
+                  text: message,
+                  type: SnackBarType.error,
+                );
+              });
+        },
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/images/spalsh.png',
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height,
+              fit: BoxFit.fill,
+            ),
+            Positioned(
+              top: 50,
+              left: 30,
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(2),
+                    width: 40,
+                    height: 40,
+                    color: AppColors.white,
+                    child: Image.asset(
+                      'assets/images/tot_logo.png',
+                      width: 50,
+                      height: 50,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                const Text(
-                  '',
-                  style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: MediaQuery.sizeOf(context).width * 0.15,
-            left: MediaQuery.sizeOf(context).width * 0.05,
-            child: ElevatedButton(
-              onPressed: () {
-                showModalBottomSheet(
-                    context: context,
-                    isDismissible: true,
-                    isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(22))),
-                    builder: (_) {
-                      return const _LogInBtmSheet();
-                    }).then((value) {});
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                fixedSize: Size(
-                  MediaQuery.sizeOf(context).width * 0.9,
-                  50,
-                ),
-                // Set the background color here
-              ),
-              child: const Text(
-                'Login',
-                style: TextStyle(color: AppColors.totColor, fontSize: 16),
+                  const SizedBox(width: 5),
+                  const Text(
+                    '',
+                    style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: MediaQuery.sizeOf(context).width * 0.15,
+              left: MediaQuery.sizeOf(context).width * 0.05,
+              child: ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      isDismissible: true,
+                      isScrollControlled: true,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(22))),
+                      builder: (_) {
+                        return const _LogInBtmSheet();
+                      });
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  fixedSize: Size(
+                    MediaQuery.sizeOf(context).width * 0.9,
+                    50,
+                  ),
+                  // Set the background color here
+                ),
+                child: const Text(
+                  'Login',
+                  style: TextStyle(color: AppColors.totColor, fontSize: 16),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -175,8 +189,11 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                     );
                   },
                   failure: (v) async {
-                    ShowSnackbar.showCheckTopSnackBar(context,
-                        text: v.message, type: SnackBarType.error);
+                    ShowSnackbar.showCheckTopSnackBar(
+                      context,
+                      text: v.message,
+                      type: SnackBarType.error,
+                    );
                   },
                   orElse: () {},
                 );

@@ -3,20 +3,23 @@ import 'dart:developer';
 import 'package:clinic_admin/core/theme/app_colors.dart';
 import 'package:clinic_admin/core/utils/show_snack_bar.dart';
 import 'package:clinic_admin/presentation/blocs/appointment/appointment_bloc.dart';
-import 'package:clinic_admin/presentation/widgets/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+
+import '../blocs/schedule/schedule_bloc.dart';
 
 class UpdateAppointmentScreen extends StatefulWidget {
   final String appointmentId;
   final String doctorId;
+  final int scheduleId;
   final String patientId;
 
   const UpdateAppointmentScreen({
     super.key,
     required this.appointmentId,
     required this.doctorId,
+    required this.scheduleId,
+
     required this.patientId,
   });
 
@@ -26,15 +29,20 @@ class UpdateAppointmentScreen extends StatefulWidget {
 }
 
 class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
-  String? date;
-  String? startTime;
-  String? endTime;
+  int? scheduleId;
+  @override
+  void initState() {
+    context
+        .read<ScheduleBloc>()
+        .add(ScheduleEvent.getSchedulesByDoctorId(doctorId: widget.doctorId));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reschdule appointment"),
-        // title: Text(widget.appointmentId),
+        title: const Text("Rescheduled appointment"),
       ),
       body: BlocConsumer<AppointmentBloc, AppointmentState>(
         listener: (context, state) {
@@ -58,36 +66,68 @@ class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
             padding: const EdgeInsets.all(15.0),
             child: Column(
               children: [
-                Center(
-                  child: DateTimePicker(
-                    onDateTimeChanged: (DateTime dateTime) {
-                      startTime = DateFormat('hh:mm:ss').format(dateTime);
-
-                      endTime = DateFormat('hh:mm:ss')
-                          .format(dateTime.add(const Duration(hours: 1)));
-
-                      date = DateFormat('yyyy-MM-dd').format(dateTime);
-                    },
-                  ),
+                BlocBuilder<ScheduleBloc, ScheduleState>(
+                  builder: (context, state) {
+                    return state.maybeMap(
+                      orElse: () => const SizedBox(),
+                      success: (schedules) {
+                        return DropdownButtonFormField(
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.black,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.black,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            hint: const Text("Select Time"),
+                            items: schedules.schedules.value?.map((schedule) {
+                                  return DropdownMenuItem(
+                                    value: schedule.id,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Time: ${schedule.timeSlot?.startTime}",
+                                          style: const TextStyle(
+                                              color: AppColors.greenColor),
+                                        ),
+                                        Text("day: ${schedule.timeSlot?.day}"),
+                                      ],
+                                    ),
+                                  );
+                                }).toList() ??
+                                [],
+                            validator: (v) {
+                              if (v == null) {
+                                return "Please select time";
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              log("$value");
+                              scheduleId = value as int;
+                            });
+                      },
+                    );
+                  },
                 ),
                 const Spacer(),
                 ElevatedButton(
                     onPressed: () {
-                      if (date == null || startTime == null) {
-                        ShowSnackbar.showCheckTopSnackBar(
-                          context,
-                          text: 'please select date and time',
-                          type: SnackBarType.error,
-                        );
-                      }
                       context.read<AppointmentBloc>().add(
                             AppointmentEvent.updateAppointment(
                               appointmentId: widget.appointmentId,
-                              data: date!,
-                              startTime: startTime!,
-                              endTime: endTime!,
                               patientId: widget.patientId,
                               doctorId: widget.doctorId,
+                              scheduleId: scheduleId ?? 0,
                             ),
                           );
                     },

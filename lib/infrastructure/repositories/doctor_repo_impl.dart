@@ -4,7 +4,7 @@ import '../../core/network/failure.dart';
 import '../../domain/entities/doctor_entity.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../../domain/repos/doctor_repo.dart';
-import '../data_source/abstarctions/doctor_data_source.dart';
+import '../data_source/abstractions/doctor_data_source.dart';
 
 class DoctorRepoImpl implements DoctorRepo {
   final DoctorDataSource doctorDataSource;

@@ -6,7 +6,7 @@ import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
 import '../../../core/utils/shared_keys.dart';
 import '../../../domain/entities/doctor_entity.dart';
-import '../abstarctions/doctor_data_source.dart';
+import '../abstractions/doctor_data_source.dart';
 
 class DoctorDataSourceImpl implements DoctorDataSource {
   final BaseDio dioClient;
@@ -92,7 +92,6 @@ class DoctorDataSourceImpl implements DoctorDataSource {
         "/Doctor/?id=$doctorId",
         options: Options(
           headers: {
-            "Content-Type": "application/json",
             "Authorization": "Bearer $token",
           },
         ),
