@@ -182,6 +182,8 @@ class _CalenderScreenState extends State<CalenderScreen>
                                       "appointmentId": value
                                           .getAppointmentsData?.value![index].id
                                           .toString(),
+                                      "patientId": value.getAppointmentsData
+                                          ?.value![index].patientId,
                                       "doctorId": value.getAppointmentsData
                                           ?.value![index].doctorId,
                                       "patientId": value.getAppointmentsData

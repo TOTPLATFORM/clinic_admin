@@ -13,11 +13,13 @@ class UpdateAppointmentScreen extends StatefulWidget {
   final String doctorId;
   final int scheduleId;
   final String patientId;
+
   const UpdateAppointmentScreen({
     super.key,
     required this.appointmentId,
     required this.doctorId,
     required this.scheduleId,
+
     required this.patientId,
   });
 
@@ -120,13 +122,6 @@ class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
                 const Spacer(),
                 ElevatedButton(
                     onPressed: () {
-                      // if (date == null || startTime == null) {
-                      //   ShowSnackbar.showCheckTopSnackBar(
-                      //     context,
-                      //     text: 'please select date and time',
-                      //     type: SnackBarType.error,
-                      //   );
-                      // }
                       context.read<AppointmentBloc>().add(
                             AppointmentEvent.updateAppointment(
                               appointmentId: widget.appointmentId,

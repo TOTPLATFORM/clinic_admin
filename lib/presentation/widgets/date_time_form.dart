@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clinic_admin/core/theme/app_colors.dart';
 import 'package:clinic_admin/presentation/widgets/custom/labled_text_form.dart';
 import 'package:clinic_admin/presentation/widgets/tot_button.dart';
@@ -51,8 +53,10 @@ class DateTimeFormState extends State<DateTimeForm> {
         context: context, initialTime: TimeOfDay.fromDateTime(DateTime.now()));
     if (picked != null) {
       setState(() {
+
         _timeOfDay = picked;
         timeController.text = picked.format(context);
+        log("_dateTime: ${_timeOfDay.toString()}");
       });
     }
   }
