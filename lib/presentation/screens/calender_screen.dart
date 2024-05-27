@@ -186,8 +186,6 @@ class _CalenderScreenState extends State<CalenderScreen>
                                           ?.value![index].patientId,
                                       "doctorId": value.getAppointmentsData
                                           ?.value![index].doctorId,
-                                      "patientId": value.getAppointmentsData
-                                          ?.value![index].patientId,
                                       "scheduleId": value.getAppointmentsData
                                           ?.value![index].scheduleId
                                     });

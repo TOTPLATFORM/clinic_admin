@@ -64,7 +64,6 @@ final GoRouter allRoutes = GoRouter(
             scheduleId: scheduleId,
             appointmentId: appointmentId,
             doctorId: doctorId,
-            patientId: patientId,
           );
         }
         return const UpdateAppointmentScreen(
@@ -72,7 +71,6 @@ final GoRouter allRoutes = GoRouter(
           patientId: "",
           appointmentId: "id",
           doctorId: "name",
-          patientId: "patientId",
         );
       },
     ),
