@@ -1,3 +1,4 @@
+import 'package:clinic_admin/presentation/widgets/validation_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
@@ -26,32 +27,28 @@ class ProfileScreen extends StatelessWidget {
             Text('Hi, ${preferences.getString(SharedKeys.userName) ?? ""}'),
           ],
         ),
-        actions: [
-          TOTIconButtonAtom.displayMedium(
-            codePoint: 0xe3b3,
-            iconColor: AppColors.blackColor,
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           ProfileItem(
             iconCode: 0xe3b3,
             text: "Logout",
             hasNotification: false,
-            onPressed: () {
-              context.go(Routes.login.withSlash);
-              preferences.clear();
+            onPressed: () async {
+              showValidationDialog(
+                context,
+                validationName: "Logout",
+                itemName: "",
+                onYesPressed: () {
+                  preferences.clear();
+                  context.go(Routes.login.withSlash);
+                },
+              );
             },
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           ProfileItem(
             iconCode: 0xee2d,
             text: "Time Slot",

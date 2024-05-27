@@ -46,12 +46,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime convertToDateTime(TimeOfDay timeOfDay) {
-      final now = DateTime.now();
-      return DateTime(
-          now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
-    }
-
     return BlocConsumer<AppointmentBloc, AppointmentState>(
       listener: (context, appointmentState) {
         appointmentState.maybeMap(
@@ -245,7 +239,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   context.read<AppointmentBloc>().add(
-
                                       AppointmentEvent.addAppointment(
                                           scheduleId: scheduleId ?? 0,
                                           patientId: selectedPatientId ?? "",

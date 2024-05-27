@@ -1,3 +1,4 @@
+import 'package:clinic_admin/presentation/widgets/validation_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -146,16 +147,20 @@ class _CalenderScreenState extends State<CalenderScreen>
                           children: [
                             ElevatedButton(
                                 onPressed: () {
-                                  context.read<AppointmentBloc>().add(
-                                        AppointmentEvent.deleteAppointment(
-                                          appointmentId: value
-                                                  .getAppointmentsData
-                                                  ?.value![index]
-                                                  .id
-                                                  .toString() ??
-                                              "",
-                                        ),
-                                      );
+                                  showValidationDialog(context,
+                                      itemName: "appointment",
+                                      onYesPressed: () => context
+                                          .read<AppointmentBloc>()
+                                          .add(
+                                            AppointmentEvent.deleteAppointment(
+                                              appointmentId: value
+                                                      .getAppointmentsData
+                                                      ?.value![index]
+                                                      .id
+                                                      .toString() ??
+                                                  "",
+                                            ),
+                                          ));
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFFBCCBF9),

@@ -18,6 +18,7 @@ class TimeSlotRepoImpl implements TimeSlotRepo {
       {required TimeSlotRequest timeSlot}) async {
     try {
       final res = await _timeSlotDataSource.addTimeSlot(timeSlot: timeSlot);
+
       return Right(TimeSlotEntity.fromJson(res));
     } on Failure catch (e) {
       return Left(ServerFailure(e.message));
@@ -32,6 +33,7 @@ class TimeSlotRepoImpl implements TimeSlotRepo {
     try {
       final res =
           await _timeSlotDataSource.deleteTimeSlot(timeSlotId: id.toString());
+
       return Right(TimeSlotEntity.fromJson(res));
     } on Failure catch (e) {
       return Left(ServerFailure(e.message));
@@ -44,6 +46,7 @@ class TimeSlotRepoImpl implements TimeSlotRepo {
   Future<Either<Failure, GetTimeSlotsEntity>> getTimeSlots() async {
     try {
       final res = await _timeSlotDataSource.getTimeSlots();
+
       return Right(GetTimeSlotsEntity.fromJson(res));
     } on Failure catch (e) {
       return Left(ServerFailure(e.message));

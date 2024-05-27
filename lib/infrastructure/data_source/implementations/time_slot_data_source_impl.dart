@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clinic_admin/app/requests/time_slot_request.dart';
 import 'package:clinic_admin/core/dependency_injection/di_container.dart';
 import 'package:dio/dio.dart';
@@ -51,13 +53,9 @@ class TimeSlotDataSourceImpl implements TimeSlotDataSource {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     final response = await _baseDio.delete(
       '/TimeSlot?id=$timeSlotId',
-      options: Options(
-        headers: {
-          "Authorization": "Bearer $token",
-        },
-      ),
+      options: Options(headers: {"Authorization": "Bearer $token"}),
     );
-
+    log(response.data.toString());
     return response.data;
   }
 }

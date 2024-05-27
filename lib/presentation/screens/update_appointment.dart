@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:clinic_admin/core/theme/app_colors.dart';
 import 'package:clinic_admin/core/utils/show_snack_bar.dart';
 import 'package:clinic_admin/presentation/blocs/appointment/appointment_bloc.dart';
+import 'package:clinic_admin/presentation/widgets/validation_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../blocs/schedule/schedule_bloc.dart';
 
@@ -19,7 +21,6 @@ class UpdateAppointmentScreen extends StatefulWidget {
     required this.appointmentId,
     required this.doctorId,
     required this.scheduleId,
-
     required this.patientId,
   });
 
@@ -122,14 +123,19 @@ class _UpdateAppointmentScreenState extends State<UpdateAppointmentScreen> {
                 const Spacer(),
                 ElevatedButton(
                     onPressed: () {
-                      context.read<AppointmentBloc>().add(
-                            AppointmentEvent.updateAppointment(
-                              appointmentId: widget.appointmentId,
-                              patientId: widget.patientId,
-                              doctorId: widget.doctorId,
-                              scheduleId: scheduleId ?? 0,
-                            ),
-                          );
+                      showValidationDialog(context,
+                          itemName: "appointment",
+                          validationName: 'Reschedule', onYesPressed: () {
+                        context.read<AppointmentBloc>().add(
+                              AppointmentEvent.updateAppointment(
+                                appointmentId: widget.appointmentId,
+                                patientId: widget.patientId,
+                                doctorId: widget.doctorId,
+                                scheduleId: scheduleId ?? 0,
+                              ),
+                            );
+                        context.pop();
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFBCCBF9),
