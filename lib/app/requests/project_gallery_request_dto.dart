@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'project_gallery_request_dto.freezed.dart';
 part 'project_gallery_request_dto.g.dart';

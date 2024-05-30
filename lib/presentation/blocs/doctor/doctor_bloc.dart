@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:clinic_admin/app/core/primitives/inputs/add_doctor.dart';
+import '../../../app/core/primitives/inputs/add_doctor.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../app/contracts/doctor.dart';
@@ -47,7 +47,10 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
               state.maybeMap(
                 orElse: () {},
                 success: (value) async {
-                  emit(value.copyWith(doctor: r, addDoctor: true,));
+                  emit(value.copyWith(
+                    doctor: r,
+                    addDoctor: true,
+                  ));
                   add(const DoctorEvent.getAllDoctors());
                 },
               );
@@ -56,8 +59,8 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
             }
           });
         },
-        deleteDoctor: (value) async {
-          final result = await _deleteDoctorCommand.call(value.id);
+        deleteDoctor: (event) async {
+          final result = await _deleteDoctorCommand.call(event.id);
           await result
               .fold((l) async => emit(DoctorState.failure(message: l.message)),
                   (r) async {
@@ -65,8 +68,13 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
               state.maybeMap(
                 orElse: () {},
                 success: (value) async {
-                  emit(value.copyWith(doctor: r, deleteDoctor: true));
-                  add(const DoctorEvent.getAllDoctors());
+                  final doctors = [...value.doctors!.value!];
+                  doctors.removeWhere((v) => v.id == event.id);
+
+                  emit(value.copyWith(
+                      doctors: value.doctors!.copyWith(value: doctors),
+                      deleteDoctor: true));
+                  // add(const DoctorEvent.getAllDoctors());
                 },
               );
             } else {

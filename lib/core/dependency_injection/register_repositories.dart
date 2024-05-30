@@ -1,7 +1,7 @@
-import 'package:clinic_admin/domain/repos/patients_repo.dart';
-import 'package:clinic_admin/domain/repos/time_slot_repo.dart';
-import 'package:clinic_admin/infrastructure/repositories/patients_repo_impl.dart';
-import 'package:clinic_admin/infrastructure/repositories/time_slot_repo_impl.dart';
+import '../../domain/repos/patients_repo.dart';
+import '../../domain/repos/time_slot_repo.dart';
+import '../../infrastructure/repositories/patients_repo_impl.dart';
+import '../../infrastructure/repositories/time_slot_repo_impl.dart';
 
 import '../../domain/repos/appointment_repo.dart';
 import '../../domain/repos/auth_repo.dart';

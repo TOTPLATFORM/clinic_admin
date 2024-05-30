@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:clinic_admin/app/contracts/schedule_contract.dart';
+import '../../../app/contracts/schedule_contract.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/entities/schedule_entity.dart';

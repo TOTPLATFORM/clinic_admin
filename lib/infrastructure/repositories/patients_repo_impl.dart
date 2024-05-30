@@ -1,7 +1,7 @@
-import 'package:clinic_admin/core/network/failure.dart';
+import '../../core/network/failure.dart';
 
-import 'package:clinic_admin/domain/entities/patient_entity.dart';
-import 'package:clinic_admin/infrastructure/data_source/abstractions/patients_data_source.dart';
+import '../../domain/entities/patient_entity.dart';
+import '../data_source/abstractions/patients_data_source.dart';
 
 import 'package:dartz/dartz.dart';
 

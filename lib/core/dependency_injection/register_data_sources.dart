@@ -1,7 +1,7 @@
-import 'package:clinic_admin/infrastructure/data_source/abstractions/patients_data_source.dart';
-import 'package:clinic_admin/infrastructure/data_source/abstractions/time_slot_data_source.dart';
-import 'package:clinic_admin/infrastructure/data_source/implementations/patients_data_source_impl.dart';
-import 'package:clinic_admin/infrastructure/data_source/implementations/time_slot_data_source_impl.dart';
+import '../../infrastructure/data_source/abstractions/patients_data_source.dart';
+import '../../infrastructure/data_source/abstractions/time_slot_data_source.dart';
+import '../../infrastructure/data_source/implementations/patients_data_source_impl.dart';
+import '../../infrastructure/data_source/implementations/time_slot_data_source_impl.dart';
 
 import '../../infrastructure/data_source/abstractions/schedule_data_source.dart';
 import '../../infrastructure/data_source/implementations/schedule_data_source_impl.dart';

@@ -1,17 +1,17 @@
-import 'package:clinic_admin/core/dependency_injection/di_container.dart';
-import 'package:clinic_admin/presentation/screens/add_time_slot_screen.dart';
-import 'package:clinic_admin/presentation/screens/appointment_screen.dart';
-import 'package:clinic_admin/presentation/screens/category_screen.dart';
-import 'package:clinic_admin/presentation/screens/doctor_details_screen.dart';
-import 'package:clinic_admin/presentation/screens/layout_screen.dart';
-import 'package:clinic_admin/presentation/screens/login_screen.dart';
-import 'package:clinic_admin/presentation/screens/search_page.dart';
-import 'package:clinic_admin/presentation/screens/splash_screen.dart';
-import 'package:clinic_admin/presentation/screens/time_slots_screen.dart';
-import 'package:clinic_admin/presentation/screens/update_appointment.dart';
+import '../dependency_injection/di_container.dart';
+import '../../presentation/screens/add_time_slot_screen.dart';
+import '../../presentation/screens/appointment_screen.dart';
+import '../../presentation/screens/category_screen.dart';
+import '../../presentation/screens/layout_screen.dart';
+import '../../presentation/screens/login_screen.dart';
+import '../../presentation/screens/search_page.dart';
+import '../../presentation/screens/splash_screen.dart';
+import '../../presentation/screens/time_slots_screen.dart';
+import '../../presentation/screens/update_appointment.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../presentation/screens/doctor_details_screen.dart';
 import '../utils/shared_keys.dart';
 import 'routes.dart';
 

@@ -1,11 +1,12 @@
-import 'package:clinic_admin/core/routes/routes.dart';
-import 'package:clinic_admin/presentation/blocs/time_slot/time_slot_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/routes/routes.dart';
 import '../../core/utils/show_snack_bar.dart';
+import '../blocs/time_slot/time_slot_bloc.dart';
 import '../widgets/time_slot.dart';
+import '../widgets/validation_alert_dialog.dart';
 
 class TimeSlotsScreen extends StatefulWidget {
   const TimeSlotsScreen({super.key});
@@ -50,8 +51,7 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen> {
               if (value.errorMessage != null) {
                 ShowSnackbar.showCheckTopSnackBar(context,
                     text: value.errorMessage ?? 'Something went wrong',
-                    type: SnackBarType.error
-                    );
+                    type: SnackBarType.error);
               }
             },
           );
@@ -73,11 +73,15 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen> {
                 itemBuilder: (context, index) {
                   return TimeSlotWidget(
                     iconOnPressed: () {
-                      context
-                          .read<TimeSlotBloc>()
-                          .add(TimeSlotEvent.deleteTimeSlot(
-                            timeSlotId: value.slots?[index].id ?? 0,
-                          ));
+                      showValidationDialog(
+                        context,
+                        itemName: "this Time Slot",
+                        onYesPressed: () {
+                          context.read<TimeSlotBloc>().add(
+                              TimeSlotEvent.deleteTimeSlot(
+                                  timeSlotId: value.slots?[index].id ?? 0));
+                        },
+                      );
                     },
                     day: value.slots?[index].day ?? "",
                     startTime: value.slots?[index].startTime ?? "",

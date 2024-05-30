@@ -1,8 +1,9 @@
-import '../contracts/doctor.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/doctor_entity.dart';
 import '../../domain/repos/doctor_repo.dart';
-import 'package:dartz/dartz.dart';
+import '../contracts/doctor.dart';
 
 class GetDoctorByIdQueryImpl implements GetDoctorByIdQuery {
   final DoctorRepo doctorRepo;

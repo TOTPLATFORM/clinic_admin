@@ -7,6 +7,7 @@ import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/shared_keys.dart';
 import '../widgets/profile_item.dart';
+import '../widgets/validation_alert_dialog.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -26,32 +27,28 @@ class ProfileScreen extends StatelessWidget {
             Text('Hi, ${preferences.getString(SharedKeys.userName) ?? ""}'),
           ],
         ),
-        actions: [
-          TOTIconButtonAtom.displayMedium(
-            codePoint: 0xe3b3,
-            iconColor: AppColors.blackColor,
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           ProfileItem(
             iconCode: 0xe3b3,
             text: "Logout",
             hasNotification: false,
-            onPressed: () {
-              context.go(Routes.login.withSlash);
-              preferences.clear();
+            onPressed: () async {
+              showValidationDialog(
+                context,
+                validationName: "Logout",
+                itemName: "",
+                onYesPressed: () {
+                  preferences.clear();
+                  context.go(Routes.login.withSlash);
+                },
+              );
             },
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           ProfileItem(
             iconCode: 0xee2d,
             text: "Time Slot",

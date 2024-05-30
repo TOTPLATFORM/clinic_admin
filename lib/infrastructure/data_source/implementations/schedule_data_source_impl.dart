@@ -1,8 +1,8 @@
-import 'package:clinic_admin/core/utils/shared_keys.dart';
 import 'package:dio/dio.dart';
 
 import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
+import '../../../core/utils/shared_keys.dart';
 import '../abstractions/schedule_data_source.dart';
 
 class ScheduleDataSourceImpl implements ScheduleDataSource {

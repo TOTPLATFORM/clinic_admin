@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:clinic_admin/app/contracts/patients.dart';
-import 'package:clinic_admin/app/core/primitives/inputs/no_params.dart';
-import 'package:clinic_admin/domain/entities/patient_entity.dart';
+import '../../../app/contracts/patients.dart';
+import '../../../app/core/primitives/inputs/no_params.dart';
+import '../../../domain/entities/patient_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'patients_bloc.freezed.dart';

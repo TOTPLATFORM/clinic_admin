@@ -1,9 +1,10 @@
-import '../contracts/auth.dart';
-import '../core/primitives/inputs/login_input.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repos/auth_repo.dart';
-import 'package:dartz/dartz.dart';
+import '../contracts/auth.dart';
+import '../core/primitives/inputs/login_input.dart';
 
 class LoginQueryImpl implements LoginQuery {
   final AuthRepo authRepo;

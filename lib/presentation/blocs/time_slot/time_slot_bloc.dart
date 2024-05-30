@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:clinic_admin/app/contracts/time_slot.dart';
-import 'package:clinic_admin/app/core/primitives/inputs/no_params.dart';
+import '../../../app/contracts/time_slot.dart';
+import '../../../app/core/primitives/inputs/no_params.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../app/requests/time_slot_request.dart';

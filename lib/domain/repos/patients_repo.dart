@@ -1,6 +1,6 @@
-import 'package:clinic_admin/core/network/failure.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../core/network/failure.dart';
 import '../entities/patient_entity.dart';
 
 abstract class PatientsRepo {

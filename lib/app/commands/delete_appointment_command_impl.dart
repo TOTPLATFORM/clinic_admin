@@ -1,8 +1,9 @@
-import '../contracts/appointment.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/generic_entity.dart';
 import '../../domain/repos/appointment_repo.dart';
-import 'package:dartz/dartz.dart';
+import '../contracts/appointment.dart';
 
 class DeletAppointmentCommandImpl extends DeletAppointmentCommand {
   final AppointmentRepo repo;

@@ -1,5 +1,5 @@
-import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
-import 'package:clinic_admin/presentation/blocs/time_slot/time_slot_bloc.dart';
+import '../../presentation/blocs/patient/patients_bloc.dart';
+import '../../presentation/blocs/time_slot/time_slot_bloc.dart';
 
 import '../../presentation/blocs/appointment/appointment_bloc.dart';
 import '../../presentation/blocs/auth/auth_bloc.dart';

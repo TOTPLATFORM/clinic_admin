@@ -1,5 +1,6 @@
-import 'package:clinic_admin/presentation/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'loading_widget.dart';
 
 class TotButton extends StatelessWidget {
   const TotButton({

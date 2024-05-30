@@ -1,15 +1,16 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/presentation/blocs/schedule/schedule_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/show_snack_bar.dart';
+import '../../domain/entities/appointment_entity.dart';
 import '../../domain/entities/patient_entity.dart';
 import '../blocs/appointment/appointment_bloc.dart';
 import '../blocs/doctor/doctor_bloc.dart';
 import '../blocs/patient/patients_bloc.dart';
+import '../blocs/schedule/schedule_bloc.dart';
 
 class DoctorDetailsScreen extends StatefulWidget {
   final String id;
@@ -46,12 +47,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime convertToDateTime(TimeOfDay timeOfDay) {
-      final now = DateTime.now();
-      return DateTime(
-          now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
-    }
-
     return BlocConsumer<AppointmentBloc, AppointmentState>(
       listener: (context, appointmentState) {
         appointmentState.maybeMap(
@@ -70,100 +65,132 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
           },
         );
       },
-      builder: (context, state) {
+      builder: (context, appointmentState) {
         return BlocBuilder<DoctorBloc, DoctorState>(
           builder: (context, state) {
-            return state.maybeMap(
-                orElse: () => const SizedBox(),
-                loading: (state) =>
-                    const Center(child: CircularProgressIndicator()),
-                success: (value) {
-                  doctorsPhoto.shuffle();
-                  final PatientEntity patients =
-                      context.read<PatientsBloc>().state.maybeMap(
-                            success: (value) => value.patientEntity,
-                            orElse: () => PatientEntity(),
-                          );
-
-                  if (value.isLoading) {
-                    return const Scaffold(
-                        body: Center(child: CircularProgressIndicator()));
-                  }
-                  return Scaffold(
-                    appBar: AppBar(
-                        title: Text(value.doctor?.value?.userName ?? "")),
-                    body: Container(
-                      padding: const EdgeInsets.all(10),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Center(
-                              child: Image.asset(
-                                doctorsPhoto.first,
-                                height: 300,
-                                width: MediaQuery.sizeOf(context).width * 0.9,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            const Text(
-                              'Doctor Name',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              value.doctor?.value?.userName ?? "",
-                              style: const TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            const Text(
-                              'Doctor Type',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              value.doctor?.value?.specialization
-                                      ?.specializationName ??
-                                  "",
-                              style: const TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            const Center(
-                              child: Text(
-                                'select Date and Time',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.greenColor),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            BlocBuilder<ScheduleBloc, ScheduleState>(
-                              builder: (context, state) {
-                                return state.maybeMap(
+            doctorsPhoto.shuffle();
+            return BlocBuilder<ScheduleBloc, ScheduleState>(
+              builder: (context, scheduleState) {
+                return state.maybeMap(
+                    orElse: () => const SizedBox(),
+                    loading: (state) =>
+                        const Center(child: CircularProgressIndicator()),
+                    success: (value) {
+                      final PatientEntity patients =
+                          context.read<PatientsBloc>().state.maybeMap(
+                                success: (value) => value.patientEntity,
+                                orElse: () => PatientEntity(),
+                              );
+                      if (value.isLoading) {
+                        return const Scaffold(
+                            body: Center(child: CircularProgressIndicator()));
+                      }
+                      return Scaffold(
+                        appBar: AppBar(
+                            title: Text(value.doctor?.value?.userName ?? "")),
+                        body: Container(
+                          padding: const EdgeInsets.all(10),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    doctorsPhoto.first,
+                                    height: 300,
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.9,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                const Text(
+                                  'Doctor Name',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  value.doctor?.value?.userName ?? "",
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                const Text(
+                                  'Doctor Type',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  value.doctor?.value?.specialization
+                                          ?.specializationName ??
+                                      "",
+                                  style: const TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                const Center(
+                                  child: Text(
+                                    'select Date and Time',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.greenColor),
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                DropdownButtonFormField(
+                                  decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.black),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          const BorderSide(color: Colors.black),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  hint: const Text("Select Patient"),
+                                  items: patients.value?.map((patient) {
+                                        return DropdownMenuItem(
+                                          value: patient.id,
+                                          child: Text(
+                                            patient.patientFirstName ?? "",
+                                            style: const TextStyle(
+                                                color: AppColors.greenColor),
+                                          ),
+                                        );
+                                      }).toList() ??
+                                      [],
+                                  onChanged: (value) {
+                                    setState(() {
+                                      selectedValue = value.toString();
+                                      selectedPatientId = value.toString();
+                                    });
+                                    log("$selectedPatientId");
+                                  },
+                                ),
+                                const SizedBox(height: 20),
+                                scheduleState.maybeMap(
                                   orElse: () => const SizedBox(),
                                   success: (schedules) {
                                     return DropdownButtonFormField(
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.black,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.black),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
                                           focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.black,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
+                                              borderSide: const BorderSide(
+                                                  color: Colors.black),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
                                         ),
                                         hint: const Text("Select Time"),
                                         items: schedules.schedules.value
@@ -176,11 +203,10 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                                           .spaceBetween,
                                                   children: [
                                                     Text(
-                                                      "Time: ${schedule.timeSlot?.startTime}",
-                                                      style: const TextStyle(
-                                                          color: AppColors
-                                                              .greenColor),
-                                                    ),
+                                                        "Time: ${schedule.timeSlot?.startTime}",
+                                                        style: const TextStyle(
+                                                            color: AppColors
+                                                                .greenColor)),
                                                     Text(
                                                         "day: ${schedule.timeSlot?.day}"),
                                                   ],
@@ -199,84 +225,91 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                           scheduleId = value as int;
                                         });
                                   },
-                                );
-                              },
-                            ),
-                            const SizedBox(height: 20),
-                            DropdownButtonFormField(
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ),
-                              hint: const Text("Select Patient"),
-                              items: patients.value?.map((patient) {
-                                    return DropdownMenuItem(
-                                      value: patient.id,
-                                      child: Text(
-                                        patient.patientFirstName ?? "",
-                                        style: const TextStyle(
-                                            color: AppColors.greenColor),
+                                const SizedBox(height: 20),
+                                Center(
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      scheduleState.maybeMap(
+                                          orElse: () => const SizedBox(),
+                                          success: (schedules) {
+                                            if (_isScheduleIdUsed(
+                                                appointments:
+                                                    appointmentState.maybeMap(
+                                                        orElse: () => [],
+                                                        success: (value) => value
+                                                            .getAppointmentsData!
+                                                            .value!),
+                                                scheduleId: scheduleId!)) {
+                                              ShowSnackbar.showCheckTopSnackBar(
+                                                context,
+                                                text:
+                                                    "Appointment already booked",
+                                                type: SnackBarType.error,
+                                              );
+                                            } else {
+                                              context
+                                                  .read<AppointmentBloc>()
+                                                  .add(
+                                                    AppointmentEvent
+                                                        .addAppointment(
+                                                      scheduleId:
+                                                          scheduleId ?? 0,
+                                                      patientId:
+                                                          selectedPatientId ??
+                                                              "",
+                                                      doctorId: value.doctor
+                                                              ?.value?.id ??
+                                                          "",
+                                                    ),
+                                                  );
+                                              Future.delayed(
+                                                  const Duration(seconds: 3),
+                                                  () => context
+                                                      .read<AppointmentBloc>()
+                                                      .add(const AppointmentEvent
+                                                          .getAppointment()));
+                                            }
+                                          });
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.totColor,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      fixedSize: Size(
+                                        MediaQuery.sizeOf(context).width * 0.9,
+                                        50,
                                       ),
-                                    );
-                                  }).toList() ??
-                                  [],
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedValue = value.toString();
-                                  selectedPatientId = value.toString();
-                                });
-                                log("$selectedPatientId");
-                              },
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Center(
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  context.read<AppointmentBloc>().add(
-
-                                      AppointmentEvent.addAppointment(
-                                          scheduleId: scheduleId ?? 0,
-                                          patientId: selectedPatientId ?? "",
-                                          doctorId:
-                                              value.doctor?.value?.id ?? ""));
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.totColor,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  fixedSize: Size(
-                                    MediaQuery.sizeOf(context).width * 0.9,
-                                    50,
+                                    ),
+                                    child: const Text(
+                                      'Book Appointment',
+                                      style: TextStyle(
+                                          color: AppColors.white, fontSize: 16),
+                                    ),
                                   ),
                                 ),
-                                child: const Text(
-                                  'Book Appointment',
-                                  style: TextStyle(
-                                      color: AppColors.white, fontSize: 16),
-                                ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                });
+                      );
+                    });
+              },
+            );
           },
         );
       },
     );
+  }
+
+  bool _isScheduleIdUsed(
+      {required List<Appointment> appointments, required int scheduleId}) {
+    for (Appointment appointment in appointments) {
+      if (appointment.scheduleId == scheduleId) {
+        return true;
+      }
+    }
+    return false;
   }
 }

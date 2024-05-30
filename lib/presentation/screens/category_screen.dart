@@ -1,7 +1,8 @@
-import 'package:clinic_admin/app/core/primitives/inputs/add_doctor.dart';
-import 'package:clinic_admin/core/theme/app_colors.dart';
-import 'package:clinic_admin/core/utils/show_snack_bar.dart';
-import 'package:clinic_admin/presentation/blocs/doctor/doctor_bloc.dart';
+import '../../app/core/primitives/inputs/add_doctor.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/utils/show_snack_bar.dart';
+import '../blocs/doctor/doctor_bloc.dart';
+import '../widgets/validation_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -68,12 +69,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 return const Center(child: CircularProgressIndicator());
               },
               success: (successState) {
+                final doctors = successState.doctors?.value ?? [];
+
                 if (successState.isLoading) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (successState.doctors?.value?.isEmpty ?? true) {
                   return const Center(
                     child: Text(
-                      "Empty Data",
+                      "No Doctors found",
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -81,17 +84,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 }
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: successState.doctors?.value?.length ?? 0,
+                  itemCount: doctors.length,
                   itemBuilder: ((context, index) {
                     return DoctorItem(
                       imagePath: "assets/images/app_logo.png",
-                      doctorDescription:
-                          successState.doctors?.value![index].doctorEmail ?? "",
-                      doctorName:
-                          successState.doctors?.value![index].userName ?? "",
-                      doctorType: successState.doctors?.value![index]
-                              .specialization?.specializationName ??
-                          "",
+                      doctorDescription: doctors[index].doctorEmail ?? "",
+                      doctorName: doctors[index].userName ?? "",
+                      doctorType:
+                          doctors[index].specialization?.specializationName ??
+                              "",
+                      onDeleteButton: () {
+                        showValidationDialog(context, itemName: "this doctor",
+                            onYesPressed: () {
+                          context.read<DoctorBloc>().add(
+                              DoctorEvent.deleteDoctor(id: doctors[index].id!));
+                        });
+                      },
                       onTap: () {
                         if (successState.doctors?.value![index].id != null) {
                           context.pushNamed(Routes.doctorDetails,
@@ -438,6 +446,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
             email: emailController.text,
             phone: phoneController.text,
           )));
+      context.pop();
     }
   }
 }

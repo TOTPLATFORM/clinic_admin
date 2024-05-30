@@ -1,7 +1,7 @@
-import 'package:clinic_admin/app/requests/time_slot_request.dart';
-import 'package:clinic_admin/core/network/failure.dart';
-import 'package:clinic_admin/domain/entities/get_all_time_slots_entity.dart';
-import 'package:clinic_admin/domain/entities/time_slot_entity.dart';
+import '../../app/requests/time_slot_request.dart';
+import '../../core/network/failure.dart';
+import '../../domain/entities/get_all_time_slots_entity.dart';
+import '../../domain/entities/time_slot_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../domain/repos/time_slot_repo.dart';
@@ -18,6 +18,7 @@ class TimeSlotRepoImpl implements TimeSlotRepo {
       {required TimeSlotRequest timeSlot}) async {
     try {
       final res = await _timeSlotDataSource.addTimeSlot(timeSlot: timeSlot);
+
       return Right(TimeSlotEntity.fromJson(res));
     } on Failure catch (e) {
       return Left(ServerFailure(e.message));
@@ -32,6 +33,7 @@ class TimeSlotRepoImpl implements TimeSlotRepo {
     try {
       final res =
           await _timeSlotDataSource.deleteTimeSlot(timeSlotId: id.toString());
+
       return Right(TimeSlotEntity.fromJson(res));
     } on Failure catch (e) {
       return Left(ServerFailure(e.message));
@@ -44,6 +46,7 @@ class TimeSlotRepoImpl implements TimeSlotRepo {
   Future<Either<Failure, GetTimeSlotsEntity>> getTimeSlots() async {
     try {
       final res = await _timeSlotDataSource.getTimeSlots();
+
       return Right(GetTimeSlotsEntity.fromJson(res));
     } on Failure catch (e) {
       return Left(ServerFailure(e.message));

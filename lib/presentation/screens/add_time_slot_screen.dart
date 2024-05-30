@@ -1,14 +1,15 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/app/requests/time_slot_request.dart';
-import 'package:clinic_admin/core/utils/show_snack_bar.dart';
-import 'package:clinic_admin/presentation/blocs/time_slot/time_slot_bloc.dart';
-import 'package:clinic_admin/presentation/widgets/tot_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../app/requests/time_slot_request.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/show_snack_bar.dart';
+import '../blocs/time_slot/time_slot_bloc.dart';
+import '../widgets/tot_button.dart';
 
 class AddTimeSlotScreen extends StatefulWidget {
   const AddTimeSlotScreen({super.key});
@@ -25,13 +26,13 @@ class _AddTimeSlotScreenState extends State<AddTimeSlotScreen> {
   String? _selectedDay;
 
   final List<String> _days = [
+    'Sunday',
     'Monday',
     'Tuesday',
     'Wednesday',
     'Thursday',
     'Friday',
     'Saturday',
-    'Sunday'
   ];
   Future<void> _selectTime(
       BuildContext context, TextEditingController controller) async {
@@ -60,6 +61,9 @@ class _AddTimeSlotScreenState extends State<AddTimeSlotScreen> {
   void initState() {
     super.initState();
     _timeController = TextEditingController();
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
+      context.read<TimeSlotBloc>().add(const TimeSlotEvent.getAllTimeSlots());
+    });
   }
 
   @override
@@ -85,9 +89,9 @@ class _AddTimeSlotScreenState extends State<AddTimeSlotScreen> {
             state.maybeMap(
               orElse: () {},
               success: (value) {
-                ShowSnackbar.showCheckTopSnackBar(context,
-                    text: 'Time slot added successfully',
-                    type: SnackBarType.success);
+                // ShowSnackbar.showCheckTopSnackBar(context,
+                //     text: 'Time slot added successfully',
+                //     type: SnackBarType.success);
               },
               failure: (value) {
                 ShowSnackbar.showCheckTopSnackBar(context,
@@ -188,15 +192,40 @@ class _AddTimeSlotScreenState extends State<AddTimeSlotScreen> {
                               log('startTime: $startTime');
                               log('endTime: $endTime');
                               log('day: ${_selectedDay ?? ""}');
-                              context.read<TimeSlotBloc>().add(
-                                    TimeSlotEvent.addTimeSlot(
-                                      TimeSlotRequest(
-                                        startTime: startTime,
-                                        day: _selectedDay ?? "",
-                                        endTime: endTime,
-                                      ),
-                                    ),
-                                  );
+                              state.maybeWhen(
+                                      orElse: () {
+                                        return ShowSnackbar
+                                            .showCheckTopSnackBar(
+                                          context,
+                                          text: 'Please try again',
+                                          type: SnackBarType.error,
+                                        );
+                                      },
+                                      success: (slots, deleted, errorMessage) =>
+                                          slots!.any((e) =>
+                                              e.startTime == startTime &&
+                                              e.endTime == endTime &&
+                                              e.day == _selectedDay))
+                                  ? ShowSnackbar.showCheckTopSnackBar(
+                                      context,
+                                      text: 'This time slot already exists',
+                                      type: SnackBarType.error,
+                                    )
+                                  : {
+                                      context.read<TimeSlotBloc>().add(
+                                            TimeSlotEvent.addTimeSlot(
+                                              TimeSlotRequest(
+                                                startTime: startTime,
+                                                day: _selectedDay ?? "",
+                                                endTime: endTime,
+                                              ),
+                                            ),
+                                          ),
+                                      context.pop(),
+                                      ShowSnackbar.showCheckTopSnackBar(context,
+                                          text: 'Time slot added successfully',
+                                          type: SnackBarType.success),
+                                    };
                             }
                           },
                         ),

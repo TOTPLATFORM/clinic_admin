@@ -6,6 +6,7 @@ import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../blocs/appointment/appointment_bloc.dart';
 import '../widgets/doctor_item.dart';
+import '../widgets/validation_alert_dialog.dart';
 
 class CalenderScreen extends StatefulWidget {
   const CalenderScreen({super.key});
@@ -146,16 +147,20 @@ class _CalenderScreenState extends State<CalenderScreen>
                           children: [
                             ElevatedButton(
                                 onPressed: () {
-                                  context.read<AppointmentBloc>().add(
-                                        AppointmentEvent.deleteAppointment(
-                                          appointmentId: value
-                                                  .getAppointmentsData
-                                                  ?.value![index]
-                                                  .id
-                                                  .toString() ??
-                                              "",
-                                        ),
-                                      );
+                                  showValidationDialog(context,
+                                      itemName: "appointment",
+                                      onYesPressed: () => context
+                                          .read<AppointmentBloc>()
+                                          .add(
+                                            AppointmentEvent.deleteAppointment(
+                                              appointmentId: value
+                                                      .getAppointmentsData
+                                                      ?.value![index]
+                                                      .id
+                                                      .toString() ??
+                                                  "",
+                                            ),
+                                          ));
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFFBCCBF9),
