@@ -1,8 +1,8 @@
-import 'package:clinic_admin/app/core/primitives/inputs/no_params.dart';
+import '../core/primitives/inputs/no_params.dart';
 
-import 'package:clinic_admin/core/network/failure.dart';
+import '../../core/network/failure.dart';
 
-import 'package:clinic_admin/domain/entities/get_all_time_slots_entity.dart';
+import '../../domain/entities/get_all_time_slots_entity.dart';
 
 import 'package:dartz/dartz.dart';
 

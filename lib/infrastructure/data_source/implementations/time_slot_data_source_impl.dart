@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/app/requests/time_slot_request.dart';
-import 'package:clinic_admin/core/dependency_injection/di_container.dart';
+import '../../../app/requests/time_slot_request.dart';
+import '../../../core/dependency_injection/di_container.dart';
 import 'package:dio/dio.dart';
 
 import '../../../core/dio/base_dio.dart';

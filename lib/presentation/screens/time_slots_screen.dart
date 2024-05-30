@@ -1,10 +1,10 @@
-import 'package:clinic_admin/core/routes/routes.dart';
-import 'package:clinic_admin/presentation/blocs/time_slot/time_slot_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/routes/routes.dart';
 import '../../core/utils/show_snack_bar.dart';
+import '../blocs/time_slot/time_slot_bloc.dart';
 import '../widgets/time_slot.dart';
 import '../widgets/validation_alert_dialog.dart';
 

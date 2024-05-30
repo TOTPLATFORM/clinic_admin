@@ -1,5 +1,6 @@
-import '../base/base_client_provider.dart';
 import 'package:dio/dio.dart';
+
+import '../base/base_client_provider.dart';
 
 abstract class BaseDio extends BaseClientProvider {
   /// POST METHOD

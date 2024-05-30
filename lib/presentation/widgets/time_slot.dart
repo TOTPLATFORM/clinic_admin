@@ -1,5 +1,6 @@
-import 'package:clinic_admin/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/theme/app_colors.dart';
 
 class TimeSlotWidget extends StatelessWidget {
   final String startTime;

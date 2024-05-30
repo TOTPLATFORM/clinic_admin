@@ -1,6 +1,6 @@
-import 'package:clinic_admin/core/network/failure.dart';
+import '../../core/network/failure.dart';
 
-import 'package:clinic_admin/domain/entities/time_slot_entity.dart';
+import '../../domain/entities/time_slot_entity.dart';
 
 import 'package:dartz/dartz.dart';
 

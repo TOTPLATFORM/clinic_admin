@@ -1,8 +1,9 @@
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/login_entity.dart';
 import '../../domain/repos/update_personal_data_repo.dart';
 import '../data_source/abstractions/update_personal_data_source.dart';
-import 'package:dartz/dartz.dart';
 
 class UpdataPesonalDataRepoImpl implements UpdatePersonalDataRepo {
   final UpdatePersonalDataSource updatePersonalDataSource;

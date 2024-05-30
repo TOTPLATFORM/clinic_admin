@@ -1,5 +1,5 @@
-import 'package:clinic_admin/core/network/failure.dart';
-import 'package:clinic_admin/domain/entities/schedule_entity.dart';
+import '../../core/network/failure.dart';
+import '../../domain/entities/schedule_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../domain/repos/schedule_repo.dart';

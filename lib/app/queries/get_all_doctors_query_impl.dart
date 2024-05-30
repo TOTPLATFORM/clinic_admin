@@ -1,9 +1,10 @@
-import '../contracts/doctor.dart';
-import '../core/primitives/inputs/no_params.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../../domain/repos/doctor_repo.dart';
-import 'package:dartz/dartz.dart';
+import '../contracts/doctor.dart';
+import '../core/primitives/inputs/no_params.dart';
 
 class GetDoctorsQueryImpl implements GetDoctorsQuery {
   final DoctorRepo doctorRepo;

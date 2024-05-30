@@ -1,5 +1,3 @@
-import 'package:clinic_admin/presentation/blocs/schedule/schedule_bloc.dart';
-import 'package:clinic_admin/presentation/blocs/time_slot/time_slot_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nested/nested.dart';
@@ -12,8 +10,11 @@ import 'presentation/blocs/auth/auth_bloc.dart';
 import 'presentation/blocs/category/category_bloc.dart';
 import 'presentation/blocs/doctor/doctor_bloc.dart';
 import 'presentation/blocs/patient/patients_bloc.dart';
+import 'presentation/blocs/schedule/schedule_bloc.dart';
 import 'presentation/blocs/search/search_bloc.dart';
+import 'presentation/blocs/time_slot/time_slot_bloc.dart';
 
+// const String baseUrl = "http://192.168.1.124:5000/api";
 const String baseUrl = "http://192.168.1.66:5252/api";
 
 void main() async {

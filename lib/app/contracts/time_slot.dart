@@ -1,8 +1,8 @@
-import 'package:clinic_admin/app/core/base_types/src/base_query.dart';
-import 'package:clinic_admin/app/requests/time_slot_request.dart';
-import 'package:clinic_admin/core/network/failure.dart';
-import 'package:clinic_admin/domain/entities/get_all_time_slots_entity.dart';
-import 'package:clinic_admin/domain/entities/time_slot_entity.dart';
+import '../core/base_types/src/base_query.dart';
+import '../requests/time_slot_request.dart';
+import '../../core/network/failure.dart';
+import '../../domain/entities/get_all_time_slots_entity.dart';
+import '../../domain/entities/time_slot_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../core/primitives/inputs/no_params.dart';

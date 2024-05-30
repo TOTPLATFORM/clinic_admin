@@ -1,7 +1,7 @@
-import 'package:clinic_admin/presentation/blocs/patient/patients_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../blocs/patient/patients_bloc.dart';
 import '../widgets/doctor_item.dart';
 
 class SearchScreen extends StatefulWidget {

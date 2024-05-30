@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/presentation/widgets/date_time_picker.dart';
+import '../widgets/date_time_picker.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentScreen extends StatefulWidget {

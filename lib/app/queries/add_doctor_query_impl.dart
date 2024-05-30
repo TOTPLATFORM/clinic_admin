@@ -1,4 +1,4 @@
-import 'package:clinic_admin/app/core/primitives/inputs/add_doctor.dart';
+import '../core/primitives/inputs/add_doctor.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/failure.dart';

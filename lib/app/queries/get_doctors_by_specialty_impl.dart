@@ -1,8 +1,9 @@
-import '../contracts/category.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../../domain/repos/category_repo.dart';
-import 'package:dartz/dartz.dart';
+import '../contracts/category.dart';
 
 class GetDoctorsBySpecialtyQueryImpl extends GetDoctorsBySpecialtyQuery {
   final CategoryRepo categoryRepo;

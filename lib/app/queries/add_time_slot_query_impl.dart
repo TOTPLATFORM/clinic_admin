@@ -1,7 +1,7 @@
-import 'package:clinic_admin/core/network/failure.dart';
-import 'package:clinic_admin/domain/entities/time_slot_entity.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../core/network/failure.dart';
+import '../../domain/entities/time_slot_entity.dart';
 import '../../domain/repos/time_slot_repo.dart';
 import '../contracts/time_slot.dart';
 import '../requests/time_slot_request.dart';
