@@ -5,7 +5,9 @@ import '../entities/doctor_entity.dart';
 import '../entities/doctors_entity.dart';
 
 abstract class DoctorRepo {
-  Future<Either<Failure, DoctorsEntity>> getAllDoctors();
+  Future<Either<Failure, DoctorsEntity>> getAllDoctors({
+    required int index,
+  });
   Future<Either<Failure, DoctorEntity>> getDoctorById(
       {required String doctorId});
   Future<Either<Failure, DoctorEntity>> deleteDoctor(

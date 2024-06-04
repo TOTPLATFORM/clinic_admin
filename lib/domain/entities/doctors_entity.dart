@@ -8,7 +8,7 @@ part 'doctors_entity.g.dart';
 @freezed
 class DoctorsEntity with _$DoctorsEntity {
   factory DoctorsEntity({
-    List<Doctor>? value,
+    Value? value,
     int? status,
     bool? isSuccess,
     String? successMessage,
@@ -20,14 +20,17 @@ class DoctorsEntity with _$DoctorsEntity {
   factory DoctorsEntity.fromJson(Map<String, dynamic> json) =>
       _$DoctorsEntityFromJson(json);
 }
-
 @freezed
-class Specialization with _$Specialization {
-  const factory Specialization({
-    int? id,
-    String? specializationName,
-  }) = _Specialization;
+class Value with _$Value {
+  const factory Value({
+    List<Doctor>? data,
+    int? totalCount,
+    int? pageCount,
+    bool? hasNextPage,
+    bool? hasPreviousPage,
+    int? start,
+    int? end,
+  }) = _Value;
 
-  factory Specialization.fromJson(Map<String, dynamic> json) =>
-      _$SpecializationFromJson(json);
+  factory Value.fromJson(Map<String, dynamic> json) => _$ValueFromJson(json);
 }

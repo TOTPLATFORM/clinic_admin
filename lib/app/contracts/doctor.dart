@@ -7,10 +7,9 @@ import '../../domain/entities/doctor_entity.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../core/base_types/src/base_query.dart';
 import '../core/primitives/inputs/add_doctor.dart';
-import '../core/primitives/inputs/no_params.dart';
 
 abstract class GetDoctorsQuery
-    extends BaseQuery<Future<Either<Failure, DoctorsEntity>>, NoParams> {}
+    extends BaseQuery<Future<Either<Failure, DoctorsEntity>>, int> {}
 
 abstract class GetDoctorByIdQuery
     extends BaseQuery<Future<Either<Failure, DoctorEntity>>, String> {}

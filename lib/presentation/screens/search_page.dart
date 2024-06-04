@@ -79,32 +79,40 @@ class _SearchPageState extends State<SearchPage> {
                                       MediaQuery.sizeOf(context).height * 0.75,
                                   child: ListView.builder(
                                       padding: EdgeInsets.zero,
-                                      itemCount:
-                                          searchValue.doctors?.value?.length ?? 0,
+                                      itemCount: searchValue
+                                              .doctors?.value?.data?.length ??
+                                          0,
                                       itemBuilder: ((context, index) {
                                         return DoctorItem(
                                           imagePath:
                                               "assets/images/app_logo.png",
-                                          doctorDescription: searchValue.doctors
-                                                  ?.value![index].doctorEmail ??
+                                          doctorDescription: searchValue
+                                                  .doctors
+                                                  ?.value
+                                                  ?.data?[index]
+                                                  .doctorEmail ??
                                               "",
-                                          doctorName: searchValue.doctors
-                                                  ?.value![index].userName ??
+                                          doctorName: searchValue
+                                                  .doctors
+                                                  ?.value!
+                                                  .data?[index]
+                                                  .userName ??
                                               "",
                                           doctorType: searchValue
                                                   .doctors
-                                                  ?.value![index]
+                                                  ?.value
+                                                  ?.data?[index]
                                                   .specialization
                                                   ?.specializationName ??
                                               "",
                                           onTap: () {
-                                            if (searchValue.doctors
-                                                    ?.value![index].id !=
+                                            if (searchValue.doctors?.value
+                                                    ?.data?[index].id !=
                                                 null) {
                                               context.pushNamed(
                                                   Routes.doctorDetails,
                                                   extra: searchValue.doctors
-                                                      ?.value?[index].id);
+                                                      ?.value?.data?[index].id);
                                             }
                                           },
                                         );

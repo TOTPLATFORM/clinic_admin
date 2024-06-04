@@ -1,17 +1,18 @@
-import '../../app/core/primitives/inputs/add_doctor.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/utils/show_snack_bar.dart';
-import '../blocs/doctor/doctor_bloc.dart';
-import '../widgets/validation_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
 
+import '../../app/core/primitives/inputs/add_doctor.dart';
 import '../../core/routes/routes.dart';
+import '../../core/theme/app_colors.dart';
+import '../../core/utils/show_snack_bar.dart';
+import '../../domain/entities/doctor_entity.dart';
 import '../blocs/category/category_bloc.dart';
+import '../blocs/doctor/doctor_bloc.dart';
 import '../widgets/custom/labled_text_form.dart';
 import '../widgets/doctor_item.dart';
+import '../widgets/validation_alert_dialog.dart';
 
 class CategoryScreen extends StatefulWidget {
   final String categoryId;
@@ -69,11 +70,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 return const Center(child: CircularProgressIndicator());
               },
               success: (successState) {
-                final doctors = successState.doctors?.value ?? [];
+                final List<Doctor> doctors =
+                    successState.doctors?.value?.data ?? [];
 
                 if (successState.isLoading) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (successState.doctors?.value?.isEmpty ?? true) {
+                } else if (successState.doctors?.value?.data?.isEmpty ?? true) {
                   return const Center(
                     child: Text(
                       "No Doctors found",
@@ -101,9 +103,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         });
                       },
                       onTap: () {
-                        if (successState.doctors?.value![index].id != null) {
+                        if (successState.doctors?.value!.data?[index].id !=
+                            null) {
                           context.pushNamed(Routes.doctorDetails,
-                              extra: successState.doctors?.value?[index].id);
+                              extra:
+                                  successState.doctors?.value?.data?[index].id);
                         }
                       },
                     );

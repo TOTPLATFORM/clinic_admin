@@ -11,10 +11,14 @@ class DoctorRepoImpl implements DoctorRepo {
 
   DoctorRepoImpl({required this.doctorDataSource});
   @override
-  Future<Either<Failure, DoctorsEntity>> getAllDoctors() async {
+  Future<Either<Failure, DoctorsEntity>> getAllDoctors({
+    required int index,
+  }) async {
     try {
-      final res = await doctorDataSource.getAllDoctors();
-      return Right(DoctorsEntity.fromJson(res));
+      final res = await doctorDataSource.getAllDoctors(index: index);
+      return Right(
+        DoctorsEntity.fromJson(res),
+      );
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

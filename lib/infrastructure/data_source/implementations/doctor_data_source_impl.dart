@@ -14,12 +14,14 @@ class DoctorDataSourceImpl implements DoctorDataSource {
   DoctorDataSourceImpl({required this.dioClient});
 
   @override
-  Future<Map<String, dynamic>> getAllDoctors() async {
+  Future<Map<String, dynamic>> getAllDoctors({
+     required int index,
+  }) async {
     final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     log("message: token: $token");
     try {
       final res = await dioClient.get(
-        "/Doctor",
+        "/Doctor?itemCount=5&index=$index",
         options: Options(
           headers: {
             "Content-Type": "application/json",

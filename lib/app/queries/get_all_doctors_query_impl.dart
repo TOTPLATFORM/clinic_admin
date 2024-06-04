@@ -11,7 +11,9 @@ class GetDoctorsQueryImpl implements GetDoctorsQuery {
 
   GetDoctorsQueryImpl({required this.doctorRepo});
   @override
-  Future<Either<Failure, DoctorsEntity>> call(NoParams params) {
-    return doctorRepo.getAllDoctors();
+  Future<Either<Failure, DoctorsEntity>> call(int params) {
+    return doctorRepo.getAllDoctors(
+      index: params
+    );
   }
 }
