@@ -26,7 +26,7 @@ abstract class Routes {
   static const newProducts = "newProducts";
   static const price = "price";
   static const itemRate = "itemRate";
-  static const appointment = "appointment";
+  static const appointmentDetails = "appointmentDetails";
   static const payment = "payment";
   static const paymentSuccess = "paymentSuccess";
   static const extraDetails = "extraDetails";

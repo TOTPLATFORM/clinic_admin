@@ -14,15 +14,9 @@ class DoctorRepoImpl implements DoctorRepo {
   Future<Either<Failure, DoctorsEntity>> getAllDoctors() async {
     try {
       final res = await doctorDataSource.getAllDoctors();
-      return Right(
-        DoctorsEntity.fromJson(res),
-      );
+      return Right(DoctorsEntity.fromJson(res));
     } catch (e) {
-      return Left(
-        ServerFailure(
-          e.toString(),
-        ),
-      );
+      return Left(ServerFailure(e.toString()));
     }
   }
 

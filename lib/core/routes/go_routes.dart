@@ -1,17 +1,15 @@
-import '../dependency_injection/di_container.dart';
-import '../../presentation/screens/add_time_slot_screen.dart';
-import '../../presentation/screens/appointment_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../presentation/screens/appointment_details_screen.dart';
 import '../../presentation/screens/category_screen.dart';
+import '../../presentation/screens/doctor_details_screen.dart';
 import '../../presentation/screens/layout_screen.dart';
 import '../../presentation/screens/login_screen.dart';
 import '../../presentation/screens/search_page.dart';
 import '../../presentation/screens/splash_screen.dart';
-import '../../presentation/screens/time_slots_screen.dart';
 import '../../presentation/screens/update_appointment.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../presentation/screens/doctor_details_screen.dart';
+import '../dependency_injection/di_container.dart';
 import '../utils/shared_keys.dart';
 import 'routes.dart';
 
@@ -82,20 +80,6 @@ final GoRouter allRoutes = GoRouter(
       },
     ),
     GoRoute(
-      path: Routes.timeSlots.withSlash,
-      name: Routes.timeSlots,
-      builder: (context, state) {
-        return const TimeSlotsScreen();
-      },
-    ),
-    GoRoute(
-      path: Routes.addTimeSlots.withSlash,
-      name: Routes.addTimeSlots,
-      builder: (context, state) {
-        return const AddTimeSlotScreen();
-      },
-    ),
-    GoRoute(
       path: Routes.login.withSlash,
       name: Routes.login,
       builder: (context, state) {
@@ -120,10 +104,17 @@ final GoRouter allRoutes = GoRouter(
       },
     ),
     GoRoute(
-      path: Routes.appointment.withSlash,
-      name: Routes.appointment,
+      path: Routes.appointmentDetails.withSlash,
+      name: Routes.appointmentDetails,
       builder: (context, state) {
-        return const AppointmentScreen();
+        final String patientId = state.pathParameters["patientId"] as String;
+        final String doctorId = state.pathParameters["doctorId"] as String;
+        final String date = state.pathParameters["date"] as String;
+        return AppointmentDetailsScreen(
+          patientId: patientId,
+          doctorId: doctorId,
+          date: date,
+        );
       },
     ),
   ],
