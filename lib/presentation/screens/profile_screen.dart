@@ -48,15 +48,17 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 15),
-          ProfileItem(
-            iconCode: 0xee2d,
-            text: "Time Slot",
-            hasNotification: false,
-            onPressed: () {
-              context.pushNamed(Routes.timeSlots);
-            },
+          const SizedBox(
+            height: 15,
           ),
+          // ProfileItem(
+          //   iconCode: 0xee2d,
+          //   text: "Time Slot",
+          //   hasNotification: false,
+          //   onPressed: () {
+          //     context.pushNamed(Routes.timeSlots);
+          //   },
+          // ),
         ]),
       ),
     );

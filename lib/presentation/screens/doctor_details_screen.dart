@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/appointment_entity.dart';
@@ -85,6 +87,8 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                         return const Scaffold(
                             body: Center(child: CircularProgressIndicator()));
                       }
+                      log("doctor details ${value.doctor?.value?.id}"
+                          "${patients.value!.first}");
                       return Scaffold(
                         appBar: AppBar(
                             title: Text(value.doctor?.value?.userName ?? "")),
@@ -105,6 +109,11 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                 ),
                                 const SizedBox(height: 20),
                                 const Text(
+                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                const SizedBox(height: 20),
+                                const Text(
                                   'Doctor Name',
                                   style: TextStyle(
                                       fontSize: 20,
@@ -112,9 +121,18 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                 ),
                                 Text(
                                   value.doctor?.value?.userName ?? "",
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                  ),
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                                const SizedBox(height: 20),
+                                const Text(
+                                  'Cost',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const Text(
+                                  "200",
+                                  style: TextStyle(fontSize: 15),
                                 ),
                                 const SizedBox(height: 20),
                                 const Text(
@@ -127,14 +145,12 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                   value.doctor?.value?.specialization
                                           ?.specializationName ??
                                       "",
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                  ),
+                                  style: const TextStyle(fontSize: 15),
                                 ),
                                 const SizedBox(height: 20),
                                 const Center(
                                   child: Text(
-                                    'select Date and Time',
+                                    'Select Patient',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -176,119 +192,147 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                   },
                                 ),
                                 const SizedBox(height: 20),
-                                scheduleState.maybeMap(
-                                  orElse: () => const SizedBox(),
-                                  success: (schedules) {
-                                    return DropdownButtonFormField(
-                                        decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.black),
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                  color: Colors.black),
-                                              borderRadius:
-                                                  BorderRadius.circular(8)),
-                                        ),
-                                        hint: const Text("Select Time"),
-                                        items: schedules.schedules.value
-                                                ?.map((schedule) {
-                                              return DropdownMenuItem(
-                                                value: schedule.id,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                        "Time: ${schedule.timeSlot?.startTime}",
-                                                        style: const TextStyle(
-                                                            color: AppColors
-                                                                .greenColor)),
-                                                    Text(
-                                                        "day: ${schedule.timeSlot?.day}"),
-                                                  ],
-                                                ),
-                                              );
-                                            }).toList() ??
-                                            [],
-                                        validator: (v) {
-                                          if (v == null) {
-                                            return "Please select time";
-                                          }
-                                          return null;
-                                        },
-                                        onChanged: (value) {
-                                          log("$value");
-                                          scheduleId = value as int;
-                                        });
-                                  },
-                                ),
-                                const SizedBox(height: 20),
-                                Center(
-                                  child: ElevatedButton(
-                                    onPressed: () async {
-                                      scheduleState.maybeMap(
-                                          orElse: () => const SizedBox(),
-                                          success: (schedules) {
-                                            if (_isScheduleIdUsed(
-                                                appointments:
-                                                    appointmentState.maybeMap(
-                                                        orElse: () => [],
-                                                        success: (value) => value
-                                                            .getAppointmentsData!
-                                                            .value!),
-                                                scheduleId: scheduleId!)) {
-                                              ShowSnackbar.showCheckTopSnackBar(
-                                                context,
-                                                text:
-                                                    "Appointment already booked",
-                                                type: SnackBarType.error,
-                                              );
-                                            } else {
-                                              context
-                                                  .read<AppointmentBloc>()
-                                                  .add(
-                                                    AppointmentEvent
-                                                        .addAppointment(
-                                                      scheduleId:
-                                                          scheduleId ?? 0,
-                                                      patientId:
-                                                          selectedPatientId ??
-                                                              "",
-                                                      doctorId: value.doctor
-                                                              ?.value?.id ??
-                                                          "",
-                                                    ),
-                                                  );
-                                              Future.delayed(
-                                                  const Duration(seconds: 3),
-                                                  () => context
-                                                      .read<AppointmentBloc>()
-                                                      .add(const AppointmentEvent
-                                                          .getAppointment()));
-                                            }
-                                          });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.totColor,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      fixedSize: Size(
-                                        MediaQuery.sizeOf(context).width * 0.9,
-                                        50,
-                                      ),
-                                    ),
-                                    child: const Text(
-                                      'Book Appointment',
-                                      style: TextStyle(
-                                          color: AppColors.white, fontSize: 16),
-                                    ),
+                                const Center(
+                                  child: Text(
+                                    'Select Day',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.greenColor),
                                   ),
                                 ),
+                                const SizedBox(height: 10),
+                                // scheduleState.maybeMap(
+                                //   orElse: () => const SizedBox(),
+                                //   success: (schedules) {
+                                //     return DropdownButtonFormField(
+                                //         decoration: InputDecoration(
+                                //           enabledBorder: OutlineInputBorder(
+                                //               borderSide: const BorderSide(
+                                //                   color: Colors.black),
+                                //               borderRadius:
+                                //                   BorderRadius.circular(8)),
+                                //           focusedBorder: OutlineInputBorder(
+                                //               borderSide: const BorderSide(
+                                //                   color: Colors.black),
+                                //               borderRadius:
+                                //                   BorderRadius.circular(8)),
+                                //         ),
+                                //         hint: const Text("Select Time"),
+                                //         items: schedules.schedules.value
+                                //                 ?.map((schedule) {
+                                //               return DropdownMenuItem(
+                                //                 value: schedule.id,
+                                //                 child: Row(
+                                //                   mainAxisAlignment:
+                                //                       MainAxisAlignment
+                                //                           .spaceBetween,
+                                //                   children: [
+                                //                     Text(
+                                //                         "Time: ${schedule.timeSlot?.startTime}",
+                                //                         style: const TextStyle(
+                                //                             color: AppColors
+                                //                                 .greenColor)),
+                                //                     Text(
+                                //                         "day: ${schedule.timeSlot?.day}"),
+                                //                   ],
+                                //                 ),
+                                //               );
+                                //             }).toList() ??
+                                //             [],
+                                //         validator: (v) {
+                                //           if (v == null) {
+                                //             return "Please select time";
+                                //           }
+                                //           return null;
+                                //         },
+                                //         onChanged: (value) {
+                                //           log("$value");
+                                //           scheduleId = value as int;
+                                //         });
+                                //   },
+                                // ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.15,
+                                  child: ListView.builder(
+                                      itemCount: 5,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return SizedBox(
+                                          width:
+                                              MediaQuery.sizeOf(context).width /
+                                                  2.5,
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                //TODO: navigate to appointment Details
+
+                                                if (selectedPatientId == null) {
+                                                  ShowSnackbar
+                                                      .showCheckTopSnackBar(
+                                                    context,
+                                                    text:
+                                                        "Please select patient",
+                                                    type: SnackBarType.error,
+                                                  );
+                                                } else {
+                                                  context.pushNamed(
+                                                      Routes.appointmentDetails,
+                                                      pathParameters: {
+                                                        "patientId": "",
+                                                        "doctorId": "",
+                                                        "date": "",
+                                                      });
+                                                }
+                                              },
+                                              child: Card(
+                                                margin:
+                                                    const EdgeInsets.all(8.0),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                elevation: 5,
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        "30-May-2024",
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.blue,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        "Start Time: 8:00 AM",
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.black87,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        "End Time: 23:00 PM",
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.black87,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )),
+                                        );
+                                      }),
+                                ),
+                                const SizedBox(height: 20),
                               ],
                             ),
                           ),

@@ -14,8 +14,8 @@ import 'presentation/blocs/schedule/schedule_bloc.dart';
 import 'presentation/blocs/search/search_bloc.dart';
 import 'presentation/blocs/time_slot/time_slot_bloc.dart';
 
-// const String baseUrl = "http://192.168.1.124:5000/api";
-const String baseUrl = "http://192.168.1.66:5252/api";
+// const String baseUrl = "http://192.168.1.66:5252/api";
+const String baseUrl = "http://192.168.1.124:5000/api";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +41,6 @@ class MainApp extends StatelessWidget {
       providers: providers,
       child: MaterialApp.router(
         routerConfig: allRoutes,
-        theme: ThemeData(useMaterial3: true),
         debugShowCheckedModeBanner: false,
       ),
     );
@@ -65,9 +64,10 @@ class MainApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) {
-          return TimeSlotBloc(addTimeSlot: getIt(), getTimeSlotsQuery: getIt(),
-          deleteTimeSlotCommand: getIt()
-          );
+          return TimeSlotBloc(
+              addTimeSlot: getIt(),
+              getTimeSlotsQuery: getIt(),
+              deleteTimeSlotCommand: getIt());
         },
       ),
       BlocProvider(
