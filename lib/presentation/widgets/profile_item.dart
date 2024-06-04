@@ -8,36 +8,43 @@ class ProfileItem extends StatelessWidget {
   final bool hasNotification;
   final int iconCode;
   final VoidCallback onPressed;
-  const ProfileItem({
-    super.key,
-    required this.text,
-    required this.iconCode,
-    required this.onPressed,
-    this.hasNotification = false,
-  });
+
+  final Color textColor;
+  final Color iconColor;
+  const ProfileItem(
+      {super.key,
+      required this.text,
+      required this.iconCode,
+      required this.onPressed,
+      this.hasNotification = false,
+      this.textColor = AppColors.blackColor,
+      this.iconColor = AppColors.blackColor});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      width: MediaQuery.sizeOf(context).width,
-      height: MediaQuery.sizeOf(context).height * 0.08,
-      decoration: BoxDecoration(
-          color: AppColors.white, borderRadius: BorderRadius.circular(15)),
-      child: InkWell(
-        onTap: onPressed,
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        width: MediaQuery.sizeOf(context).width,
+        height: MediaQuery.sizeOf(context).height * 0.055,
+        decoration: BoxDecoration(
+            color: AppColors.white, borderRadius: BorderRadius.circular(15)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TOTIconAtom.displayLarge(
+            TOTIconAtom.displaySmall(
               codePoint: iconCode,
-              color: AppColors.blackColor,
+              color: iconColor,
             ),
             const SizedBox(
               width: 20,
             ),
-            TOTTextAtom.titleLarge(text),
+            Text(
+              text,
+              style: TextStyle(color: textColor, fontSize: 18),
+            ),
             const SizedBox(
               width: 15,
             ),

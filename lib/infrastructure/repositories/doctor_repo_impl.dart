@@ -20,11 +20,7 @@ class DoctorRepoImpl implements DoctorRepo {
         DoctorsEntity.fromJson(res),
       );
     } catch (e) {
-      return Left(
-        ServerFailure(
-          e.toString(),
-        ),
-      );
+      return Left(ServerFailure(e.toString()));
     }
   }
 
