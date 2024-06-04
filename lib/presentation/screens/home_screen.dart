@@ -22,18 +22,33 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController searchController;
+    late final ScrollController scrollController;
+
   @override
   void initState() {
     super.initState();
     searchController = TextEditingController();
+     scrollController = ScrollController();
+    scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
-    super.dispose();
     searchController.dispose();
+       scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
   }
-
+ void _onScroll() {
+    final bool hasNextPage=context.read<DoctorBloc>().state.maybeMap(orElse: () => false, success: (value) => value.hasNextPage??true);
+    if(!hasNextPage) return;
+    final maxScroll = scrollController.position.maxScrollExtent;
+    final currentScroll = scrollController.offset;
+    if (currentScroll >= (maxScroll * 0.20)) {
+      context.read<DoctorBloc>().add(const DoctorEvent.getAllDoctors());
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final String? userName = preferences.getString(SharedKeys.userName);
@@ -213,34 +228,44 @@ class _HomeScreenState extends State<HomeScreen> {
                 }, success: (value) {
                   return SizedBox(
                     height: MediaQuery.sizeOf(context).height * 0.48,
-                    child: value.doctors!.value!.isEmpty
+                    child: value.doctors!.isEmpty
                         ? const Center(
                             child: Text("No Doctors found."),
                           )
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            padding: EdgeInsets.zero,
-                            itemCount: value.doctors?.value?.length ?? 0,
-                            itemBuilder: ((context, index) {
+                        : CustomScrollView(
+                      controller: scrollController,
+                      slivers: [
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              final doctors = value.doctors;
+                              if (doctors == null || doctors.isEmpty) {
+                                return const CircularProgressIndicator.adaptive();
+                              }
+
+                              final doctor = doctors[index];
                               return DoctorItem(
                                 imagePath: "assets/images/app_logo.png",
-                                doctorDescription:
-                                    value.doctors?.value![index].doctorEmail ??
-                                        "",
+                                doctorDescription: doctor.doctorEmail ?? "",
                                 doctorName:
-                                    value.doctors?.value![index].userName ?? "",
-                                doctorType: value.doctors?.value![index]
-                                        .specialization?.specializationName ??
-                                    "",
+                                    "Dr / ${doctors[index].userName ?? ""}",
+                                doctorType:
+                                    doctor.specialization?.specializationName ??
+                                        "",
                                 onTap: () {
-                                  if (value.doctors?.value![index].id != null) {
+                                  if (doctor.id != null) {
                                     context.pushNamed(Routes.doctorDetails,
-                                        extra: value.doctors?.value?[index].id);
+                                        extra: doctor.id);
                                   }
                                 },
                               );
-                            })),
-                  );
+                            },
+                            childCount: value.doctors?.length ?? 0,
+                          ),
+                        ),
+                      ],
+                    ),
+                );
                 });
               },
             )

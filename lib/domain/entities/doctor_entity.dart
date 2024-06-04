@@ -15,7 +15,8 @@ class DoctorEntity with _$DoctorEntity {
     List<String>? validationErrors,
   }) = _DoctorEntity;
 
-  factory DoctorEntity.fromJson(Map<String, dynamic> json) => _$DoctorEntityFromJson(json);
+  factory DoctorEntity.fromJson(Map<String, dynamic> json) =>
+      _$DoctorEntityFromJson(json);
 }
 
 @freezed
@@ -29,10 +30,22 @@ class Doctor with _$Doctor {
     String? userName,
     String? dateOfBirth,
     String? gender,
+    Department? department,
     Specialization? specialization,
   }) = _Doctor;
 
   factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);
+}
+
+@freezed
+class Department with _$Department {
+  const factory Department({
+    int? id,
+    String? departmentName,
+  }) = _Department;
+
+  factory Department.fromJson(Map<String, dynamic> json) =>
+      _$DepartmentFromJson(json);
 }
 
 @freezed
@@ -42,5 +55,6 @@ class Specialization with _$Specialization {
     String? specializationName,
   }) = _Specialization;
 
-  factory Specialization.fromJson(Map<String, dynamic> json) => _$SpecializationFromJson(json);
+  factory Specialization.fromJson(Map<String, dynamic> json) =>
+      _$SpecializationFromJson(json);
 }

@@ -335,6 +335,7 @@ mixin _$Doctor {
   String? get userName => throw _privateConstructorUsedError;
   String? get dateOfBirth => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
+  Department? get department => throw _privateConstructorUsedError;
   Specialization? get specialization => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -356,8 +357,10 @@ abstract class $DoctorCopyWith<$Res> {
       String? userName,
       String? dateOfBirth,
       String? gender,
+      Department? department,
       Specialization? specialization});
 
+  $DepartmentCopyWith<$Res>? get department;
   $SpecializationCopyWith<$Res>? get specialization;
 }
 
@@ -382,6 +385,7 @@ class _$DoctorCopyWithImpl<$Res, $Val extends Doctor>
     Object? userName = freezed,
     Object? dateOfBirth = freezed,
     Object? gender = freezed,
+    Object? department = freezed,
     Object? specialization = freezed,
   }) {
     return _then(_value.copyWith(
@@ -417,11 +421,27 @@ class _$DoctorCopyWithImpl<$Res, $Val extends Doctor>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String?,
+      department: freezed == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as Department?,
       specialization: freezed == specialization
           ? _value.specialization
           : specialization // ignore: cast_nullable_to_non_nullable
               as Specialization?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DepartmentCopyWith<$Res>? get department {
+    if (_value.department == null) {
+      return null;
+    }
+
+    return $DepartmentCopyWith<$Res>(_value.department!, (value) {
+      return _then(_value.copyWith(department: value) as $Val);
+    });
   }
 
   @override
@@ -453,8 +473,11 @@ abstract class _$$DoctorImplCopyWith<$Res> implements $DoctorCopyWith<$Res> {
       String? userName,
       String? dateOfBirth,
       String? gender,
+      Department? department,
       Specialization? specialization});
 
+  @override
+  $DepartmentCopyWith<$Res>? get department;
   @override
   $SpecializationCopyWith<$Res>? get specialization;
 }
@@ -478,6 +501,7 @@ class __$$DoctorImplCopyWithImpl<$Res>
     Object? userName = freezed,
     Object? dateOfBirth = freezed,
     Object? gender = freezed,
+    Object? department = freezed,
     Object? specialization = freezed,
   }) {
     return _then(_$DoctorImpl(
@@ -513,6 +537,10 @@ class __$$DoctorImplCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String?,
+      department: freezed == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as Department?,
       specialization: freezed == specialization
           ? _value.specialization
           : specialization // ignore: cast_nullable_to_non_nullable
@@ -533,6 +561,7 @@ class _$DoctorImpl implements _Doctor {
       this.userName,
       this.dateOfBirth,
       this.gender,
+      this.department,
       this.specialization});
 
   factory _$DoctorImpl.fromJson(Map<String, dynamic> json) =>
@@ -555,11 +584,13 @@ class _$DoctorImpl implements _Doctor {
   @override
   final String? gender;
   @override
+  final Department? department;
+  @override
   final Specialization? specialization;
 
   @override
   String toString() {
-    return 'Doctor(id: $id, doctorEmail: $doctorEmail, doctorFirstName: $doctorFirstName, doctorLastName: $doctorLastName, doctorPhoneNumber: $doctorPhoneNumber, userName: $userName, dateOfBirth: $dateOfBirth, gender: $gender, specialization: $specialization)';
+    return 'Doctor(id: $id, doctorEmail: $doctorEmail, doctorFirstName: $doctorFirstName, doctorLastName: $doctorLastName, doctorPhoneNumber: $doctorPhoneNumber, userName: $userName, dateOfBirth: $dateOfBirth, gender: $gender, department: $department, specialization: $specialization)';
   }
 
   @override
@@ -581,6 +612,8 @@ class _$DoctorImpl implements _Doctor {
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
             (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.department, department) ||
+                other.department == department) &&
             (identical(other.specialization, specialization) ||
                 other.specialization == specialization));
   }
@@ -597,6 +630,7 @@ class _$DoctorImpl implements _Doctor {
       userName,
       dateOfBirth,
       gender,
+      department,
       specialization);
 
   @JsonKey(ignore: true)
@@ -623,6 +657,7 @@ abstract class _Doctor implements Doctor {
       final String? userName,
       final String? dateOfBirth,
       final String? gender,
+      final Department? department,
       final Specialization? specialization}) = _$DoctorImpl;
 
   factory _Doctor.fromJson(Map<String, dynamic> json) = _$DoctorImpl.fromJson;
@@ -644,10 +679,166 @@ abstract class _Doctor implements Doctor {
   @override
   String? get gender;
   @override
+  Department? get department;
+  @override
   Specialization? get specialization;
   @override
   @JsonKey(ignore: true)
   _$$DoctorImplCopyWith<_$DoctorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Department _$DepartmentFromJson(Map<String, dynamic> json) {
+  return _Department.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Department {
+  int? get id => throw _privateConstructorUsedError;
+  String? get departmentName => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DepartmentCopyWith<Department> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DepartmentCopyWith<$Res> {
+  factory $DepartmentCopyWith(
+          Department value, $Res Function(Department) then) =
+      _$DepartmentCopyWithImpl<$Res, Department>;
+  @useResult
+  $Res call({int? id, String? departmentName});
+}
+
+/// @nodoc
+class _$DepartmentCopyWithImpl<$Res, $Val extends Department>
+    implements $DepartmentCopyWith<$Res> {
+  _$DepartmentCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? departmentName = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DepartmentImplCopyWith<$Res>
+    implements $DepartmentCopyWith<$Res> {
+  factory _$$DepartmentImplCopyWith(
+          _$DepartmentImpl value, $Res Function(_$DepartmentImpl) then) =
+      __$$DepartmentImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int? id, String? departmentName});
+}
+
+/// @nodoc
+class __$$DepartmentImplCopyWithImpl<$Res>
+    extends _$DepartmentCopyWithImpl<$Res, _$DepartmentImpl>
+    implements _$$DepartmentImplCopyWith<$Res> {
+  __$$DepartmentImplCopyWithImpl(
+      _$DepartmentImpl _value, $Res Function(_$DepartmentImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? departmentName = freezed,
+  }) {
+    return _then(_$DepartmentImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentName: freezed == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DepartmentImpl implements _Department {
+  const _$DepartmentImpl({this.id, this.departmentName});
+
+  factory _$DepartmentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DepartmentImplFromJson(json);
+
+  @override
+  final int? id;
+  @override
+  final String? departmentName;
+
+  @override
+  String toString() {
+    return 'Department(id: $id, departmentName: $departmentName)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DepartmentImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, departmentName);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DepartmentImplCopyWith<_$DepartmentImpl> get copyWith =>
+      __$$DepartmentImplCopyWithImpl<_$DepartmentImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DepartmentImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Department implements Department {
+  const factory _Department({final int? id, final String? departmentName}) =
+      _$DepartmentImpl;
+
+  factory _Department.fromJson(Map<String, dynamic> json) =
+      _$DepartmentImpl.fromJson;
+
+  @override
+  int? get id;
+  @override
+  String? get departmentName;
+  @override
+  @JsonKey(ignore: true)
+  _$$DepartmentImplCopyWith<_$DepartmentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

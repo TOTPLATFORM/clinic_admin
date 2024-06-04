@@ -42,6 +42,9 @@ _$DoctorImpl _$$DoctorImplFromJson(Map<String, dynamic> json) => _$DoctorImpl(
       userName: json['userName'] as String?,
       dateOfBirth: json['dateOfBirth'] as String?,
       gender: json['gender'] as String?,
+      department: json['department'] == null
+          ? null
+          : Department.fromJson(json['department'] as Map<String, dynamic>),
       specialization: json['specialization'] == null
           ? null
           : Specialization.fromJson(
@@ -58,7 +61,20 @@ Map<String, dynamic> _$$DoctorImplToJson(_$DoctorImpl instance) =>
       'userName': instance.userName,
       'dateOfBirth': instance.dateOfBirth,
       'gender': instance.gender,
+      'department': instance.department,
       'specialization': instance.specialization,
+    };
+
+_$DepartmentImpl _$$DepartmentImplFromJson(Map<String, dynamic> json) =>
+    _$DepartmentImpl(
+      id: (json['id'] as num?)?.toInt(),
+      departmentName: json['departmentName'] as String?,
+    );
+
+Map<String, dynamic> _$$DepartmentImplToJson(_$DepartmentImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'departmentName': instance.departmentName,
     };
 
 _$SpecializationImpl _$$SpecializationImplFromJson(Map<String, dynamic> json) =>

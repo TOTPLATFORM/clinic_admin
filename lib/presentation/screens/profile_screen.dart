@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(children: [
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           ProfileItem(
             iconCode: 0xe3b3,
             text: "Logout",
@@ -48,14 +48,12 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           ProfileItem(
             iconCode: 0xee2d,
-            text: "Time Slot",
+            text: "Test",
             hasNotification: false,
-            onPressed: () {
-              context.pushNamed(Routes.timeSlots);
-            },
+            onPressed: () {},
           ),
         ]),
       ),

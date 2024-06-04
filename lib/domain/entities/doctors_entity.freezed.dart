@@ -20,7 +20,7 @@ DoctorsEntity _$DoctorsEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DoctorsEntity {
-  List<Doctor>? get value => throw _privateConstructorUsedError;
+  Value? get value => throw _privateConstructorUsedError;
   int? get status => throw _privateConstructorUsedError;
   bool? get isSuccess => throw _privateConstructorUsedError;
   String? get successMessage => throw _privateConstructorUsedError;
@@ -41,13 +41,15 @@ abstract class $DoctorsEntityCopyWith<$Res> {
       _$DoctorsEntityCopyWithImpl<$Res, DoctorsEntity>;
   @useResult
   $Res call(
-      {List<Doctor>? value,
+      {Value? value,
       int? status,
       bool? isSuccess,
       String? successMessage,
       String? correlationId,
       List<String>? errors,
       List<String>? validationErrors});
+
+  $ValueCopyWith<$Res>? get value;
 }
 
 /// @nodoc
@@ -75,7 +77,7 @@ class _$DoctorsEntityCopyWithImpl<$Res, $Val extends DoctorsEntity>
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as List<Doctor>?,
+              as Value?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -102,6 +104,18 @@ class _$DoctorsEntityCopyWithImpl<$Res, $Val extends DoctorsEntity>
               as List<String>?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ValueCopyWith<$Res>? get value {
+    if (_value.value == null) {
+      return null;
+    }
+
+    return $ValueCopyWith<$Res>(_value.value!, (value) {
+      return _then(_value.copyWith(value: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -113,13 +127,16 @@ abstract class _$$DoctorsEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Doctor>? value,
+      {Value? value,
       int? status,
       bool? isSuccess,
       String? successMessage,
       String? correlationId,
       List<String>? errors,
       List<String>? validationErrors});
+
+  @override
+  $ValueCopyWith<$Res>? get value;
 }
 
 /// @nodoc
@@ -143,9 +160,9 @@ class __$$DoctorsEntityImplCopyWithImpl<$Res>
   }) {
     return _then(_$DoctorsEntityImpl(
       value: freezed == value
-          ? _value._value
+          ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as List<Doctor>?,
+              as Value?,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -178,30 +195,21 @@ class __$$DoctorsEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DoctorsEntityImpl implements _DoctorsEntity {
   _$DoctorsEntityImpl(
-      {final List<Doctor>? value,
+      {this.value,
       this.status,
       this.isSuccess,
       this.successMessage,
       this.correlationId,
       final List<String>? errors,
       final List<String>? validationErrors})
-      : _value = value,
-        _errors = errors,
+      : _errors = errors,
         _validationErrors = validationErrors;
 
   factory _$DoctorsEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$DoctorsEntityImplFromJson(json);
 
-  final List<Doctor>? _value;
   @override
-  List<Doctor>? get value {
-    final value = _value;
-    if (value == null) return null;
-    if (_value is EqualUnmodifiableListView) return _value;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final Value? value;
   @override
   final int? status;
   @override
@@ -241,7 +249,7 @@ class _$DoctorsEntityImpl implements _DoctorsEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoctorsEntityImpl &&
-            const DeepCollectionEquality().equals(other._value, _value) &&
+            (identical(other.value, value) || other.value == value) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.isSuccess, isSuccess) ||
                 other.isSuccess == isSuccess) &&
@@ -258,7 +266,7 @@ class _$DoctorsEntityImpl implements _DoctorsEntity {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_value),
+      value,
       status,
       isSuccess,
       successMessage,
@@ -282,7 +290,7 @@ class _$DoctorsEntityImpl implements _DoctorsEntity {
 
 abstract class _DoctorsEntity implements DoctorsEntity {
   factory _DoctorsEntity(
-      {final List<Doctor>? value,
+      {final Value? value,
       final int? status,
       final bool? isSuccess,
       final String? successMessage,
@@ -294,7 +302,7 @@ abstract class _DoctorsEntity implements DoctorsEntity {
       _$DoctorsEntityImpl.fromJson;
 
   @override
-  List<Doctor>? get value;
+  Value? get value;
   @override
   int? get status;
   @override
@@ -313,34 +321,44 @@ abstract class _DoctorsEntity implements DoctorsEntity {
       throw _privateConstructorUsedError;
 }
 
-Specialization _$SpecializationFromJson(Map<String, dynamic> json) {
-  return _Specialization.fromJson(json);
+Value _$ValueFromJson(Map<String, dynamic> json) {
+  return _Value.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Specialization {
-  int? get id => throw _privateConstructorUsedError;
-  String? get specializationName => throw _privateConstructorUsedError;
+mixin _$Value {
+  List<Doctor>? get data => throw _privateConstructorUsedError;
+  int? get totalCount => throw _privateConstructorUsedError;
+  int? get pageCount => throw _privateConstructorUsedError;
+  bool? get hasNextPage => throw _privateConstructorUsedError;
+  bool? get hasPreviousPage => throw _privateConstructorUsedError;
+  int? get start => throw _privateConstructorUsedError;
+  int? get end => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SpecializationCopyWith<Specialization> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ValueCopyWith<Value> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SpecializationCopyWith<$Res> {
-  factory $SpecializationCopyWith(
-          Specialization value, $Res Function(Specialization) then) =
-      _$SpecializationCopyWithImpl<$Res, Specialization>;
+abstract class $ValueCopyWith<$Res> {
+  factory $ValueCopyWith(Value value, $Res Function(Value) then) =
+      _$ValueCopyWithImpl<$Res, Value>;
   @useResult
-  $Res call({int? id, String? specializationName});
+  $Res call(
+      {List<Doctor>? data,
+      int? totalCount,
+      int? pageCount,
+      bool? hasNextPage,
+      bool? hasPreviousPage,
+      int? start,
+      int? end});
 }
 
 /// @nodoc
-class _$SpecializationCopyWithImpl<$Res, $Val extends Specialization>
-    implements $SpecializationCopyWith<$Res> {
-  _$SpecializationCopyWithImpl(this._value, this._then);
+class _$ValueCopyWithImpl<$Res, $Val extends Value>
+    implements $ValueCopyWith<$Res> {
+  _$ValueCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -350,120 +368,232 @@ class _$SpecializationCopyWithImpl<$Res, $Val extends Specialization>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? specializationName = freezed,
+    Object? data = freezed,
+    Object? totalCount = freezed,
+    Object? pageCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Doctor>?,
+      totalCount: freezed == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      specializationName: freezed == specializationName
-          ? _value.specializationName
-          : specializationName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      pageCount: freezed == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _value.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _value.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      start: freezed == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as int?,
+      end: freezed == end
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SpecializationImplCopyWith<$Res>
-    implements $SpecializationCopyWith<$Res> {
-  factory _$$SpecializationImplCopyWith(_$SpecializationImpl value,
-          $Res Function(_$SpecializationImpl) then) =
-      __$$SpecializationImplCopyWithImpl<$Res>;
+abstract class _$$ValueImplCopyWith<$Res> implements $ValueCopyWith<$Res> {
+  factory _$$ValueImplCopyWith(
+          _$ValueImpl value, $Res Function(_$ValueImpl) then) =
+      __$$ValueImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? specializationName});
+  $Res call(
+      {List<Doctor>? data,
+      int? totalCount,
+      int? pageCount,
+      bool? hasNextPage,
+      bool? hasPreviousPage,
+      int? start,
+      int? end});
 }
 
 /// @nodoc
-class __$$SpecializationImplCopyWithImpl<$Res>
-    extends _$SpecializationCopyWithImpl<$Res, _$SpecializationImpl>
-    implements _$$SpecializationImplCopyWith<$Res> {
-  __$$SpecializationImplCopyWithImpl(
-      _$SpecializationImpl _value, $Res Function(_$SpecializationImpl) _then)
+class __$$ValueImplCopyWithImpl<$Res>
+    extends _$ValueCopyWithImpl<$Res, _$ValueImpl>
+    implements _$$ValueImplCopyWith<$Res> {
+  __$$ValueImplCopyWithImpl(
+      _$ValueImpl _value, $Res Function(_$ValueImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? specializationName = freezed,
+    Object? data = freezed,
+    Object? totalCount = freezed,
+    Object? pageCount = freezed,
+    Object? hasNextPage = freezed,
+    Object? hasPreviousPage = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
   }) {
-    return _then(_$SpecializationImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+    return _then(_$ValueImpl(
+      data: freezed == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Doctor>?,
+      totalCount: freezed == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      specializationName: freezed == specializationName
-          ? _value.specializationName
-          : specializationName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      pageCount: freezed == pageCount
+          ? _value.pageCount
+          : pageCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      hasNextPage: freezed == hasNextPage
+          ? _value.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasPreviousPage: freezed == hasPreviousPage
+          ? _value.hasPreviousPage
+          : hasPreviousPage // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      start: freezed == start
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as int?,
+      end: freezed == end
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SpecializationImpl implements _Specialization {
-  const _$SpecializationImpl({this.id, this.specializationName});
+class _$ValueImpl implements _Value {
+  const _$ValueImpl(
+      {final List<Doctor>? data,
+      this.totalCount,
+      this.pageCount,
+      this.hasNextPage,
+      this.hasPreviousPage,
+      this.start,
+      this.end})
+      : _data = data;
 
-  factory _$SpecializationImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SpecializationImplFromJson(json);
+  factory _$ValueImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ValueImplFromJson(json);
+
+  final List<Doctor>? _data;
+  @override
+  List<Doctor>? get data {
+    final value = _data;
+    if (value == null) return null;
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
-  final int? id;
+  final int? totalCount;
   @override
-  final String? specializationName;
+  final int? pageCount;
+  @override
+  final bool? hasNextPage;
+  @override
+  final bool? hasPreviousPage;
+  @override
+  final int? start;
+  @override
+  final int? end;
 
   @override
   String toString() {
-    return 'Specialization(id: $id, specializationName: $specializationName)';
+    return 'Value(data: $data, totalCount: $totalCount, pageCount: $pageCount, hasNextPage: $hasNextPage, hasPreviousPage: $hasPreviousPage, start: $start, end: $end)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SpecializationImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.specializationName, specializationName) ||
-                other.specializationName == specializationName));
+            other is _$ValueImpl &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount) &&
+            (identical(other.pageCount, pageCount) ||
+                other.pageCount == pageCount) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
+            (identical(other.hasPreviousPage, hasPreviousPage) ||
+                other.hasPreviousPage == hasPreviousPage) &&
+            (identical(other.start, start) || other.start == start) &&
+            (identical(other.end, end) || other.end == end));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, specializationName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      totalCount,
+      pageCount,
+      hasNextPage,
+      hasPreviousPage,
+      start,
+      end);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SpecializationImplCopyWith<_$SpecializationImpl> get copyWith =>
-      __$$SpecializationImplCopyWithImpl<_$SpecializationImpl>(
-          this, _$identity);
+  _$$ValueImplCopyWith<_$ValueImpl> get copyWith =>
+      __$$ValueImplCopyWithImpl<_$ValueImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SpecializationImplToJson(
+    return _$$ValueImplToJson(
       this,
     );
   }
 }
 
-abstract class _Specialization implements Specialization {
-  const factory _Specialization(
-      {final int? id, final String? specializationName}) = _$SpecializationImpl;
+abstract class _Value implements Value {
+  const factory _Value(
+      {final List<Doctor>? data,
+      final int? totalCount,
+      final int? pageCount,
+      final bool? hasNextPage,
+      final bool? hasPreviousPage,
+      final int? start,
+      final int? end}) = _$ValueImpl;
 
-  factory _Specialization.fromJson(Map<String, dynamic> json) =
-      _$SpecializationImpl.fromJson;
+  factory _Value.fromJson(Map<String, dynamic> json) = _$ValueImpl.fromJson;
 
   @override
-  int? get id;
+  List<Doctor>? get data;
   @override
-  String? get specializationName;
+  int? get totalCount;
+  @override
+  int? get pageCount;
+  @override
+  bool? get hasNextPage;
+  @override
+  bool? get hasPreviousPage;
+  @override
+  int? get start;
+  @override
+  int? get end;
   @override
   @JsonKey(ignore: true)
-  _$$SpecializationImplCopyWith<_$SpecializationImpl> get copyWith =>
+  _$$ValueImplCopyWith<_$ValueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

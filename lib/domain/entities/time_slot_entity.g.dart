@@ -8,7 +8,7 @@ part of 'time_slot_entity.dart';
 
 _$TimeSlotEntityImpl _$$TimeSlotEntityImplFromJson(Map<String, dynamic> json) =>
     _$TimeSlotEntityImpl(
-      value: json['value'],
+      value: json['value'] ?? null,
       status: (json['status'] as num?)?.toInt(),
       isSuccess: json['isSuccess'] as bool?,
       successMessage: json['successMessage'] as String?,
