@@ -22,7 +22,7 @@ class AuthRepoImpl implements AuthRepo {
     try {
       final response =
           await authDataSource.login(username: username, password: password);
-      if ((response['value']['roles'] as List).first == "Admin") {
+      if ((response['value']['roles'] as List).contains("Admin")) {
         preferences.setString(
             SharedKeys.accessToken, response['value']['token']);
         return Right(LoginEntity.fromJson(response));

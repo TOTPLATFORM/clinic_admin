@@ -22,33 +22,36 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late TextEditingController searchController;
-    late final ScrollController scrollController;
+  late final ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     searchController = TextEditingController();
-     scrollController = ScrollController();
+    scrollController = ScrollController();
     scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
     searchController.dispose();
-       scrollController
+    scrollController
       ..removeListener(_onScroll)
       ..dispose();
     super.dispose();
   }
- void _onScroll() {
-    final bool hasNextPage=context.read<DoctorBloc>().state.maybeMap(orElse: () => false, success: (value) => value.hasNextPage??true);
-    if(!hasNextPage) return;
+
+  void _onScroll() {
+    final bool hasNextPage = context.read<DoctorBloc>().state.maybeMap(
+        orElse: () => false, success: (value) => value.hasNextPage ?? true);
+    if (!hasNextPage) return;
     final maxScroll = scrollController.position.maxScrollExtent;
     final currentScroll = scrollController.offset;
     if (currentScroll >= (maxScroll * 0.20)) {
       context.read<DoctorBloc>().add(const DoctorEvent.getAllDoctors());
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final String? userName = preferences.getString(SharedKeys.userName);
@@ -233,39 +236,42 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text("No Doctors found."),
                           )
                         : CustomScrollView(
-                      controller: scrollController,
-                      slivers: [
-                        SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              final doctors = value.doctors;
-                              if (doctors == null || doctors.isEmpty) {
-                                return const CircularProgressIndicator.adaptive();
-                              }
+                            controller: scrollController,
+                            slivers: [
+                              SliverList(
+                                delegate: SliverChildBuilderDelegate(
+                                  (context, index) {
+                                    final doctors = value.doctors;
+                                    if (doctors == null || doctors.isEmpty) {
+                                      return const CircularProgressIndicator
+                                          .adaptive();
+                                    }
 
-                              final doctor = doctors[index];
-                              return DoctorItem(
-                                imagePath: "assets/images/app_logo.png",
-                                doctorDescription: doctor.doctorEmail ?? "",
-                                doctorName:
-                                    "Dr / ${doctors[index].userName ?? ""}",
-                                doctorType:
-                                    doctor.specialization?.specializationName ??
-                                        "",
-                                onTap: () {
-                                  if (doctor.id != null) {
-                                    context.pushNamed(Routes.doctorDetails,
-                                        extra: doctor.id);
-                                  }
-                                },
-                              );
-                            },
-                            childCount: value.doctors?.length ?? 0,
+                                    final doctor = doctors[index];
+                                    return DoctorItem(
+                                      imagePath: "assets/images/app_logo.png",
+                                      doctorDescription:
+                                          doctor.doctorEmail ?? "",
+                                      doctorName:
+                                          "Dr / ${doctors[index].userName ?? ""}",
+                                      doctorType: doctor.specialization
+                                              ?.specializationName ??
+                                          "",
+                                      onTap: () {
+                                        if (doctor.id != null) {
+                                          context.pushNamed(
+                                              Routes.doctorDetails,
+                                              extra: doctor.id);
+                                        }
+                                      },
+                                    );
+                                  },
+                                  childCount: value.doctors?.length ?? 0,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                );
+                  );
                 });
               },
             )

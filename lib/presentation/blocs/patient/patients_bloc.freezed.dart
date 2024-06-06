@@ -169,21 +169,21 @@ mixin _$PatientsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(PatientEntity patientEntity) success,
+    required TResult Function(List<PatientEntity> patients) success,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(PatientEntity patientEntity)? success,
+    TResult? Function(List<PatientEntity> patients)? success,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(PatientEntity patientEntity)? success,
+    TResult Function(List<PatientEntity> patients)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(PatientEntity patientEntity) success,
+    required TResult Function(List<PatientEntity> patients) success,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -270,7 +270,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(PatientEntity patientEntity)? success,
+    TResult? Function(List<PatientEntity> patients)? success,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -280,7 +280,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(PatientEntity patientEntity)? success,
+    TResult Function(List<PatientEntity> patients)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -335,9 +335,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PatientEntity patientEntity});
-
-  $PatientEntityCopyWith<$Res> get patientEntity;
+  $Res call({List<PatientEntity> patients});
 }
 
 /// @nodoc
@@ -351,36 +349,28 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? patientEntity = null,
+    Object? patients = null,
   }) {
     return _then(_$SuccessImpl(
-      null == patientEntity
-          ? _value.patientEntity
-          : patientEntity // ignore: cast_nullable_to_non_nullable
-              as PatientEntity,
+      null == patients
+          ? _value.patients
+          : patients // ignore: cast_nullable_to_non_nullable
+              as List<PatientEntity>,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PatientEntityCopyWith<$Res> get patientEntity {
-    return $PatientEntityCopyWith<$Res>(_value.patientEntity, (value) {
-      return _then(_value.copyWith(patientEntity: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  _$SuccessImpl(this.patientEntity);
+  _$SuccessImpl(this.patients);
 
   @override
-  PatientEntity patientEntity;
+  List<PatientEntity> patients;
 
   @override
   String toString() {
-    return 'PatientsState.success(patientEntity: $patientEntity)';
+    return 'PatientsState.success(patients: $patients)';
   }
 
   @JsonKey(ignore: true)
@@ -393,32 +383,32 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(PatientEntity patientEntity) success,
+    required TResult Function(List<PatientEntity> patients) success,
     required TResult Function(String message) failure,
   }) {
-    return success(patientEntity);
+    return success(patients);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(PatientEntity patientEntity)? success,
+    TResult? Function(List<PatientEntity> patients)? success,
     TResult? Function(String message)? failure,
   }) {
-    return success?.call(patientEntity);
+    return success?.call(patients);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(PatientEntity patientEntity)? success,
+    TResult Function(List<PatientEntity> patients)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(patientEntity);
+      return success(patients);
     }
     return orElse();
   }
@@ -459,10 +449,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements PatientsState {
-  factory _Success(PatientEntity patientEntity) = _$SuccessImpl;
+  factory _Success(List<PatientEntity> patients) = _$SuccessImpl;
 
-  PatientEntity get patientEntity;
-  set patientEntity(PatientEntity value);
+  List<PatientEntity> get patients;
+  set patients(List<PatientEntity> value);
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -522,7 +512,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(PatientEntity patientEntity) success,
+    required TResult Function(List<PatientEntity> patients) success,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -532,7 +522,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(PatientEntity patientEntity)? success,
+    TResult? Function(List<PatientEntity> patients)? success,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -542,7 +532,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(PatientEntity patientEntity)? success,
+    TResult Function(List<PatientEntity> patients)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {

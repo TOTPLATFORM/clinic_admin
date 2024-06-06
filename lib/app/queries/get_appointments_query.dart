@@ -1,17 +1,18 @@
+import '../../domain/repos/appointment_repo.dart';
 import '../contracts/appointment.dart';
 import '../core/primitives/inputs/no_params.dart';
 import '../../core/network/failure.dart';
-import '../../domain/entities/get_appointment_entity.dart';
-import '../../domain/repos/appointment_repo.dart';
+import '../../domain/entities/appointment_entity.dart';
 import 'package:dartz/dartz.dart';
 
-class GetAppointmentsQueryImpl implements GetAppointmentQuery {
-  final AppointmentRepo repo;
+class GetAppointmentQueryImpl implements GetAppointmentQuery {
+  final AppointmentRepo _appointmentRepo;
 
-  GetAppointmentsQueryImpl({required this.repo});
-
+  GetAppointmentQueryImpl({
+    required AppointmentRepo appointmentRepo,
+  }) : _appointmentRepo = appointmentRepo;
   @override
-  Future<Either<Failure, GetAppointmentsEntity>> call(NoParams params) {
-    return repo.getAppointment();
+  Future<Either<Failure, List<AppointmentEntity>>> call(NoParams params) {
+    return _appointmentRepo.getAppointmentForDoctor();
   }
 }

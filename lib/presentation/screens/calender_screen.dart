@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../blocs/appointment/appointment_bloc.dart';
 import '../widgets/doctor_item.dart';
@@ -45,7 +43,7 @@ class _CalenderScreenState extends State<CalenderScreen>
           state.maybeMap(
               orElse: () {},
               success: (value) {
-                if (value.updated == true || value.deleted == true) {
+                if (value.isAdded == true || value.isDeleted == true) {
                   context
                       .read<AppointmentBloc>()
                       .add(const AppointmentEvent.getAppointment());
@@ -58,7 +56,7 @@ class _CalenderScreenState extends State<CalenderScreen>
             success: (value) {
               return ListView.builder(
                 padding: EdgeInsets.zero,
-                itemCount: value.getAppointmentsData?.value?.length ?? 0,
+                itemCount: value.appointments.length,
                 itemBuilder: ((context, index) {
                   return Container(
                     margin: const EdgeInsets.all(10),
@@ -72,20 +70,14 @@ class _CalenderScreenState extends State<CalenderScreen>
                         DoctorItem(
                           color: AppColors.grayShade200,
                           imagePath: "assets/images/app_logo.png",
-                          doctorDescription: value.getAppointmentsData
-                                  ?.value![index].patientName ??
-                              "",
-                          doctorName: value.getAppointmentsData?.value![index]
-                                  .doctorName ??
-                              "",
-                          doctorType: value.getAppointmentsData?.value![index]
-                                  .startTime ??
-                              "",
+                          doctorDescription:
+                              value.appointments[index].patientName,
+                          doctorName:
+                              "${value.appointments[index].doctorName} \t(${value.appointments[index].status})",
+                          doctorType: value.appointments[index].startTime,
                           onTap: () {},
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -98,9 +90,8 @@ class _CalenderScreenState extends State<CalenderScreen>
                                     const SizedBox(
                                       width: 5,
                                     ),
-                                    Text(value.getAppointmentsData
-                                            ?.value![index].day ??
-                                        ""),
+                                    Text(value.appointments[index].date
+                                        .substring(0, 10)),
                                   ],
                                 ),
                                 SizedBox(
@@ -112,9 +103,7 @@ class _CalenderScreenState extends State<CalenderScreen>
                                     const SizedBox(
                                       width: 5,
                                     ),
-                                    Text(value.getAppointmentsData
-                                            ?.value![index].startTime ??
-                                        ""),
+                                    Text(value.appointments[index].startTime),
                                   ],
                                 ),
                                 SizedBox(
@@ -128,9 +117,7 @@ class _CalenderScreenState extends State<CalenderScreen>
                                             MediaQuery.sizeOf(context).width *
                                                 0.025),
                                     Text(
-                                      value.getAppointmentsData?.value![index]
-                                              .endTime ??
-                                          "",
+                                      value.appointments[index].endTime,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
@@ -143,75 +130,79 @@ class _CalenderScreenState extends State<CalenderScreen>
                           height: 20,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  showValidationDialog(context,
-                                      itemName: "appointment",
-                                      onYesPressed: () => context
-                                          .read<AppointmentBloc>()
-                                          .add(
-                                            AppointmentEvent.deleteAppointment(
-                                              appointmentId: value
-                                                      .getAppointmentsData
-                                                      ?.value![index]
-                                                      .id
-                                                      .toString() ??
-                                                  "",
-                                            ),
-                                          ));
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFFBCCBF9),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                    10,
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.9,
+                              child: ElevatedButton(
+                                  onPressed: value.appointments[index].status ==
+                                          "Canceled"
+                                      ? null
+                                      : () {
+                                          showValidationDialog(context,
+                                              itemName: "appointment",
+                                              onYesPressed: () => context
+                                                  .read<AppointmentBloc>()
+                                                  .add(
+                                                    AppointmentEvent
+                                                        .deleteAppointment(
+                                                      id: value
+                                                          .appointments[index]
+                                                          .id
+                                                          .toString(),
+                                                    ),
+                                                  ));
+                                        },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red.shade300,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                      10,
+                                    )),
+                                    fixedSize: Size(
+                                      MediaQuery.sizeOf(context).width * 0.35,
+                                      50,
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'Cancel',
+                                    style: TextStyle(
+                                      color: AppColors.blackColor,
+                                      fontSize: 16,
+                                    ),
                                   )),
-                                  fixedSize: Size(
-                                    MediaQuery.sizeOf(context).width * 0.35,
-                                    50,
-                                  ),
-                                ),
-                                child: const Text(
-                                  'Cancel',
-                                  style: TextStyle(
-                                    color: AppColors.blackColor,
-                                    fontSize: 16,
-                                  ),
-                                )),
-                            ElevatedButton(
-                              onPressed: () {
-                                context.pushNamed(Routes.updateAppointment,
-                                    extra: {
-                                      "appointmentId": value
-                                          .getAppointmentsData?.value![index].id
-                                          .toString(),
-                                      "patientId": value.getAppointmentsData
-                                          ?.value![index].patientId,
-                                      "doctorId": value.getAppointmentsData
-                                          ?.value![index].doctorId,
-                                      "scheduleId": value.getAppointmentsData
-                                          ?.value![index].scheduleId
-                                    });
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.totColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                fixedSize: Size(
-                                  MediaQuery.sizeOf(context).width * 0.35,
-                                  50,
-                                ),
-                              ),
-                              child: const Text(
-                                'Reschedule',
-                                style: TextStyle(
-                                  color: AppColors.white,
-                                  fontSize: 16,
-                                ),
-                              ),
                             ),
+                            // ElevatedButton(
+                            //   onPressed: () {
+                            //     context.pushNamed(Routes.updateAppointment,
+                            //         extra: {
+                            //           "appointmentId": value
+                            //               .appointments[index].id
+                            //               .toString(),
+                            //           "patientId":
+                            //               value.appointments[index].patientId,
+                            //           "doctorId":
+                            //               value.appointments[index].doctorId,
+                            //           "scheduleId":
+                            //               value.appointments[index].scheduleId
+                            //         });
+                            //   },
+                            //   style: ElevatedButton.styleFrom(
+                            //     backgroundColor: AppColors.totColor,
+                            //     shape: RoundedRectangleBorder(
+                            //         borderRadius: BorderRadius.circular(10)),
+                            //     fixedSize: Size(
+                            //       MediaQuery.sizeOf(context).width * 0.35,
+                            //       50,
+                            //     ),
+                            //   ),
+                            //   child: const Text(
+                            //     'Reschedule',
+                            //     style: TextStyle(
+                            //       color: AppColors.white,
+                            //       fontSize: 16,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         )
                       ],

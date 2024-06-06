@@ -14,8 +14,8 @@ import 'presentation/blocs/schedule/schedule_bloc.dart';
 import 'presentation/blocs/search/search_bloc.dart';
 import 'presentation/blocs/time_slot/time_slot_bloc.dart';
 
-const String baseUrl = "http://192.168.1.66:5252/api";
-// const String baseUrl = "http://19 2.168.1.124:5000/api";
+// const String baseUrl = "http://192.168.1.66:5252/api";
+const String baseUrl = "http://192.168.1.124:5000/api";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +59,10 @@ class MainApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) {
-          return ScheduleBloc(getSchedulesByDoctorId: getIt());
+          return ScheduleBloc(
+            getSchedulesByDoctorId: getIt(),
+            getSchedulesByDoctorIdDay: getIt(),
+          );
         },
       ),
       BlocProvider(
@@ -78,14 +81,11 @@ class MainApp extends StatelessWidget {
         },
       ),
       BlocProvider(
-        create: (context) {
-          return AppointmentBloc(
-            addAppointmentCommand: getIt(),
-            getAppointmentQuery: getIt(),
-            deleteAppointmentCommand: getIt(),
-            updateAppointmentCommand: getIt(),
-          );
-        },
+        create: (context) => AppointmentBloc(
+          addAppointmentCommand: getIt(),
+          getAppointmentQuery: getIt(),
+          deleteAppointmentCommand: getIt(),
+        ),
       ),
       BlocProvider(
         create: (context) {

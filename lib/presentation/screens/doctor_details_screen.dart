@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:clinic_admin/app/core/primitives/inputs/appointment_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -47,6 +48,16 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
     super.initState();
   }
 
+  final List<String> weekdays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppointmentBloc, AppointmentState>(
@@ -61,7 +72,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                 .read<AppointmentBloc>()
                 .add(const AppointmentEvent.getAppointment());
           },
-          failure: (message) {
+          failed: (message) {
             ShowSnackbar.showCheckTopSnackBar(context,
                 text: "There was an error", type: SnackBarType.error);
           },
@@ -78,17 +89,16 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                     loading: (state) =>
                         const Center(child: CircularProgressIndicator()),
                     success: (value) {
-                      final PatientEntity patients =
+                      final List<PatientEntity> patients =
                           context.read<PatientsBloc>().state.maybeMap(
-                                success: (value) => value.patientEntity,
-                                orElse: () => PatientEntity(),
+                                success: (value) => value.patients,
+                                orElse: () => [],
                               );
                       if (value.isLoading) {
                         return const Scaffold(
                             body: Center(child: CircularProgressIndicator()));
                       }
-                      log("doctor details ${value.doctor?.value?.id}"
-                          "${patients.value!.first}");
+
                       return Scaffold(
                         appBar: AppBar(
                             title: Text(value.doctor?.value?.userName ?? "")),
@@ -172,17 +182,16 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                     ),
                                   ),
                                   hint: const Text("Select Patient"),
-                                  items: patients.value?.map((patient) {
-                                        return DropdownMenuItem(
-                                          value: patient.id,
-                                          child: Text(
-                                            patient.patientFirstName ?? "",
-                                            style: const TextStyle(
-                                                color: AppColors.greenColor),
-                                          ),
-                                        );
-                                      }).toList() ??
-                                      [],
+                                  items: patients.map((patient) {
+                                    return DropdownMenuItem(
+                                      value: patient.id,
+                                      child: Text(
+                                        patient.patientFirstName ?? "",
+                                        style: const TextStyle(
+                                            color: AppColors.greenColor),
+                                      ),
+                                    );
+                                  }).toList(),
                                   onChanged: (value) {
                                     setState(() {
                                       selectedValue = value.toString();
@@ -202,136 +211,128 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                // scheduleState.maybeMap(
-                                //   orElse: () => const SizedBox(),
-                                //   success: (schedules) {
-                                //     return DropdownButtonFormField(
-                                //         decoration: InputDecoration(
-                                //           enabledBorder: OutlineInputBorder(
-                                //               borderSide: const BorderSide(
-                                //                   color: Colors.black),
-                                //               borderRadius:
-                                //                   BorderRadius.circular(8)),
-                                //           focusedBorder: OutlineInputBorder(
-                                //               borderSide: const BorderSide(
-                                //                   color: Colors.black),
-                                //               borderRadius:
-                                //                   BorderRadius.circular(8)),
-                                //         ),
-                                //         hint: const Text("Select Time"),
-                                //         items: schedules.schedules.value
-                                //                 ?.map((schedule) {
-                                //               return DropdownMenuItem(
-                                //                 value: schedule.id,
-                                //                 child: Row(
-                                //                   mainAxisAlignment:
-                                //                       MainAxisAlignment
-                                //                           .spaceBetween,
-                                //                   children: [
-                                //                     Text(
-                                //                         "Time: ${schedule.timeSlot?.startTime}",
-                                //                         style: const TextStyle(
-                                //                             color: AppColors
-                                //                                 .greenColor)),
-                                //                     Text(
-                                //                         "day: ${schedule.timeSlot?.day}"),
-                                //                   ],
-                                //                 ),
-                                //               );
-                                //             }).toList() ??
-                                //             [],
-                                //         validator: (v) {
-                                //           if (v == null) {
-                                //             return "Please select time";
-                                //           }
-                                //           return null;
-                                //         },
-                                //         onChanged: (value) {
-                                //           log("$value");
-                                //           scheduleId = value as int;
-                                //         });
-                                //   },
-                                // ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.sizeOf(context).height * 0.15,
-                                  child: ListView.builder(
-                                      itemCount: 5,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        return SizedBox(
-                                          width:
-                                              MediaQuery.sizeOf(context).width /
-                                                  2.5,
-                                          child: GestureDetector(
-                                              onTap: () {
-                                                //TODO: navigate to appointment Details
+                                scheduleState.maybeMap(
+                                    orElse: () => const Center(
+                                        child: CircularProgressIndicator()),
+                                    success: (successState) {
+                                      return successState.schedules.isEmpty
+                                          ? const Center(
+                                              child: Text(
+                                                  "No Available schedules"))
+                                          : SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.15,
+                                              child: ListView.builder(
+                                                  itemCount: successState
+                                                      .schedules.length,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return SizedBox(
+                                                      width: MediaQuery.sizeOf(
+                                                                  context)
+                                                              .width /
+                                                          2.5,
+                                                      child: GestureDetector(
+                                                          onTap: () {
+                                                            //TODO: navigate to appointment Details
 
-                                                if (selectedPatientId == null) {
-                                                  ShowSnackbar
-                                                      .showCheckTopSnackBar(
-                                                    context,
-                                                    text:
-                                                        "Please select patient",
-                                                    type: SnackBarType.error,
-                                                  );
-                                                } else {
-                                                  context.pushNamed(
-                                                      Routes.appointmentDetails,
-                                                      pathParameters: {
-                                                        "patientId": "",
-                                                        "doctorId": "",
-                                                        "date": "",
-                                                      });
-                                                }
-                                              },
-                                              child: Card(
-                                                margin:
-                                                    const EdgeInsets.all(8.0),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                                elevation: 5,
-                                                child: const Padding(
-                                                  padding: EdgeInsets.all(8.0),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "30-May-2024",
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Colors.blue,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "Start Time: 8:00 AM",
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.black87,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "End Time: 23:00 PM",
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.black87,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )),
-                                        );
-                                      }),
-                                ),
+                                                            if (selectedPatientId ==
+                                                                null) {
+                                                              ShowSnackbar
+                                                                  .showCheckTopSnackBar(
+                                                                context,
+                                                                text:
+                                                                    "Please select patient",
+                                                                type:
+                                                                    SnackBarType
+                                                                        .error,
+                                                              );
+                                                            } else {
+                                                              context.pushNamed(
+                                                                  Routes
+                                                                      .appointmentDetails,
+                                                                  extra: AppointmentData(
+                                                                      patientId:
+                                                                          selectedPatientId!,
+                                                                      doctorId: value
+                                                                          .doctor!
+                                                                          .value!
+                                                                          .id!,
+                                                                      day: successState
+                                                                          .schedules[
+                                                                              index]
+                                                                          .dayOfWeek!));
+                                                            }
+                                                          },
+                                                          child: Card(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            elevation: 5,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Text(
+                                                                    weekdays[successState
+                                                                        .schedules[
+                                                                            index]
+                                                                        .dayOfWeek!],
+                                                                    style:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          16,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      color: Colors
+                                                                          .blue,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    "Start Time: ${successState.schedules[index].startTime}",
+                                                                    style:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          16,
+                                                                      color: Colors
+                                                                          .black87,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    "End Time: ${successState.schedules[index].endTime}",
+                                                                    style:
+                                                                        const TextStyle(
+                                                                      fontSize:
+                                                                          16,
+                                                                      color: Colors
+                                                                          .black87,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          )),
+                                                    );
+                                                  }),
+                                            );
+                                    }),
                                 const SizedBox(height: 20),
                               ],
                             ),
@@ -348,8 +349,9 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
   }
 
   bool _isScheduleIdUsed(
-      {required List<Appointment> appointments, required int scheduleId}) {
-    for (Appointment appointment in appointments) {
+      {required List<AppointmentEntity> appointments,
+      required int scheduleId}) {
+    for (AppointmentEntity appointment in appointments) {
       if (appointment.scheduleId == scheduleId) {
         return true;
       }

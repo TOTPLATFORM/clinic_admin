@@ -1,8 +1,4 @@
-import 'package:dio/dio.dart';
-
-import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
-import '../../../core/utils/shared_keys.dart';
 import '../abstractions/patients_data_source.dart';
 
 class PatientDataSourceImpl implements PatientDataSource {
@@ -12,17 +8,8 @@ class PatientDataSourceImpl implements PatientDataSource {
 
   @override
   Future<Map<String, dynamic>> getAllPatients() async {
-    final String token = preferences.getString(SharedKeys.accessToken) ?? "";
     try {
-      final res = await _dioClient.get(
-        "/Patient",
-        options: Options(
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer $token",
-          },
-        ),
-      );
+      final res = await _dioClient.get("/Patient");
       return res.data;
     } catch (e) {
       rethrow;

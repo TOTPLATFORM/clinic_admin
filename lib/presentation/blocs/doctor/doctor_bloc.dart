@@ -13,20 +13,21 @@ part 'doctor_state.dart';
 class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
   int index = 0;
 
-  final GetDoctorsQuery _getDoctorQuery;
+  // final GetDoctorsQuery _getDoctorQuery;
   final GetDoctorByIdQuery _getDoctorByIdQuery;
   final AddDoctorQuery _addDoctorQuery;
-  final DeleteDoctorCommand _deleteDoctorCommand;
+  // final DeleteDoctorCommand _deleteDoctorCommand;
 
   DoctorBloc(
       {required GetDoctorsQuery getDoctorQuery,
       required GetDoctorByIdQuery getDoctorByIdQuery,
       required DeleteDoctorCommand deleteDoctorCommand,
       required AddDoctorQuery addDoctorQuery})
-      : _deleteDoctorCommand = deleteDoctorCommand,
+      :
+        //  _deleteDoctorCommand = deleteDoctorCommand,
         _addDoctorQuery = addDoctorQuery,
         _getDoctorByIdQuery = getDoctorByIdQuery,
-        _getDoctorQuery = getDoctorQuery,
+        // _getDoctorQuery = getDoctorQuery,
         super(const DoctorState.initial()) {
     on<DoctorEvent>(
       (event, emit) async {

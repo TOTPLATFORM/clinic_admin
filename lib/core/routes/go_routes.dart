@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../app/core/primitives/inputs/appointment_data.dart';
 import '../../presentation/screens/appointment_details_screen.dart';
 import '../../presentation/screens/category_screen.dart';
 import '../../presentation/screens/doctor_details_screen.dart';
@@ -8,7 +9,6 @@ import '../../presentation/screens/layout_screen.dart';
 import '../../presentation/screens/login_screen.dart';
 import '../../presentation/screens/search_page.dart';
 import '../../presentation/screens/splash_screen.dart';
-import '../../presentation/screens/update_appointment.dart';
 import '../dependency_injection/di_container.dart';
 import '../utils/shared_keys.dart';
 import 'routes.dart';
@@ -46,32 +46,32 @@ final GoRouter allRoutes = GoRouter(
         );
       },
     ),
-    GoRoute(
-      path: Routes.updateAppointment.withSlash,
-      name: Routes.updateAppointment,
-      builder: (context, state) {
-        final Map<String, dynamic>? data = state.extra as Map<String, dynamic>?;
-        if (data != null) {
-          final String appointmentId = data["appointmentId"] as String;
-          final String doctorId = data["doctorId"] as String;
-          final String patientId = data["patientId"] as String;
-          final int scheduleId = data["scheduleId"] as int;
+    // GoRoute(
+    //   path: Routes.updateAppointment.withSlash,
+    //   name: Routes.updateAppointment,
+    //   builder: (context, state) {
+    //     final Map<String, dynamic>? data = state.extra as Map<String, dynamic>?;
+    //     if (data != null) {
+    //       final String appointmentId = data["appointmentId"] as String;
+    //       final String doctorId = data["doctorId"] as String;
+    //       final String patientId = data["patientId"] as String;
+    //       final int scheduleId = data["scheduleId"] as int;
 
-          return UpdateAppointmentScreen(
-            patientId: patientId,
-            scheduleId: scheduleId,
-            appointmentId: appointmentId,
-            doctorId: doctorId,
-          );
-        }
-        return const UpdateAppointmentScreen(
-          scheduleId: 1,
-          patientId: "",
-          appointmentId: "id",
-          doctorId: "name",
-        );
-      },
-    ),
+    //       return UpdateAppointmentScreen(
+    //         patientId: patientId,
+    //         scheduleId: scheduleId,
+    //         appointmentId: appointmentId,
+    //         doctorId: doctorId,
+    //       );
+    //     }
+    //     return const UpdateAppointmentScreen(
+    //       scheduleId: 1,
+    //       patientId: "",
+    //       appointmentId: "id",
+    //       doctorId: "name",
+    //     );
+    //   },
+    // ),
     GoRoute(
       path: Routes.search.withSlash,
       name: Routes.search,
@@ -107,13 +107,11 @@ final GoRouter allRoutes = GoRouter(
       path: Routes.appointmentDetails.withSlash,
       name: Routes.appointmentDetails,
       builder: (context, state) {
-        final String patientId = state.pathParameters["patientId"] as String;
-        final String doctorId = state.pathParameters["doctorId"] as String;
-        final String date = state.pathParameters["date"] as String;
+        final AppointmentData data = state.extra as AppointmentData;
         return AppointmentDetailsScreen(
-          patientId: patientId,
-          doctorId: doctorId,
-          date: date,
+          patientId: data.patientId,
+          doctorId: data.doctorId,
+          day: data.day,
         );
       },
     ),
