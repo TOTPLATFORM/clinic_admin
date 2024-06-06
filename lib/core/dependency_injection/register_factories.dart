@@ -12,7 +12,9 @@ import 'di_container.dart';
 void registerFactories() {
   getIt.registerFactory<ScheduleBloc>(() => ScheduleBloc(
         getSchedulesByDoctorId: getIt(),
+        getSchedulesByDoctorIdDay: getIt(),
       ));
+      
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(
       loginQuery: getIt(),
@@ -45,7 +47,6 @@ void registerFactories() {
       addAppointmentCommand: getIt(),
       getAppointmentQuery: getIt(),
       deleteAppointmentCommand: getIt(),
-      updateAppointmentCommand: getIt(),
     ),
   );
   getIt.registerFactory<SearchBloc>(

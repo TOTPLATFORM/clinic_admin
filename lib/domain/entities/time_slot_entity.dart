@@ -6,7 +6,7 @@ part 'time_slot_entity.g.dart';
 @freezed
 class TimeSlotEntity with _$TimeSlotEntity {
   factory TimeSlotEntity({
-    @Default(null) dynamic value,
+    dynamic value,
     int? status,
     bool? isSuccess,
     String? successMessage,

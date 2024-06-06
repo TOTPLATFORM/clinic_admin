@@ -6,4 +6,4 @@ import '../core/base_types/index.dart';
 import '../core/primitives/inputs/no_params.dart';
 
 abstract class GetPatientsQuery
-    extends BaseQuery<Future<Either<Failure, PatientEntity>>, NoParams> {}
+    extends BaseQuery<Future<Either<Failure, List<PatientEntity>>>, NoParams> {}

@@ -178,7 +178,7 @@ class __$$TimeSlotEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TimeSlotEntityImpl implements _TimeSlotEntity {
   _$TimeSlotEntityImpl(
-      {this.value = null,
+      {this.value,
       this.status,
       this.isSuccess,
       this.successMessage,
@@ -192,7 +192,6 @@ class _$TimeSlotEntityImpl implements _TimeSlotEntity {
       _$$TimeSlotEntityImplFromJson(json);
 
   @override
-  @JsonKey()
   final dynamic value;
   @override
   final int? status;

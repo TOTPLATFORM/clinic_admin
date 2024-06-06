@@ -50,15 +50,14 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: ListView.builder(
                         shrinkWrap: true,
                         padding: EdgeInsets.zero,
-                        itemCount: value.patientEntity.value?.length ?? 0,
+                        itemCount: value.patients.length,
                         itemBuilder: ((context, index) {
                           return DoctorItem(
                             imagePath: "assets/images/app_logo.png",
-                            doctorDescription: value
-                                    .patientEntity.value![index].patientEmail ??
-                                "",
+                            doctorDescription:
+                                value.patients[index].patientEmail ?? "",
                             doctorName:
-                                "${value.patientEntity.value![index].patientFirstName} ${value.patientEntity.value![index].patientLastName}",
+                                "${value.patients[index].patientFirstName} ${value.patients[index].patientLastName}",
                             doctorType: "",
                             // onTap: () {
                             //   if (value.patientEntity?.value![index].id != null) {

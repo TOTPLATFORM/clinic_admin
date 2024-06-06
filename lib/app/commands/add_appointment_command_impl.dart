@@ -1,21 +1,22 @@
+import '../../core/network/failure.dart';
+
 import 'package:dartz/dartz.dart';
 
-import '../../core/network/failure.dart';
-import '../../domain/entities/appointment_entity.dart';
 import '../../domain/repos/appointment_repo.dart';
 import '../contracts/appointment.dart';
-import '../core/primitives/inputs/add_appointment_input.dart';
+import '../core/primitives/inputs/appointment_data.dart';
 
-class AppointmentCommandImpl extends AddAppointmentCommand {
-  final AppointmentRepo repo;
+class AddAppointmentCommandImpl implements AddAppointmentCommand {
+  final AppointmentRepo _appointmentRepo;
 
-  AppointmentCommandImpl({required this.repo});
+  AddAppointmentCommandImpl({required AppointmentRepo appointmentRepo})
+      : _appointmentRepo = appointmentRepo;
+
   @override
-  Future<Either<Failure, AppointmentEntity>> call(AddAppointmentInput params) {
-    return repo.addAppointment(
-      scheduleId: params.scheduleId,
-      doctorId: params.doctorId,
+  Future<Either<Failure, bool>> call(AppointmentInputs params) {
+    return _appointmentRepo.addAppointmentForDoctor(
       patientId: params.patientId,
+      scheduleId: params.scheduleId,
     );
   }
 }

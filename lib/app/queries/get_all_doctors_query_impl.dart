@@ -4,7 +4,6 @@ import '../../core/network/failure.dart';
 import '../../domain/entities/doctors_entity.dart';
 import '../../domain/repos/doctor_repo.dart';
 import '../contracts/doctor.dart';
-import '../core/primitives/inputs/no_params.dart';
 
 class GetDoctorsQueryImpl implements GetDoctorsQuery {
   final DoctorRepo doctorRepo;
@@ -12,8 +11,6 @@ class GetDoctorsQueryImpl implements GetDoctorsQuery {
   GetDoctorsQueryImpl({required this.doctorRepo});
   @override
   Future<Either<Failure, DoctorsEntity>> call(int params) {
-    return doctorRepo.getAllDoctors(
-      index: params
-    );
+    return doctorRepo.getAllDoctors(index: params);
   }
 }

@@ -1,32 +1,52 @@
+import 'package:equatable/equatable.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ScheduleEntity with EquatableMixin {
+  int? id;
+  int? dayOfWeek;
+  String? startTime;
+  String? endTime;
+  String? doctorId;
+  String? doctorName;
 
-import 'get_all_time_slots_entity.dart';
+  ScheduleEntity({
+    this.id,
+    this.dayOfWeek,
+    this.startTime,
+    this.endTime,
+    this.doctorId,
+    this.doctorName,
+  });
 
-part 'schedule_entity.freezed.dart';
-part 'schedule_entity.g.dart';
-@freezed
-class DoctorTimeSlot with _$DoctorTimeSlot {
-  factory DoctorTimeSlot({
+  @override
+  List<Object?> get props =>
+      [id, dayOfWeek, startTime, endTime, doctorId, doctorName];
+
+  ScheduleEntity copyWith({
     int? id,
+    int? dayOfWeek,
+    String? startTime,
+    String? endTime,
     String? doctorId,
-    TimeSlot? timeSlot,
-  }) = _DoctorTimeSlot;
+    String? doctorName,
+  }) {
+    return ScheduleEntity(
+      id: id ?? this.id,
+      dayOfWeek: dayOfWeek ?? this.dayOfWeek,
+      startTime: startTime ?? this.startTime,
+      endTime: endTime ?? this.endTime,
+      doctorId: doctorId ?? this.doctorId,
+      doctorName: doctorName ?? this.doctorName,
+    );
+  }
 
-  factory DoctorTimeSlot.fromJson(Map<String, dynamic> json) => _$DoctorTimeSlotFromJson(json);
-}
-
-@freezed
-class ScheduleEntity with _$ScheduleEntity {
-  factory ScheduleEntity({
-    List<DoctorTimeSlot>? value,
-    int? status,
-    bool? isSuccess,
-    String? successMessage,
-    String? correlationId,
-    List<String>? errors,
-    List<String>? validationErrors,
-  }) = _ScheduleEntity;
-
-  factory ScheduleEntity.fromJson(Map<String, dynamic> json) => _$ScheduleEntityFromJson(json);
+  factory ScheduleEntity.fromJson(Map<String, dynamic> json) {
+    return ScheduleEntity(
+      id: json['id'] as int?,
+      dayOfWeek: json['dayOfWeek'] as int?,
+      startTime: json['startTime'] as String?,
+      endTime: json['endTime'] as String?,
+      doctorId: json['doctorId'] as String?,
+      doctorName: json['doctorName'] as String?,
+    );
+  }
 }

@@ -1,23 +1,13 @@
+import '../entities/appointment_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/failure.dart';
-import '../entities/appointment_entity.dart';
-import '../entities/generic_entity.dart';
-import '../entities/get_appointment_entity.dart';
 
 abstract class AppointmentRepo {
-  Future<Either<Failure, AppointmentEntity>> addAppointment({
-    required String doctorId,
+  Future<Either<Failure, bool>> deleteAppointment({required String id});
+  Future<Either<Failure, List<AppointmentEntity>>> getAppointmentForDoctor();
+  Future<Either<Failure, bool>> addAppointmentForDoctor({
     required String patientId,
     required int scheduleId,
-  });
-  Future<Either<Failure, GetAppointmentsEntity>> getAppointment();
-  Future<Either<Failure, GenericEntity>> deleteAppointment(
-      {required String appointmentId});
-  Future<Either<Failure, AppointmentEntity>> updateAppointment({
-    required String doctorId,
-    required String patientId,
-    required int scheduleId,
-    required String appointmentId,
   });
 }
