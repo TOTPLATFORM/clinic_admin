@@ -12,7 +12,7 @@ class GetPatientsQueryImpl implements GetPatientsQuery {
   GetPatientsQueryImpl({required PatientsRepo patientsRepo})
       : _patientsRepo = patientsRepo;
   @override
-  Future<Either<Failure, PatientEntity>> call(NoParams params) async {
+  Future<Either<Failure, List<PatientEntity>>> call(NoParams params) async {
     return await _patientsRepo.getPatients();
   }
 }

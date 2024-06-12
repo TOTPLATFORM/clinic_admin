@@ -20,16 +20,19 @@ mixin _$ScheduleEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String doctorId) getSchedulesByDoctorId,
+    required TResult Function(String doctorId, int dayOfWeek) getSchedulesByDay,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String doctorId)? getSchedulesByDoctorId,
+    TResult? Function(String doctorId, int dayOfWeek)? getSchedulesByDay,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String doctorId)? getSchedulesByDoctorId,
+    TResult Function(String doctorId, int dayOfWeek)? getSchedulesByDay,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -37,16 +40,19 @@ mixin _$ScheduleEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedulesByDoctorId value)
         getSchedulesByDoctorId,
+    required TResult Function(_GetSchedulesByDay value) getSchedulesByDay,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedulesByDoctorId value)? getSchedulesByDoctorId,
+    TResult? Function(_GetSchedulesByDay value)? getSchedulesByDay,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedulesByDoctorId value)? getSchedulesByDoctorId,
+    TResult Function(_GetSchedulesByDay value)? getSchedulesByDay,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,6 +166,7 @@ class _$GetSchedulesByDoctorIdImpl implements _GetSchedulesByDoctorId {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String doctorId) getSchedulesByDoctorId,
+    required TResult Function(String doctorId, int dayOfWeek) getSchedulesByDay,
   }) {
     return getSchedulesByDoctorId(doctorId);
   }
@@ -168,6 +175,7 @@ class _$GetSchedulesByDoctorIdImpl implements _GetSchedulesByDoctorId {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String doctorId)? getSchedulesByDoctorId,
+    TResult? Function(String doctorId, int dayOfWeek)? getSchedulesByDay,
   }) {
     return getSchedulesByDoctorId?.call(doctorId);
   }
@@ -176,6 +184,7 @@ class _$GetSchedulesByDoctorIdImpl implements _GetSchedulesByDoctorId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String doctorId)? getSchedulesByDoctorId,
+    TResult Function(String doctorId, int dayOfWeek)? getSchedulesByDay,
     required TResult orElse(),
   }) {
     if (getSchedulesByDoctorId != null) {
@@ -189,6 +198,7 @@ class _$GetSchedulesByDoctorIdImpl implements _GetSchedulesByDoctorId {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetSchedulesByDoctorId value)
         getSchedulesByDoctorId,
+    required TResult Function(_GetSchedulesByDay value) getSchedulesByDay,
   }) {
     return getSchedulesByDoctorId(this);
   }
@@ -197,6 +207,7 @@ class _$GetSchedulesByDoctorIdImpl implements _GetSchedulesByDoctorId {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetSchedulesByDoctorId value)? getSchedulesByDoctorId,
+    TResult? Function(_GetSchedulesByDay value)? getSchedulesByDay,
   }) {
     return getSchedulesByDoctorId?.call(this);
   }
@@ -205,6 +216,7 @@ class _$GetSchedulesByDoctorIdImpl implements _GetSchedulesByDoctorId {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetSchedulesByDoctorId value)? getSchedulesByDoctorId,
+    TResult Function(_GetSchedulesByDay value)? getSchedulesByDay,
     required TResult orElse(),
   }) {
     if (getSchedulesByDoctorId != null) {
@@ -227,35 +239,190 @@ abstract class _GetSchedulesByDoctorId implements ScheduleEvent {
 }
 
 /// @nodoc
+abstract class _$$GetSchedulesByDayImplCopyWith<$Res>
+    implements $ScheduleEventCopyWith<$Res> {
+  factory _$$GetSchedulesByDayImplCopyWith(_$GetSchedulesByDayImpl value,
+          $Res Function(_$GetSchedulesByDayImpl) then) =
+      __$$GetSchedulesByDayImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String doctorId, int dayOfWeek});
+}
+
+/// @nodoc
+class __$$GetSchedulesByDayImplCopyWithImpl<$Res>
+    extends _$ScheduleEventCopyWithImpl<$Res, _$GetSchedulesByDayImpl>
+    implements _$$GetSchedulesByDayImplCopyWith<$Res> {
+  __$$GetSchedulesByDayImplCopyWithImpl(_$GetSchedulesByDayImpl _value,
+      $Res Function(_$GetSchedulesByDayImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? doctorId = null,
+    Object? dayOfWeek = null,
+  }) {
+    return _then(_$GetSchedulesByDayImpl(
+      doctorId: null == doctorId
+          ? _value.doctorId
+          : doctorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      dayOfWeek: null == dayOfWeek
+          ? _value.dayOfWeek
+          : dayOfWeek // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSchedulesByDayImpl implements _GetSchedulesByDay {
+  const _$GetSchedulesByDayImpl(
+      {required this.doctorId, required this.dayOfWeek});
+
+  @override
+  final String doctorId;
+  @override
+  final int dayOfWeek;
+
+  @override
+  String toString() {
+    return 'ScheduleEvent.getSchedulesByDay(doctorId: $doctorId, dayOfWeek: $dayOfWeek)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSchedulesByDayImpl &&
+            (identical(other.doctorId, doctorId) ||
+                other.doctorId == doctorId) &&
+            (identical(other.dayOfWeek, dayOfWeek) ||
+                other.dayOfWeek == dayOfWeek));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, doctorId, dayOfWeek);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSchedulesByDayImplCopyWith<_$GetSchedulesByDayImpl> get copyWith =>
+      __$$GetSchedulesByDayImplCopyWithImpl<_$GetSchedulesByDayImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String doctorId) getSchedulesByDoctorId,
+    required TResult Function(String doctorId, int dayOfWeek) getSchedulesByDay,
+  }) {
+    return getSchedulesByDay(doctorId, dayOfWeek);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String doctorId)? getSchedulesByDoctorId,
+    TResult? Function(String doctorId, int dayOfWeek)? getSchedulesByDay,
+  }) {
+    return getSchedulesByDay?.call(doctorId, dayOfWeek);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String doctorId)? getSchedulesByDoctorId,
+    TResult Function(String doctorId, int dayOfWeek)? getSchedulesByDay,
+    required TResult orElse(),
+  }) {
+    if (getSchedulesByDay != null) {
+      return getSchedulesByDay(doctorId, dayOfWeek);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetSchedulesByDoctorId value)
+        getSchedulesByDoctorId,
+    required TResult Function(_GetSchedulesByDay value) getSchedulesByDay,
+  }) {
+    return getSchedulesByDay(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetSchedulesByDoctorId value)? getSchedulesByDoctorId,
+    TResult? Function(_GetSchedulesByDay value)? getSchedulesByDay,
+  }) {
+    return getSchedulesByDay?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetSchedulesByDoctorId value)? getSchedulesByDoctorId,
+    TResult Function(_GetSchedulesByDay value)? getSchedulesByDay,
+    required TResult orElse(),
+  }) {
+    if (getSchedulesByDay != null) {
+      return getSchedulesByDay(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSchedulesByDay implements ScheduleEvent {
+  const factory _GetSchedulesByDay(
+      {required final String doctorId,
+      required final int dayOfWeek}) = _$GetSchedulesByDayImpl;
+
+  @override
+  String get doctorId;
+  int get dayOfWeek;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetSchedulesByDayImplCopyWith<_$GetSchedulesByDayImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ScheduleState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ScheduleEntity schedules) success,
+    required TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)
+        success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ScheduleEntity schedules)? success,
+    TResult? Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ScheduleEntity schedules)? success,
+    TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
@@ -263,7 +430,6 @@ mixin _$ScheduleState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
@@ -271,7 +437,6 @@ mixin _$ScheduleState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
@@ -296,120 +461,6 @@ class _$ScheduleStateCopyWithImpl<$Res, $Val extends ScheduleState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ScheduleStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'ScheduleState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(ScheduleEntity schedules) success,
-    required TResult Function(String message) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(ScheduleEntity schedules)? success,
-    TResult? Function(String message)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(ScheduleEntity schedules)? success,
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements ScheduleState {
-  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -450,9 +501,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ScheduleEntity schedules) success,
+    required TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)
+        success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -461,9 +513,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ScheduleEntity schedules)? success,
+    TResult? Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -472,9 +525,10 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ScheduleEntity schedules)? success,
+    TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -487,7 +541,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
@@ -498,7 +551,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
@@ -509,7 +561,6 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
@@ -532,9 +583,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ScheduleEntity schedules});
-
-  $ScheduleEntityCopyWith<$Res> get schedules;
+  $Res call(
+      {List<ScheduleEntity> schedules, List<ScheduleEntity>? schedulesByDay});
 }
 
 /// @nodoc
@@ -549,35 +599,51 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? schedules = null,
+    Object? schedulesByDay = freezed,
   }) {
     return _then(_$SuccessImpl(
       schedules: null == schedules
-          ? _value.schedules
+          ? _value._schedules
           : schedules // ignore: cast_nullable_to_non_nullable
-              as ScheduleEntity,
+              as List<ScheduleEntity>,
+      schedulesByDay: freezed == schedulesByDay
+          ? _value._schedulesByDay
+          : schedulesByDay // ignore: cast_nullable_to_non_nullable
+              as List<ScheduleEntity>?,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ScheduleEntityCopyWith<$Res> get schedules {
-    return $ScheduleEntityCopyWith<$Res>(_value.schedules, (value) {
-      return _then(_value.copyWith(schedules: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.schedules});
+  const _$SuccessImpl(
+      {required final List<ScheduleEntity> schedules,
+      final List<ScheduleEntity>? schedulesByDay})
+      : _schedules = schedules,
+        _schedulesByDay = schedulesByDay;
 
+  final List<ScheduleEntity> _schedules;
   @override
-  final ScheduleEntity schedules;
+  List<ScheduleEntity> get schedules {
+    if (_schedules is EqualUnmodifiableListView) return _schedules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_schedules);
+  }
+
+  final List<ScheduleEntity>? _schedulesByDay;
+  @override
+  List<ScheduleEntity>? get schedulesByDay {
+    final value = _schedulesByDay;
+    if (value == null) return null;
+    if (_schedulesByDay is EqualUnmodifiableListView) return _schedulesByDay;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ScheduleState.success(schedules: $schedules)';
+    return 'ScheduleState.success(schedules: $schedules, schedulesByDay: $schedulesByDay)';
   }
 
   @override
@@ -585,12 +651,17 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.schedules, schedules) ||
-                other.schedules == schedules));
+            const DeepCollectionEquality()
+                .equals(other._schedules, _schedules) &&
+            const DeepCollectionEquality()
+                .equals(other._schedulesByDay, _schedulesByDay));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, schedules);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_schedules),
+      const DeepCollectionEquality().hash(_schedulesByDay));
 
   @JsonKey(ignore: true)
   @override
@@ -601,36 +672,39 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ScheduleEntity schedules) success,
+    required TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)
+        success,
     required TResult Function(String message) error,
   }) {
-    return success(schedules);
+    return success(schedules, schedulesByDay);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ScheduleEntity schedules)? success,
+    TResult? Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(schedules);
+    return success?.call(schedules, schedulesByDay);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ScheduleEntity schedules)? success,
+    TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(schedules);
+      return success(schedules, schedulesByDay);
     }
     return orElse();
   }
@@ -638,7 +712,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
@@ -649,7 +722,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
@@ -660,7 +732,6 @@ class _$SuccessImpl implements _Success {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,
@@ -674,10 +745,12 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements ScheduleState {
-  const factory _Success({required final ScheduleEntity schedules}) =
-      _$SuccessImpl;
+  const factory _Success(
+      {required final List<ScheduleEntity> schedules,
+      final List<ScheduleEntity>? schedulesByDay}) = _$SuccessImpl;
 
-  ScheduleEntity get schedules;
+  List<ScheduleEntity> get schedules;
+  List<ScheduleEntity>? get schedulesByDay;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -747,9 +820,10 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ScheduleEntity schedules) success,
+    required TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)
+        success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -758,9 +832,10 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ScheduleEntity schedules)? success,
+    TResult? Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -769,9 +844,10 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ScheduleEntity schedules)? success,
+    TResult Function(List<ScheduleEntity> schedules,
+            List<ScheduleEntity>? schedulesByDay)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -784,7 +860,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
     required TResult Function(_Error value) error,
@@ -795,7 +870,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
     TResult? Function(_Error value)? error,
@@ -806,7 +880,6 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
     TResult Function(_Error value)? error,

@@ -1,104 +1,48 @@
-import 'dart:developer';
-
-import 'package:dio/dio.dart';
-
-import '../../../core/dependency_injection/di_container.dart';
 import '../../../core/dio/base_dio.dart';
-import '../../../core/utils/shared_keys.dart';
 import '../abstractions/appointment_data_source.dart';
 
 class AppointmentDataSourceImpl implements AppointmentDataSource {
-  final BaseDio dioClient;
+  final BaseDio _dioClient;
 
-  AppointmentDataSourceImpl({required this.dioClient});
-
+  AppointmentDataSourceImpl({required BaseDio dioClient})
+      : _dioClient = dioClient;
   @override
-  Future<Map<String, dynamic>> addAppointment({
-    required String doctorId,
+  Future<Map<String, dynamic>> addAppointmentForDoctor({
     required String patientId,
     required int scheduleId,
   }) async {
-    final String token = preferences.getString(SharedKeys.accessToken) ?? "";
-    final response = await dioClient.post(
-      '/Appointment',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $token",
-        },
-      ),
-      data: {
-        "scheduleId": scheduleId,
+    try {
+      final resposnse = await _dioClient.post("/Appointment", data: {
         "patientId": patientId,
-        "doctorId": doctorId
-      },
-    );
-    log(
-      '${response.data}:::::::::login',
-    );
-    return response.data;
-  }
-
-  @override
-  Future<Map<String, dynamic>> getAppointment() async {
-    final String token = preferences.getString(SharedKeys.accessToken) ?? "";
-
-    final response = await dioClient.get(
-      '/Appointment',
-      options: Options(
-        headers: {
-          "Authorization": "Bearer $token",
-        },
-      ),
-    );
-    log(
-      '${response.data}:::::::::login',
-    );
-    return response.data;
-  }
-
-  @override
-  Future<Map<String, dynamic>> updateAppointment({
-    required String doctorId,
-    required String patientId,
-    required int scheduleId,
-    required String appointmentId,
-  }) async {
-    final String token = preferences.getString(SharedKeys.accessToken) ?? "";
-    final response = await dioClient.put(
-      '/Appointment/$appointmentId',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $token",
-        },
-      ),
-      data: {
         "scheduleId": scheduleId,
-        "patientId": patientId,
-        "doctorId": doctorId
-      },
-    );
-    log(
-      '${response.data}:::::::::login',
-    );
-    return response.data;
+        "description": "N/A"
+      });
+
+      return resposnse.data;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<Map<String, dynamic>> deleteAppointment(
       {required String appointmentId}) async {
-    final String token = preferences.getString(SharedKeys.accessToken) ?? "";
+    try {
+      final resposnse =
+          await _dioClient.post("/Appointment/cancel/$appointmentId");
+      return resposnse.data;
+    } catch (e) {
+      rethrow;
+    }
+  }
 
-    final res = await dioClient.delete(
-      '/Appointment/$appointmentId',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $token",
-        },
-      ),
-    );
-    return res.data;
+  @override
+  Future<Map<String, dynamic>> getAppointments() async {
+    try {
+      final resposnse = await _dioClient.get("/Appointment");
+      return resposnse.data;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

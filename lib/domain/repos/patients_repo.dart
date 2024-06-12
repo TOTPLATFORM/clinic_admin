@@ -4,5 +4,5 @@ import '../../core/network/failure.dart';
 import '../entities/patient_entity.dart';
 
 abstract class PatientsRepo {
-  Future<Either<Failure, PatientEntity>> getPatients();
+  Future<Either<Failure, List<PatientEntity>>> getPatients();
 }

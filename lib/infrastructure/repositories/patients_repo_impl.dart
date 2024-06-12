@@ -13,10 +13,12 @@ class PatientsRepoImpl implements PatientsRepo {
   PatientsRepoImpl({required PatientDataSource patientDataSource})
       : _patientDataSource = patientDataSource;
   @override
-  Future<Either<Failure, PatientEntity>> getPatients() async {
+  Future<Either<Failure, List<PatientEntity>>> getPatients() async {
     try {
       final response = await _patientDataSource.getAllPatients();
-      return Right(PatientEntity.fromJson(response));
+      return Right((response['value']['data'] as List<dynamic>)
+          .map((e) => PatientEntity.fromJson(e))
+          .toList());
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }

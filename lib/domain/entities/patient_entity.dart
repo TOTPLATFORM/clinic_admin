@@ -1,34 +1,47 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:equatable/equatable.dart';
 
-part 'patient_entity.freezed.dart';
-part 'patient_entity.g.dart';
+class PatientEntity with EquatableMixin {
+  String? id;
+  String? patientFirstName;
+  String? patientLastName;
+  String? patientEmail;
+  String? patientPhoneNumber;
 
-@freezed
-abstract class PatientEntity with _$PatientEntity {
-  factory PatientEntity({
-    List<Patient>? value,
-    int? status,
-    bool? isSuccess,
-    String? successMessage,
-    String? correlationId,
-    List<dynamic>? errors,
-    List<dynamic>? validationErrors,
-  }) = _PatientEntity;
+  PatientEntity({
+    this.id,
+    this.patientFirstName,
+    this.patientLastName,
+    this.patientEmail,
+    this.patientPhoneNumber,
+  });
 
-  factory PatientEntity.fromJson(Map<String, dynamic> json) =>
-      _$PatientEntityFromJson(json);
-}
+  @override
+  List<Object?> get props =>
+      [id, patientFirstName, patientLastName, patientEmail, patientPhoneNumber];
 
-@freezed
-abstract class Patient with _$Patient {
-  factory Patient({
+  PatientEntity copyWith({
     String? id,
     String? patientFirstName,
     String? patientLastName,
     String? patientEmail,
     String? patientPhoneNumber,
-  }) = _Patient;
+  }) {
+    return PatientEntity(
+      id: id ?? this.id,
+      patientFirstName: patientFirstName ?? this.patientFirstName,
+      patientLastName: patientLastName ?? this.patientLastName,
+      patientEmail: patientEmail ?? this.patientEmail,
+      patientPhoneNumber: patientPhoneNumber ?? this.patientPhoneNumber,
+    );
+  }
 
-  factory Patient.fromJson(Map<String, dynamic> json) =>
-      _$PatientFromJson(json);
+  factory PatientEntity.fromJson(Map<String, dynamic> json) {
+    return PatientEntity(
+      id: json['id'] as String?,
+      patientFirstName: json['patientFirstName'] as String?,
+      patientLastName: json['patientLastName'] as String?,
+      patientEmail: json['patientEmail'] as String?,
+      patientPhoneNumber: json['patientPhoneNumber'] as String?,
+    );
+  }
 }

@@ -11,7 +11,7 @@ class GetScheduleQueryImpl extends GetDoctorScheduleQuery {
   GetScheduleQueryImpl({required this.repo});
 
   @override
-  Future<Either<Failure, ScheduleEntity>> call(String params) {
+  Future<Either<Failure, List<ScheduleEntity>>> call(String params) {
     return repo.getSchedulesByDoctorId(doctorId: params);
   }
 }
