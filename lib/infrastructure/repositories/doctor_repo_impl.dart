@@ -1,3 +1,4 @@
+import 'package:clinic_admin/domain/entities/get_doctor_by_id_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/failure.dart';
@@ -25,12 +26,12 @@ class DoctorRepoImpl implements DoctorRepo {
   }
 
   @override
-  Future<Either<Failure, DoctorEntity>> getDoctorById(
+  Future<Either<Failure, GetDoctorByIdEntity>> getDoctorById(
       {required String doctorId}) async {
     try {
       final res = await doctorDataSource.getDoctorById(doctorId: doctorId);
       return Right(
-        DoctorEntity.fromJson(res),
+        GetDoctorByIdEntity.fromJson(res),
       );
     } catch (e) {
       return Left(

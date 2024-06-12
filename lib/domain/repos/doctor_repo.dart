@@ -1,3 +1,4 @@
+import 'package:clinic_admin/domain/entities/get_doctor_by_id_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/failure.dart';
@@ -8,7 +9,7 @@ abstract class DoctorRepo {
   Future<Either<Failure, DoctorsEntity>> getAllDoctors({
     required int index,
   });
-  Future<Either<Failure, DoctorEntity>> getDoctorById(
+  Future<Either<Failure, GetDoctorByIdEntity>> getDoctorById(
       {required String doctorId});
   Future<Either<Failure, DoctorEntity>> deleteDoctor(
       {required String doctorId});

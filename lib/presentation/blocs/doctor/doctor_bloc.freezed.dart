@@ -105,21 +105,12 @@ class __$$GetAllDoctorsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetAllDoctorsImpl implements _GetAllDoctors {
-  const _$GetAllDoctorsImpl();
+  _$GetAllDoctorsImpl();
 
   @override
   String toString() {
     return 'DoctorEvent.getAllDoctors()';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetAllDoctorsImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -197,7 +188,7 @@ class _$GetAllDoctorsImpl implements _GetAllDoctors {
 }
 
 abstract class _GetAllDoctors implements DoctorEvent {
-  const factory _GetAllDoctors() = _$GetAllDoctorsImpl;
+  factory _GetAllDoctors() = _$GetAllDoctorsImpl;
 }
 
 /// @nodoc
@@ -234,26 +225,15 @@ class __$$GetDoctorByIdImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetDoctorByIdImpl implements _GetDoctorById {
-  const _$GetDoctorByIdImpl({required this.id});
+  _$GetDoctorByIdImpl({required this.id});
 
   @override
-  final String id;
+  String id;
 
   @override
   String toString() {
     return 'DoctorEvent.getDoctorById(id: $id)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GetDoctorByIdImpl &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id);
 
   @JsonKey(ignore: true)
   @override
@@ -337,10 +317,10 @@ class _$GetDoctorByIdImpl implements _GetDoctorById {
 }
 
 abstract class _GetDoctorById implements DoctorEvent {
-  const factory _GetDoctorById({required final String id}) =
-      _$GetDoctorByIdImpl;
+  factory _GetDoctorById({required String id}) = _$GetDoctorByIdImpl;
 
   String get id;
+  set id(String value);
   @JsonKey(ignore: true)
   _$$GetDoctorByIdImplCopyWith<_$GetDoctorByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -380,26 +360,15 @@ class __$$DeleteDoctorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteDoctorImpl implements _DeleteDoctor {
-  const _$DeleteDoctorImpl({required this.id});
+  _$DeleteDoctorImpl({required this.id});
 
   @override
-  final String id;
+  String id;
 
   @override
   String toString() {
     return 'DoctorEvent.deleteDoctor(id: $id)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DeleteDoctorImpl &&
-            (identical(other.id, id) || other.id == id));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, id);
 
   @JsonKey(ignore: true)
   @override
@@ -483,9 +452,10 @@ class _$DeleteDoctorImpl implements _DeleteDoctor {
 }
 
 abstract class _DeleteDoctor implements DoctorEvent {
-  const factory _DeleteDoctor({required final String id}) = _$DeleteDoctorImpl;
+  factory _DeleteDoctor({required String id}) = _$DeleteDoctorImpl;
 
   String get id;
+  set id(String value);
   @JsonKey(ignore: true)
   _$$DeleteDoctorImplCopyWith<_$DeleteDoctorImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -525,27 +495,15 @@ class __$$AddDoctorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddDoctorImpl implements _AddDoctor {
-  const _$AddDoctorImpl({required this.doctorData});
+  _$AddDoctorImpl({required this.doctorData});
 
   @override
-  final AddDoctorInputs doctorData;
+  AddDoctorInputs doctorData;
 
   @override
   String toString() {
     return 'DoctorEvent.addDoctor(doctorData: $doctorData)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddDoctorImpl &&
-            (identical(other.doctorData, doctorData) ||
-                other.doctorData == doctorData));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, doctorData);
 
   @JsonKey(ignore: true)
   @override
@@ -629,10 +587,10 @@ class _$AddDoctorImpl implements _AddDoctor {
 }
 
 abstract class _AddDoctor implements DoctorEvent {
-  const factory _AddDoctor({required final AddDoctorInputs doctorData}) =
-      _$AddDoctorImpl;
+  factory _AddDoctor({required AddDoctorInputs doctorData}) = _$AddDoctorImpl;
 
   AddDoctorInputs get doctorData;
+  set doctorData(AddDoctorInputs value);
   @JsonKey(ignore: true)
   _$$AddDoctorImplCopyWith<_$AddDoctorImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -647,6 +605,7 @@ mixin _$DoctorState {
     required TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -662,6 +621,7 @@ mixin _$DoctorState {
     TResult? Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -677,6 +637,7 @@ mixin _$DoctorState {
     TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -750,21 +711,12 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+  _$InitialImpl();
 
   @override
   String toString() {
     return 'DoctorState.initial()';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -774,6 +726,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -792,6 +745,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -810,6 +764,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -863,7 +818,7 @@ class _$InitialImpl implements _Initial {
 }
 
 abstract class _Initial implements DoctorState {
-  const factory _Initial() = _$InitialImpl;
+  factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -885,21 +840,12 @@ class __$$LoadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+  _$LoadingImpl();
 
   @override
   String toString() {
     return 'DoctorState.loading()';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -909,6 +855,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -927,6 +874,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -945,6 +893,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -998,7 +947,7 @@ class _$LoadingImpl implements _Loading {
 }
 
 abstract class _Loading implements DoctorState {
-  const factory _Loading() = _$LoadingImpl;
+  factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -1010,12 +959,14 @@ abstract class _$$SuccessImplCopyWith<$Res> {
   $Res call(
       {List<Doctor>? doctors,
       DoctorEntity? doctor,
+      GetDoctorByIdEntity? doctorDetails,
       bool addDoctor,
       bool deleteDoctor,
       bool isLoading,
       bool? hasNextPage});
 
   $DoctorEntityCopyWith<$Res>? get doctor;
+  $GetDoctorByIdEntityCopyWith<$Res>? get doctorDetails;
 }
 
 /// @nodoc
@@ -1031,6 +982,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? doctors = freezed,
     Object? doctor = freezed,
+    Object? doctorDetails = freezed,
     Object? addDoctor = null,
     Object? deleteDoctor = null,
     Object? isLoading = null,
@@ -1038,13 +990,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
   }) {
     return _then(_$SuccessImpl(
       doctors: freezed == doctors
-          ? _value._doctors
+          ? _value.doctors
           : doctors // ignore: cast_nullable_to_non_nullable
               as List<Doctor>?,
       doctor: freezed == doctor
           ? _value.doctor
           : doctor // ignore: cast_nullable_to_non_nullable
               as DoctorEntity?,
+      doctorDetails: freezed == doctorDetails
+          ? _value.doctorDetails
+          : doctorDetails // ignore: cast_nullable_to_non_nullable
+              as GetDoctorByIdEntity?,
       addDoctor: null == addDoctor
           ? _value.addDoctor
           : addDoctor // ignore: cast_nullable_to_non_nullable
@@ -1075,75 +1031,54 @@ class __$$SuccessImplCopyWithImpl<$Res>
       return _then(_value.copyWith(doctor: value));
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GetDoctorByIdEntityCopyWith<$Res>? get doctorDetails {
+    if (_value.doctorDetails == null) {
+      return null;
+    }
+
+    return $GetDoctorByIdEntityCopyWith<$Res>(_value.doctorDetails!, (value) {
+      return _then(_value.copyWith(doctorDetails: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(
-      {final List<Doctor>? doctors,
+  _$SuccessImpl(
+      {this.doctors,
       this.doctor,
+      this.doctorDetails,
       this.addDoctor = false,
       this.deleteDoctor = false,
       this.isLoading = false,
-      this.hasNextPage})
-      : _doctors = doctors;
-
-  final List<Doctor>? _doctors;
-  @override
-  List<Doctor>? get doctors {
-    final value = _doctors;
-    if (value == null) return null;
-    if (_doctors is EqualUnmodifiableListView) return _doctors;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+      this.hasNextPage});
 
   @override
-  final DoctorEntity? doctor;
+  List<Doctor>? doctors;
+  @override
+  DoctorEntity? doctor;
+  @override
+  GetDoctorByIdEntity? doctorDetails;
   @override
   @JsonKey()
-  final bool addDoctor;
+  bool addDoctor;
   @override
   @JsonKey()
-  final bool deleteDoctor;
+  bool deleteDoctor;
   @override
   @JsonKey()
-  final bool isLoading;
+  bool isLoading;
   @override
-  final bool? hasNextPage;
+  bool? hasNextPage;
 
   @override
   String toString() {
-    return 'DoctorState.success(doctors: $doctors, doctor: $doctor, addDoctor: $addDoctor, deleteDoctor: $deleteDoctor, isLoading: $isLoading, hasNextPage: $hasNextPage)';
+    return 'DoctorState.success(doctors: $doctors, doctor: $doctor, doctorDetails: $doctorDetails, addDoctor: $addDoctor, deleteDoctor: $deleteDoctor, isLoading: $isLoading, hasNextPage: $hasNextPage)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._doctors, _doctors) &&
-            (identical(other.doctor, doctor) || other.doctor == doctor) &&
-            (identical(other.addDoctor, addDoctor) ||
-                other.addDoctor == addDoctor) &&
-            (identical(other.deleteDoctor, deleteDoctor) ||
-                other.deleteDoctor == deleteDoctor) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.hasNextPage, hasNextPage) ||
-                other.hasNextPage == hasNextPage));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_doctors),
-      doctor,
-      addDoctor,
-      deleteDoctor,
-      isLoading,
-      hasNextPage);
 
   @JsonKey(ignore: true)
   @override
@@ -1159,6 +1094,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -1166,8 +1102,8 @@ class _$SuccessImpl implements _Success {
         success,
     required TResult Function(String message) failure,
   }) {
-    return success(
-        doctors, doctor, addDoctor, deleteDoctor, isLoading, hasNextPage);
+    return success(doctors, doctor, doctorDetails, addDoctor, deleteDoctor,
+        isLoading, hasNextPage);
   }
 
   @override
@@ -1178,6 +1114,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -1185,8 +1122,8 @@ class _$SuccessImpl implements _Success {
         success,
     TResult? Function(String message)? failure,
   }) {
-    return success?.call(
-        doctors, doctor, addDoctor, deleteDoctor, isLoading, hasNextPage);
+    return success?.call(doctors, doctor, doctorDetails, addDoctor,
+        deleteDoctor, isLoading, hasNextPage);
   }
 
   @override
@@ -1197,6 +1134,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -1206,8 +1144,8 @@ class _$SuccessImpl implements _Success {
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(
-          doctors, doctor, addDoctor, deleteDoctor, isLoading, hasNextPage);
+      return success(doctors, doctor, doctorDetails, addDoctor, deleteDoctor,
+          isLoading, hasNextPage);
     }
     return orElse();
   }
@@ -1251,20 +1189,29 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements DoctorState {
-  const factory _Success(
-      {final List<Doctor>? doctors,
-      final DoctorEntity? doctor,
-      final bool addDoctor,
-      final bool deleteDoctor,
-      final bool isLoading,
-      final bool? hasNextPage}) = _$SuccessImpl;
+  factory _Success(
+      {List<Doctor>? doctors,
+      DoctorEntity? doctor,
+      GetDoctorByIdEntity? doctorDetails,
+      bool addDoctor,
+      bool deleteDoctor,
+      bool isLoading,
+      bool? hasNextPage}) = _$SuccessImpl;
 
   List<Doctor>? get doctors;
+  set doctors(List<Doctor>? value);
   DoctorEntity? get doctor;
+  set doctor(DoctorEntity? value);
+  GetDoctorByIdEntity? get doctorDetails;
+  set doctorDetails(GetDoctorByIdEntity? value);
   bool get addDoctor;
+  set addDoctor(bool value);
   bool get deleteDoctor;
+  set deleteDoctor(bool value);
   bool get isLoading;
+  set isLoading(bool value);
   bool? get hasNextPage;
+  set hasNextPage(bool? value);
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1304,26 +1251,15 @@ class __$$FailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailureImpl implements _Failure {
-  const _$FailureImpl({required this.message});
+  _$FailureImpl({required this.message});
 
   @override
-  final String message;
+  String message;
 
   @override
   String toString() {
     return 'DoctorState.failure(message: $message)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -1339,6 +1275,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -1357,6 +1294,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -1375,6 +1313,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(
             List<Doctor>? doctors,
             DoctorEntity? doctor,
+            GetDoctorByIdEntity? doctorDetails,
             bool addDoctor,
             bool deleteDoctor,
             bool isLoading,
@@ -1428,9 +1367,10 @@ class _$FailureImpl implements _Failure {
 }
 
 abstract class _Failure implements DoctorState {
-  const factory _Failure({required final String message}) = _$FailureImpl;
+  factory _Failure({required String message}) = _$FailureImpl;
 
   String get message;
+  set message(String value);
   @JsonKey(ignore: true)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;

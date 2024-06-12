@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clinic_admin/domain/entities/get_doctor_by_id_entity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/failure.dart';
@@ -12,7 +13,7 @@ abstract class GetDoctorsQuery
     extends BaseQuery<Future<Either<Failure, DoctorsEntity>>, int> {}
 
 abstract class GetDoctorByIdQuery
-    extends BaseQuery<Future<Either<Failure, DoctorEntity>>, String> {}
+    extends BaseQuery<Future<Either<Failure, GetDoctorByIdEntity>>, String> {}
 
 abstract class DeleteDoctorCommand
     extends BaseQuery<Future<Either<Failure, DoctorEntity>>, String> {}

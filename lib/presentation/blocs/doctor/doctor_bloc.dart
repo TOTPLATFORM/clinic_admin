@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:clinic_admin/domain/entities/get_doctor_by_id_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../app/contracts/doctor.dart';
@@ -28,13 +31,12 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
         _addDoctorQuery = addDoctorQuery,
         _getDoctorByIdQuery = getDoctorByIdQuery,
         // _getDoctorQuery = getDoctorQuery,
-        super(const DoctorState.initial()) {
+        super(DoctorState.initial()) {
     on<DoctorEvent>(
       (event, emit) async {
         await event.maybeMap(
           orElse: () {},
           addDoctor: (value) async {
-            emit(const DoctorState.loading());
             final res = await _addDoctorQuery.call(AddDoctorInputs(
               password: value.doctorData.password,
               specializationId: value.doctorData.specializationId,
@@ -47,14 +49,13 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
             res.fold((l) async => emit(DoctorState.failure(message: l.message)),
                 (r) async {
               if (r.isSuccess == true) {
-                state.maybeMap(
-                  orElse: () {},
+                state.mapOrNull(
+                  
                   success: (value) async {
                     emit(value.copyWith(
-                      doctor: r,
                       addDoctor: true,
                     ));
-                    add(const DoctorEvent.getAllDoctors());
+                    add(DoctorEvent.getAllDoctors());
                   },
                 );
               } else {
@@ -103,8 +104,8 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
 
                   state.maybeMap(
                       orElse: () {},
-                      success: (value) =>
-                          emit(value.copyWith(doctor: r, isLoading: false)));
+                      success: (value) => emit(
+                          value.copyWith(doctorDetails: r, isLoading: false)));
                 } else {
                   emit(DoctorState.failure(message: r.errors?[0] ?? ""));
                 }

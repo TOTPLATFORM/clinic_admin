@@ -326,8 +326,8 @@ mixin _$CategoryState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)
+    required TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) =>
@@ -336,8 +336,8 @@ mixin _$CategoryState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult? Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) =>
@@ -346,8 +346,8 @@ mixin _$CategoryState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -438,8 +438,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)
+    required TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -451,8 +451,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult? Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -464,8 +464,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -558,8 +558,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)
+    required TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -571,8 +571,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult? Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -584,8 +584,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -645,10 +645,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading});
+      {CategoryEntity? categories,
+      GetDoctorsByCategoryEntity? doctors,
+      bool isLoading});
 
   $CategoryEntityCopyWith<$Res>? get categories;
-  $DoctorsEntityCopyWith<$Res>? get doctors;
+  $GetDoctorsByCategoryEntityCopyWith<$Res>? get doctors;
 }
 
 /// @nodoc
@@ -674,7 +676,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       doctors: freezed == doctors
           ? _value.doctors
           : doctors // ignore: cast_nullable_to_non_nullable
-              as DoctorsEntity?,
+              as GetDoctorsByCategoryEntity?,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -696,12 +698,12 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
   @override
   @pragma('vm:prefer-inline')
-  $DoctorsEntityCopyWith<$Res>? get doctors {
+  $GetDoctorsByCategoryEntityCopyWith<$Res>? get doctors {
     if (_value.doctors == null) {
       return null;
     }
 
-    return $DoctorsEntityCopyWith<$Res>(_value.doctors!, (value) {
+    return $GetDoctorsByCategoryEntityCopyWith<$Res>(_value.doctors!, (value) {
       return _then(_value.copyWith(doctors: value));
     });
   }
@@ -715,7 +717,7 @@ class _$SuccessImpl implements _Success {
   @override
   final CategoryEntity? categories;
   @override
-  final DoctorsEntity? doctors;
+  final GetDoctorsByCategoryEntity? doctors;
   @override
   @JsonKey()
   final bool isLoading;
@@ -751,8 +753,8 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)
+    required TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -764,8 +766,8 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult? Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -777,8 +779,8 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),
@@ -830,11 +832,11 @@ class _$SuccessImpl implements _Success {
 abstract class _Success implements CategoryState {
   const factory _Success(
       {final CategoryEntity? categories,
-      final DoctorsEntity? doctors,
+      final GetDoctorsByCategoryEntity? doctors,
       final bool isLoading}) = _$SuccessImpl;
 
   CategoryEntity? get categories;
-  DoctorsEntity? get doctors;
+  GetDoctorsByCategoryEntity? get doctors;
   bool get isLoading;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -907,8 +909,8 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)
+    required TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)
         success,
     required TResult Function(String message) failure,
   }) {
@@ -920,8 +922,8 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult? Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult? Function(String message)? failure,
   }) {
@@ -933,8 +935,8 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(
-            CategoryEntity? categories, DoctorsEntity? doctors, bool isLoading)?
+    TResult Function(CategoryEntity? categories,
+            GetDoctorsByCategoryEntity? doctors, bool isLoading)?
         success,
     TResult Function(String message)? failure,
     required TResult orElse(),

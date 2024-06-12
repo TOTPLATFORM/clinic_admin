@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:clinic_admin/domain/entities/get_doctors_by_category_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../app/contracts/category.dart';

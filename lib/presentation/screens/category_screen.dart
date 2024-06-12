@@ -1,3 +1,4 @@
+import 'package:clinic_admin/domain/entities/get_doctors_by_category_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,7 +8,6 @@ import '../../app/core/primitives/inputs/add_doctor.dart';
 import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/show_snack_bar.dart';
-import '../../domain/entities/doctor_entity.dart';
 import '../blocs/category/category_bloc.dart';
 import '../blocs/doctor/doctor_bloc.dart';
 import '../widgets/custom/labled_text_form.dart';
@@ -35,27 +35,29 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: ElevatedButton(
-        style: ElevatedButton.styleFrom(backgroundColor: AppColors.greenColor),
-        child: const Icon(
-          Icons.add,
-          color: AppColors.white,
-        ),
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              isDismissible: true,
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(22))),
-              builder: (_) {
-                return _AddDocBtmSheet(
-                  categoryId: widget.categoryId,
-                );
-              }).then((value) {});
-        },
-      ),
+      //? add doctor
+
+      // floatingActionButton: ElevatedButton(
+      //   style: ElevatedButton.styleFrom(backgroundColor: AppColors.greenColor),
+      //   child: const Icon(
+      //     Icons.add,
+      //     color: AppColors.white,
+      //   ),
+      //   onPressed: () {
+      //     showModalBottomSheet(
+      //         context: context,
+      //         isDismissible: true,
+      //         isScrollControlled: true,
+      //         shape: const RoundedRectangleBorder(
+      //             borderRadius:
+      //                 BorderRadius.vertical(top: Radius.circular(22))),
+      //         builder: (_) {
+      //           return _AddDocBtmSheet(
+      //             categoryId: widget.categoryId,
+      //           );
+      //         }).then((value) {});
+      //   },
+      // ),
       appBar: AppBar(
         title: Text(widget.categoryName),
       ),
@@ -70,12 +72,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 return const Center(child: CircularProgressIndicator());
               },
               success: (successState) {
-                final List<Doctor> doctors =
-                    successState.doctors?.value?.data ?? [];
+                final List<User> doctors = successState.doctors?.value ?? [];
 
                 if (successState.isLoading) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (successState.doctors?.value?.data?.isEmpty ?? true) {
+                } else if (successState.doctors?.value?.isEmpty ?? true) {
                   return const Center(
                     child: Text(
                       "No Doctors found",
@@ -90,7 +91,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   itemBuilder: ((context, index) {
                     return DoctorItem(
                       imagePath: "assets/images/app_logo.png",
-                      doctorDescription: doctors[index].doctorEmail ?? "",
+                      doctorDescription: doctors[index].email ?? "",
                       doctorName: doctors[index].userName ?? "",
                       doctorType:
                           doctors[index].specialization?.specializationName ??
@@ -103,11 +104,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         });
                       },
                       onTap: () {
-                        if (successState.doctors?.value!.data?[index].id !=
-                            null) {
+                        if (successState.doctors?.value?[index].id != null) {
                           context.pushNamed(Routes.doctorDetails,
-                              extra:
-                                  successState.doctors?.value?.data?[index].id);
+                              extra: successState.doctors?.value?[index].id);
                         }
                       },
                     );

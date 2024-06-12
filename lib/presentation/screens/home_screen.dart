@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final maxScroll = scrollController.position.maxScrollExtent;
     final currentScroll = scrollController.offset;
     if (currentScroll >= (maxScroll * 0.20)) {
-      context.read<DoctorBloc>().add(const DoctorEvent.getAllDoctors());
+      context.read<DoctorBloc>().add( DoctorEvent.getAllDoctors());
     }
   }
 

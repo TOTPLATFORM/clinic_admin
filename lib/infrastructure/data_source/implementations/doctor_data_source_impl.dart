@@ -71,13 +71,14 @@ class DoctorDataSourceImpl implements DoctorDataSource {
             },
           ),
           data: {
-            "doctorEmail": doctorData.doctorEmail,
-            "doctorFirstName": doctorData.doctorFirstName,
-            "doctorLastName": doctorData.doctorLastName,
-            "doctorPhoneNumber": doctorData.doctorPhoneNumber,
+            "email": doctorData.doctorEmail,
+            "firstName": doctorData.doctorFirstName,
+            "lastName": doctorData.doctorLastName,
+            "phoneNumber": doctorData.doctorPhoneNumber,
             "password": password,
             "userName": doctorData.userName,
-            "specializationId": specializationId
+            "specializationId": specializationId,
+            "departmentId":1,
           });
       return res.data;
     } catch (e) {

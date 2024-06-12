@@ -1,3 +1,5 @@
+import 'package:clinic_admin/domain/entities/get_doctors_by_category_entity.dart';
+
 import '../../core/network/failure.dart';
 import '../../domain/entities/category_entity.dart';
 import '../../domain/entities/doctors_entity.dart';
@@ -28,13 +30,13 @@ class CategoryRepoImpl implements CategoryRepo {
   }
 
   @override
-  Future<Either<Failure, DoctorsEntity>> getDoctorsBySpecialty(
+  Future<Either<Failure, GetDoctorsByCategoryEntity>> getDoctorsBySpecialty(
       {required String specialtyId}) async {
     try {
       final res = await categoryDataSource.getDoctorsBySpecialty(
           specialtyId: specialtyId);
       return Right(
-        DoctorsEntity.fromJson(res),
+        GetDoctorsByCategoryEntity.fromJson(res),
       );
     } catch (e) {
       return Left(
