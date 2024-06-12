@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.topLeft,
                       color: AppColors.addCountColor,
                       child: ListView.builder(
-                        itemCount: value.categories?.value?.length ?? 0,
+                        itemCount: value.categories?.value?.data?.length ?? 0,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -157,10 +157,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           return GestureDetector(
                             onTap: () {
                               context.pushNamed(Routes.category, extra: {
-                                "categoryId": value.categories?.value?[index].id
+                                "categoryId": value.categories?.value?.data?[index].id
                                         .toString() ??
                                     "",
-                                "categoryName": value.categories?.value?[index]
+                                "categoryName": value.categories?.value?.data?[index]
                                         .specializationName ??
                                     ""
                               });
@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   const SizedBox(height: 4.0),
                                   TOTTextAtom.titleMedium(
-                                    value.categories?.value?[index]
+                                    value.categories?.value?.data?[index]
                                             .specializationName ??
                                         "",
                                     color: Colors.black,
