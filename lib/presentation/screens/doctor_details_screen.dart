@@ -306,7 +306,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    "Start Time: ${successState.schedules[index].startTime}",
+                                                                    "From: ${successState.schedules[index].startTime}",
                                                                     style:
                                                                         const TextStyle(
                                                                       fontSize:
@@ -316,7 +316,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    "End Time: ${successState.schedules[index].endTime}",
+                                                                    "To: ${successState.schedules[index].endTime}",
                                                                     style:
                                                                         const TextStyle(
                                                                       fontSize:

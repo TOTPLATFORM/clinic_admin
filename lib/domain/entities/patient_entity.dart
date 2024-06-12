@@ -38,10 +38,10 @@ class PatientEntity with EquatableMixin {
   factory PatientEntity.fromJson(Map<String, dynamic> json) {
     return PatientEntity(
       id: json['id'] as String?,
-      patientFirstName: json['patientFirstName'] as String?,
-      patientLastName: json['patientLastName'] as String?,
-      patientEmail: json['patientEmail'] as String?,
-      patientPhoneNumber: json['patientPhoneNumber'] as String?,
+      patientFirstName: json['firstName'] as String?,
+      patientLastName: json['lastName'] as String?,
+      patientEmail: json['email'] as String?,
+      patientPhoneNumber: json['phoneNumber'] as String?,
     );
   }
 }
