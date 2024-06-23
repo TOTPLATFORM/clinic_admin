@@ -258,10 +258,9 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                                                   extra: AppointmentData(
                                                                       patientId:
                                                                           selectedPatientId!,
-                                                                      doctorId: value
-                                                                          .doctor!
-                                                                          .value!
-                                                                          .id!,
+                                                                      doctorId:
+                                                                          widget
+                                                                              .id,
                                                                       day: successState
                                                                           .schedules[
                                                                               index]
