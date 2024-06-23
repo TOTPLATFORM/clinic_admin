@@ -9,7 +9,7 @@ class ScheduleDataSourceImpl implements ScheduleDataSource {
   String? token = preferences.getString(SharedKeys.accessToken);
   ScheduleDataSourceImpl({required BaseDio dioClient}) : _dioClient = dioClient;
 
-  @override
+  @override 
   Future<Map<String, dynamic>> getAllByDoctorId(
       {required String doctorId}) async {
     final response =
