@@ -1,13 +1,12 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/theme/app_colors.dart';
 
 class LabledTextField extends StatelessWidget {
   final TextEditingController controller;
   final String title;
   final String hintText;
   final String? Function(String?)? validatee;
-    final String? Function(String?)? validator;
+  final String? Function(String?)? validator;
   final VoidCallback? onTap;
   final TextInputType? keyboardType;
   const LabledTextField({
@@ -15,7 +14,10 @@ class LabledTextField extends StatelessWidget {
     required this.controller,
     required this.title,
     this.validatee,
-    required this.hintText, this.validator, this.onTap, this.keyboardType,
+    required this.hintText,
+    this.validator,
+    this.onTap,
+    this.keyboardType,
   });
 
   @override
@@ -30,9 +32,10 @@ class LabledTextField extends StatelessWidget {
           child: Text(
             title,
             style: const TextStyle(
-                color: AppColors.blackColor,
-                fontSize: 12,
-                fontWeight: FontWeight.bold,),
+              color: AppColors.blackColor,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         TextFormField(

@@ -103,7 +103,7 @@ class MainApp extends StatelessWidget {
           return DoctorBloc(
             getDoctorQuery: getIt(),
             getDoctorByIdQuery: getIt(),
-          )..add(DoctorEvent.getAllDoctors());
+          )..add(const DoctorEvent.getAllDoctors());
         },
       ),
       BlocProvider(

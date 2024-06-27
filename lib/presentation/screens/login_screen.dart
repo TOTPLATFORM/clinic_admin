@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,10 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
 
 import '../../core/routes/routes.dart';
-import '../../core/theme/app_colors.dart';
-import '../widgets/show_snack_bar.dart';
-import '../blocs/auth/auth_bloc.dart';
 import '../widgets/custom/labled_text_form.dart';
+import '../widgets/show_snack_bar.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routeName = 'login';
@@ -305,7 +304,7 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                                   ),
                                 );
                               },
-                              loading: () {
+                              loadInProgress: () {
                                 return const SizedBox(
                                   height: 20,
                                   width: 20,

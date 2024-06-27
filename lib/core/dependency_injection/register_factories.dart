@@ -1,22 +1,18 @@
-import '../../presentation/blocs/patient/patients_bloc.dart';
-import '../../presentation/blocs/time_slot/time_slot_bloc.dart';
 
-import '../../presentation/blocs/appointment/appointment_bloc.dart';
-import '../../presentation/blocs/auth/auth_bloc.dart';
-import '../../presentation/blocs/category/category_bloc.dart';
-import '../../presentation/blocs/doctor/doctor_bloc.dart';
-import '../../presentation/blocs/schedule/schedule_bloc.dart';
-import '../../presentation/blocs/search/search_bloc.dart';
+import 'package:clinic_package/clinic_package.dart';
+
 import 'di_container.dart';
 
 void registerFactories() {
   getIt.registerFactory<ScheduleBloc>(() => ScheduleBloc(
         getSchedulesByDoctorId: getIt(),
-        getSchedulesByDoctorIdDay: getIt(),
+        getSchedulesByDoctorIdDay: getIt(), getAllScheduleQuery: getIt(),
+        addScheduleQuery: getIt(),
       ));
       
   getIt.registerFactory<AuthBloc>(
     () => AuthBloc(
+      changePasswordQuery: getIt(),
       loginQuery: getIt(),
       registerQuery: getIt(),
     ),
@@ -29,21 +25,19 @@ void registerFactories() {
   );
   getIt.registerFactory<TimeSlotBloc>(
     () => TimeSlotBloc(
-      addTimeSlot: getIt(),
-      deleteTimeSlotCommand: getIt(),
       getTimeSlotsQuery: getIt(),
     ),
   );
   getIt.registerFactory<DoctorBloc>(
     () => DoctorBloc(
-      deleteDoctorCommand: getIt(),
-      addDoctorQuery: getIt(),
       getDoctorQuery: getIt(),
       getDoctorByIdQuery: getIt(),
     ),
   );
   getIt.registerFactory<AppointmentBloc>(
     () => AppointmentBloc(
+      changeStatusAppointmentCommand: getIt(),
+      getAppointmentForDoctorQuery: getIt(),
       addAppointmentCommand: getIt(),
       getAppointmentQuery: getIt(),
       deleteAppointmentCommand: getIt(),

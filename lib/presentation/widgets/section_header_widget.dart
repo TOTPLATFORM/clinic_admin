@@ -1,6 +1,5 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
-
-import '../../core/theme/app_colors.dart';
 
 class SectionHeaderWidget extends StatelessWidget {
   const SectionHeaderWidget({

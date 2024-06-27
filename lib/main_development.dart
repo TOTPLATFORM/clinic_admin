@@ -1,18 +1,10 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nested/nested.dart';
 
 import 'core/dependency_injection/di_container.dart';
 import 'core/routes/go_routes.dart';
-import 'core/utils/app_config.dart';
-import 'presentation/blocs/appointment/appointment_bloc.dart';
-import 'presentation/blocs/auth/auth_bloc.dart';
-import 'presentation/blocs/category/category_bloc.dart';
-import 'presentation/blocs/doctor/doctor_bloc.dart';
-import 'presentation/blocs/patient/patients_bloc.dart';
-import 'presentation/blocs/schedule/schedule_bloc.dart';
-import 'presentation/blocs/search/search_bloc.dart';
-import 'presentation/blocs/time_slot/time_slot_bloc.dart';
 
 const String baseUrl = "http://192.168.1.66:5252/api";
 // const String baseUrl = "http://192.168.1.124:5000/api";
@@ -54,12 +46,17 @@ class MainApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) {
-          return AuthBloc(loginQuery: getIt(), registerQuery: getIt());
+          return AuthBloc(
+              loginQuery: getIt(),
+              registerQuery: getIt(),
+              changePasswordQuery: getIt());
         },
       ),
       BlocProvider(
         create: (context) {
           return ScheduleBloc(
+            addScheduleQuery: getIt(),
+            getAllScheduleQuery: getIt(),
             getSchedulesByDoctorId: getIt(),
             getSchedulesByDoctorIdDay: getIt(),
           );
@@ -68,9 +65,8 @@ class MainApp extends StatelessWidget {
       BlocProvider(
         create: (context) {
           return TimeSlotBloc(
-              addTimeSlot: getIt(),
-              getTimeSlotsQuery: getIt(),
-              deleteTimeSlotCommand: getIt());
+            getTimeSlotsQuery: getIt(),
+          );
         },
       ),
       BlocProvider(
@@ -82,6 +78,8 @@ class MainApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) => AppointmentBloc(
+          changeStatusAppointmentCommand: getIt(),
+          getAppointmentForDoctorQuery: getIt(),
           addAppointmentCommand: getIt(),
           getAppointmentQuery: getIt(),
           deleteAppointmentCommand: getIt(),
@@ -98,11 +96,9 @@ class MainApp extends StatelessWidget {
       BlocProvider(
         create: (context) {
           return DoctorBloc(
-            addDoctorQuery: getIt(),
             getDoctorQuery: getIt(),
             getDoctorByIdQuery: getIt(),
-            deleteDoctorCommand: getIt(),
-          )..add( DoctorEvent.getAllDoctors());
+          )..add(const DoctorEvent.getAllDoctors());
         },
       ),
       BlocProvider(

@@ -1,19 +1,12 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/app/core/primitives/inputs/appointment_data.dart';
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/routes/routes.dart';
-import '../../core/theme/app_colors.dart';
 import '../widgets/show_snack_bar.dart';
-import '../../domain/entities/appointment_entity.dart';
-import '../../domain/entities/patient_entity.dart';
-import '../blocs/appointment/appointment_bloc.dart';
-import '../blocs/doctor/doctor_bloc.dart';
-import '../blocs/patient/patients_bloc.dart';
-import '../blocs/schedule/schedule_bloc.dart';
 
 class DoctorDetailsScreen extends StatefulWidget {
   final String id;
@@ -65,12 +58,14 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
         appointmentState.maybeMap(
           orElse: () {},
           success: (value) {
-            ShowSnackbar.showCheckTopSnackBar(context,
-                text: 'Appointment created successfully',
-                type: SnackBarType.success);
-            context
-                .read<AppointmentBloc>()
-                .add(const AppointmentEvent.getAppointment());
+            if (value.isAdded) {
+              ShowSnackbar.showCheckTopSnackBar(context,
+                  text: 'Appointment created successfully',
+                  type: SnackBarType.success);
+              context
+                  .read<AppointmentBloc>()
+                  .add(const AppointmentEvent.getAppointments());
+            }
           },
           failed: (message) {
             ShowSnackbar.showCheckTopSnackBar(context,
@@ -86,7 +81,7 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
               builder: (context, scheduleState) {
                 return state.maybeMap(
                     orElse: () => const SizedBox(),
-                    loading: (state) =>
+                    loadInProgress: (state) =>
                         const Center(child: CircularProgressIndicator()),
                     success: (value) {
                       final List<PatientEntity> patients =
