@@ -1,13 +1,10 @@
 import 'dart:developer';
 
-import 'package:clinic_admin/presentation/blocs/schedule/schedule_bloc.dart';
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../app/core/primitives/inputs/appointment_data.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/utils/show_snack_bar.dart';
-import '../blocs/appointment/appointment_bloc.dart';
+import '../widgets/show_snack_bar.dart';
 
 class AppointmentDetailsScreen extends StatefulWidget {
   const AppointmentDetailsScreen({

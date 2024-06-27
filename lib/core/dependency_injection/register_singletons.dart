@@ -1,9 +1,8 @@
-import '../dio/base_dio.dart';
-import '../dio/dio_client.dart';
+import 'package:clinic_admin/core/dio_interceptor.dart';
+import 'package:clinic_package/clinic_package.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../dio/dio_interceptor.dart';
 import 'di_container.dart';
 
 Future<void> registerSingletons() async {

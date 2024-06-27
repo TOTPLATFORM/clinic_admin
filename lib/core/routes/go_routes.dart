@@ -1,7 +1,7 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../app/core/primitives/inputs/appointment_data.dart';
 import '../../presentation/screens/appointment_details_screen.dart';
 import '../../presentation/screens/category_screen.dart';
 import '../../presentation/screens/doctor_details_screen.dart';
@@ -9,8 +9,6 @@ import '../../presentation/screens/layout_screen.dart';
 import '../../presentation/screens/login_screen.dart';
 import '../../presentation/screens/search_page.dart';
 import '../../presentation/screens/splash_screen.dart';
-import '../dependency_injection/di_container.dart';
-import '../utils/shared_keys.dart';
 import 'routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();

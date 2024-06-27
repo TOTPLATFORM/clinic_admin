@@ -1,35 +1,13 @@
-import '../../app/contracts/appointment.dart';
-import '../../app/contracts/auth.dart';
-import '../../app/contracts/category.dart';
-import '../../app/contracts/doctor.dart';
-import '../../app/contracts/patients.dart';
-import '../../app/contracts/schedule_contract.dart';
-import '../../app/contracts/time_slot.dart';
-import '../../app/contracts/update_personal_data.dart';
-import '../../app/queries/add_doctor_query_impl.dart';
-import '../../app/queries/add_time_slot_query_impl.dart';
-import '../../app/queries/get_all_doctors_query_impl.dart';
-import '../../app/queries/get_all_patients_query_impl.dart';
-import '../../app/queries/get_appointments_query.dart';
-import '../../app/queries/get_cayegory_query_impl.dart';
-import '../../app/queries/get_doctor_by_id_query_impl.dart';
-import '../../app/queries/get_doctors_by_specialty_impl.dart';
-import '../../app/queries/get_schedule_query_impl.dart';
-import '../../app/queries/get_schedules_by_day_impl.dart';
-import '../../app/queries/get_time_slots_query_impl.dart';
-import '../../app/queries/login_query_impl.dart';
-import '../../app/queries/register_query_impl.dart';
-import '../../app/queries/update_personal_data_query_impl.dart';
-import 'di_container.dart';
+import 'package:clinic_package/clinic_package.dart';
 
 void registerQueries() {
   getIt.registerSingleton<LoginQuery>(LoginQueryImpl(authRepo: getIt()));
 
   getIt.registerSingleton<GetDoctorScheduleQuery>(
-      GetScheduleQueryImpl(repo: getIt()));
+      GetDoctorSchedulesQueryImpl(repo: getIt()));
 
-  getIt.registerSingleton<AddDoctorQuery>(
-      AddDoctorQueryImpl(doctorRepo: getIt()));
+  // getIt.registerSingleton<AddDoctorQuery>(
+  //     AddDoctorQueryImpl(doctorRepo: getIt()));
 
   getIt.registerSingleton<RegisterQuery>(RegisterQueryImpl(authRepo: getIt()));
 
@@ -45,8 +23,8 @@ void registerQueries() {
   getIt.registerSingleton<GetDoctorsBySpecialtyQuery>(
     GetDoctorsBySpecialtyQueryImpl(categoryRepo: getIt()),
   );
-  getIt.registerSingleton<GetAppointmentQuery>(
-      GetAppointmentQueryImpl(appointmentRepo: getIt()));
+  getIt.registerSingleton<GetAllAppointmentQuery>(
+      GetAllAppointmentQueryImpl(appointmentRepo: getIt()));
 
   getIt.registerSingleton<UpdatePersonalDataQuery>(
       UpdatePersonalDataQueryImpl(updatePersonalDataRepo: getIt()));
@@ -57,9 +35,15 @@ void registerQueries() {
   getIt.registerSingleton<GetTimeSlotsQuery>(
       GetTimeSlotsQueryImpl(timeSlotRepo: getIt()));
 
-  getIt.registerSingleton<AddTimeSlotQuery>(
-      AddTimeSlotQueryImpl(timeSlotRepo: getIt()));
+  // getIt.registerSingleton<AddTimeSlotQuery>(
+  //     AddTimeSlotQueryImpl(timeSlotRepo: getIt()));
 
   getIt.registerSingleton<GetSchedulesByDayQuery>(
       GetSchedulesByDayQueryImpl(scheduleRepo: getIt()));
+  getIt.registerSingleton<AddScheduleQuery >(
+      AddScheduleQueryImpl(scheduleRepo: getIt()));
+  getIt.registerSingleton<GetAllScheduleByDotorIdQuery  >(
+      GetAllScheduleByDotorIdQueryImpl(scheduleRepo: getIt()));
+  getIt.registerSingleton<GetAppointmentForDoctorQuery   >(
+      GetAppointmentForDoctorQueryImpl(appointmentRepo: getIt()));
 }

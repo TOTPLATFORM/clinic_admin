@@ -1,11 +1,10 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/routes/routes.dart';
-import '../../core/theme/app_colors.dart';
-import '../blocs/doctor/doctor_bloc.dart';
-import '../blocs/search/search_bloc.dart';
+
 import '../widgets/doctor_item.dart';
 import '../widgets/tot_text_form_filed_search_atom.dart';
 
@@ -60,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
                 builder: (context, doctorState) {
                   return doctorState.maybeMap(
                     orElse: () => const SizedBox(),
-                    loading: (state) {
+                    loadInProgress: (state) {
                       return const Center(child: CircularProgressIndicator());
                     },
                     success: (doctorValue) {
@@ -68,7 +67,7 @@ class _SearchPageState extends State<SearchPage> {
                         builder: (context, state) {
                           return state.maybeMap(
                               orElse: () => const SizedBox(),
-                              loading: (state) {
+                              loadInProgress: (state) {
                                 return const Center(
                                   child: CircularProgressIndicator(),
                                 );

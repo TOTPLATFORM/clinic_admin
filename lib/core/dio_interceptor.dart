@@ -1,13 +1,21 @@
 import 'dart:developer';
 
+import 'package:clinic_admin/core/routes/go_routes.dart';
+import 'package:clinic_admin/core/routes/routes.dart';
+import 'package:clinic_package/clinic_package.dart';
 import 'package:dio/dio.dart';
-
-import '../dependency_injection/di_container.dart';
-import '../utils/shared_keys.dart';
+import 'package:go_router/go_router.dart';
 
 class DioInterceptor implements Interceptor {
   @override
-  void onError(DioException err, ErrorInterceptorHandler handler) {}
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    if (err.message!.contains("401")) {
+      preferences.clear();
+      navigatorKey.currentContext!.goNamed(Routes.login);
+    }
+
+    handler.next(err);
+  }
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -25,11 +33,6 @@ class DioInterceptor implements Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    response.statusCode == 401 ||
-            response.data.containsKey("Unauthorized") ||
-            response.data["message"] == "Invalid token"
-        ? preferences.clear()
-        : null;
     log("=======================================");
     log("Response:");
     log("url:=> ${response.requestOptions.path}");

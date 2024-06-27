@@ -137,6 +137,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  clinic_package:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: ea5437a78be986ebe29c0bf38f422ddb7523ec48
+      url: "https://github.com/Mo1hamedSabry-tot/clinic_package.git"
+    source: git
+    version: "0.0.1"
   clock:
     dependency: transitive
     description:
@@ -324,10 +333,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: abec47eb8c8c36ebf41d0a4c64dbbe7f956e39a012b3aafc530e951bdc12fe3f
+      sha256: cdae1b9c8bd7efadcef6112e81c903662ef2ce105cbd220a04bbb7c3425b5554
       url: "https://pub.dev"
     source: hosted
-    version: "14.1.4"
+    version: "14.2.0"
   graphs:
     dependency: transitive
     description:
@@ -823,5 +832,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.4.1 <4.0.0"
   flutter: ">=3.22.0"

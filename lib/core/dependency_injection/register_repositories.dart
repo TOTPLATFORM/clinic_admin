@@ -1,23 +1,4 @@
-import '../../domain/repos/patients_repo.dart';
-import '../../domain/repos/time_slot_repo.dart';
-import '../../infrastructure/repositories/patients_repo_impl.dart';
-import '../../infrastructure/repositories/time_slot_repo_impl.dart';
-
-import '../../domain/repos/appointment_repo.dart';
-import '../../domain/repos/auth_repo.dart';
-import '../../domain/repos/category_repo.dart';
-import '../../domain/repos/doctor_repo.dart';
-import '../../domain/repos/schedule_repo.dart';
-import '../../domain/repos/search_repo.dart';
-import '../../domain/repos/update_personal_data_repo.dart';
-import '../../infrastructure/repositories/appointment_repo_impl.dart';
-import '../../infrastructure/repositories/auth_repo_impl.dart';
-import '../../infrastructure/repositories/category_repo_impl.dart';
-import '../../infrastructure/repositories/doctor_repo_impl.dart';
-import '../../infrastructure/repositories/schedule_repo_impl.dart';
-import '../../infrastructure/repositories/search_repo_impl.dart';
-import '../../infrastructure/repositories/update_personal_data_impl.dart';
-import 'di_container.dart';
+import 'package:clinic_package/clinic_package.dart';
 
 void registerRepositories() {
   getIt.registerSingleton<AuthRepo>(

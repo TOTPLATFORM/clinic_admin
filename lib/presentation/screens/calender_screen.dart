@@ -1,8 +1,7 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../blocs/appointment/appointment_bloc.dart';
 import '../widgets/doctor_item.dart';
 import '../widgets/validation_alert_dialog.dart';
 
@@ -20,7 +19,7 @@ class _CalenderScreenState extends State<CalenderScreen>
   void initState() {
     context
         .read<AppointmentBloc>()
-        .add(const AppointmentEvent.getAppointment());
+        .add(const AppointmentEvent.getAppointments());
     _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
@@ -46,7 +45,7 @@ class _CalenderScreenState extends State<CalenderScreen>
                 if (value.isAdded == true || value.isDeleted == true) {
                   context
                       .read<AppointmentBloc>()
-                      .add(const AppointmentEvent.getAppointment());
+                      .add(const AppointmentEvent.getAppointments());
                 }
               });
         },
@@ -136,8 +135,8 @@ class _CalenderScreenState extends State<CalenderScreen>
                             : Row(
                                 children: [
                                   SizedBox(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 0.877,
+                                    width: MediaQuery.sizeOf(context).width *
+                                        0.877,
                                     child: ElevatedButton(
                                         onPressed: appointment[index].status ==
                                                 "Canceled"

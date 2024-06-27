@@ -1,6 +1,6 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_colors.dart';
 import 'calender_screen.dart';
 import 'home_screen.dart';
 import 'patients_screen.dart';

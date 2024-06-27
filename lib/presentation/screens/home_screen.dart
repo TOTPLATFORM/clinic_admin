@@ -1,14 +1,10 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
 
-import '../../core/dependency_injection/di_container.dart';
 import '../../core/routes/routes.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/utils/shared_keys.dart';
-import '../blocs/category/category_bloc.dart';
-import '../blocs/doctor/doctor_bloc.dart';
 import '../widgets/doctor_item.dart';
 import '../widgets/section_header_widget.dart';
 import '../widgets/tot_text_form_filed_search_atom.dart';
@@ -48,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final maxScroll = scrollController.position.maxScrollExtent;
     final currentScroll = scrollController.offset;
     if (currentScroll >= (maxScroll * 0.20)) {
-      context.read<DoctorBloc>().add( DoctorEvent.getAllDoctors());
+      context.read<DoctorBloc>().add(const DoctorEvent.getAllDoctors());
     }
   }
 
@@ -116,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, state) {
                   return state.maybeMap(orElse: () {
                     return Container();
-                  }, loading: (value) {
+                  }, loadInProgress: (value) {
                     return const CircularProgressIndicator.adaptive();
                   }, success: (value) {
                     return SectionHeaderWidget(
@@ -142,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   orElse: () {
                     return Container();
                   },
-                  loading: (value) {
+                  loadInProgress: (value) {
                     return const CircularProgressIndicator.adaptive();
                   },
                   success: (value) {
@@ -160,11 +156,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           return GestureDetector(
                             onTap: () {
                               context.pushNamed(Routes.category, extra: {
-                                "categoryId": value.categories?.value?.data?[index].id
+                                "categoryId": value
+                                        .categories?.value?.data?[index].id
                                         .toString() ??
                                     "",
-                                "categoryName": value.categories?.value?.data?[index]
-                                        .specializationName ??
+                                "categoryName": value.categories?.value
+                                        ?.data?[index].specializationName ??
                                     ""
                               });
                             },
@@ -226,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, state) {
                 return state.maybeMap(orElse: () {
                   return Container();
-                }, loading: (value) {
+                }, loadInProgress: (value) {
                   return const CircularProgressIndicator.adaptive();
                 }, success: (value) {
                   return SizedBox(

@@ -1,7 +1,6 @@
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
-
-import '../../core/theme/app_colors.dart';
 
 class ProfileItem extends StatelessWidget {
   final String text;

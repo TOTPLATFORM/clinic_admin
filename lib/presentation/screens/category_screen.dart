@@ -1,17 +1,13 @@
-import 'package:clinic_admin/domain/entities/get_doctors_by_category_entity.dart';
+import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tot_atomic_design/tot_atomic_design.dart';
 
-import '../../app/core/primitives/inputs/add_doctor.dart';
 import '../../core/routes/routes.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/utils/show_snack_bar.dart';
-import '../blocs/category/category_bloc.dart';
-import '../blocs/doctor/doctor_bloc.dart';
 import '../widgets/custom/labled_text_form.dart';
 import '../widgets/doctor_item.dart';
+import '../widgets/show_snack_bar.dart';
 import '../widgets/validation_alert_dialog.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -68,15 +64,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     height: 100,
                     color: Colors.red,
                   ),
-              loading: (value) {
+              loadInProgress: (value) {
                 return const Center(child: CircularProgressIndicator());
               },
               success: (successState) {
-                final List<User> doctors = successState.doctors?.value ?? [];
+                final List<User> doctors =
+                    successState.categoryDoctors?.value ?? [];
 
                 if (successState.isLoading) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (successState.doctors?.value?.isEmpty ?? true) {
+                } else if (doctors.isEmpty) {
                   return const Center(
                     child: Text(
                       "No Doctors found",
@@ -99,14 +96,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       onDeleteButton: () {
                         showValidationDialog(context, itemName: "this doctor",
                             onYesPressed: () {
-                          context.read<DoctorBloc>().add(
-                              DoctorEvent.deleteDoctor(id: doctors[index].id!));
+                          // context.read<DoctorBloc>().add(
+                          //     DoctorEvent.deleteDoctor(id: doctors[index].id!));
                         });
                       },
                       onTap: () {
-                        if (successState.doctors?.value?[index].id != null) {
+                        if (successState.doctors?.value?.data?[index].id !=
+                            null) {
                           context.pushNamed(Routes.doctorDetails,
-                              extra: successState.doctors?.value?[index].id);
+                              extra:
+                                  successState.doctors?.value?.data?[index].id);
                         }
                       },
                     );
@@ -173,17 +172,17 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
         state.maybeMap(
             orElse: () {},
             success: (value) {
-              if (value.addDoctor) {
-                Navigator.pop(context);
-                context.read<CategoryBloc>().add(
-                    CategoryEvent.getDoctorsBySpecialityId(
-                        specialityId: widget.categoryId));
-                ShowSnackbar.showCheckTopSnackBar(
-                  context,
-                  text: "Doctor added successfully",
-                  type: SnackBarType.success,
-                );
-              }
+              // if (value.addDoctor) {
+              //   Navigator.pop(context);
+              //   context.read<CategoryBloc>().add(
+              //       CategoryEvent.getDoctorsBySpecialityId(
+              //           specialityId: widget.categoryId));
+              //   ShowSnackbar.showCheckTopSnackBar(
+              //     context,
+              //     text: "Doctor added successfully",
+              //     type: SnackBarType.success,
+              //   );
+              // }
             },
             failure: (value) {
               ShowSnackbar.showCheckTopSnackBar(
@@ -407,7 +406,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                                         ),
                                       );
                                     },
-                                    loading: (v) {
+                                    loadInProgress: (v) {
                                       return const SizedBox(
                                         height: 20,
                                         width: 20,
@@ -419,7 +418,7 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                                     },
                                   ));
                             },
-                            loading: (value) {
+                            loadInProgress: (value) {
                               return const CircularProgressIndicator();
                             },
                           );
@@ -439,16 +438,17 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
 
   void _onPressedMethod() {
     if (formKey.currentState!.validate()) {
-      context.read<DoctorBloc>().add(DoctorEvent.addDoctor(
-              doctorData: AddDoctorInputs(
-            password: passController.text,
-            specializationId: int.parse(widget.categoryId),
-            firstName: firstNameController.text,
-            lastName: lastNameController.text,
-            username: userNameController.text,
-            email: emailController.text,
-            phone: phoneController.text,
-          )));
+      // context.read<DoctorBloc>().add(DoctorEvent.addDoctor(
+      //         doctorData: AddDoctorInputs(
+      //       password: passController.text,
+      //       specializationId: int.parse(widget.categoryId),
+      //       firstName: firstNameController.text,
+      //       lastName: lastNameController.text,
+      //       username: userNameController.text,
+      //       email: emailController.text,
+      //       phone: phoneController.text,
+      //     ))
+      // );
       context.pop();
     }
   }
