@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/utils/show_snack_bar.dart';
+import '../widgets/show_snack_bar.dart';
 import '../../domain/entities/appointment_entity.dart';
 import '../../domain/entities/patient_entity.dart';
 import '../blocs/appointment/appointment_bloc.dart';

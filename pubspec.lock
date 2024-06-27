@@ -137,6 +137,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  clinic_package:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "9947290efd9dca96367174a3287eebaa4d24ea08"
+      url: "https://github.com/Mo1hamedSabry-tot/clinic_package.git"
+    source: git
+    version: "0.0.1"
   clock:
     dependency: transitive
     description:
@@ -823,5 +832,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.4.1 <4.0.0"
   flutter: ">=3.22.0"

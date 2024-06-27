@@ -8,7 +8,7 @@ import 'package:tot_atomic_design/tot_atomic_design.dart';
 
 import '../../core/routes/routes.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/utils/show_snack_bar.dart';
+import '../widgets/show_snack_bar.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../widgets/custom/labled_text_form.dart';
 
