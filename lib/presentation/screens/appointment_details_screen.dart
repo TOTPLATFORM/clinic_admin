@@ -137,7 +137,8 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                                                 dayOfWeek: widget.day)));
                                   },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.totColor,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               fixedSize: Size(
@@ -148,7 +149,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                             child: const Text(
                               'Book Appointment',
                               style: TextStyle(
-                                  color: AppColors.white, fontSize: 16),
+                                  color: Colors.white, fontSize: 16),
                             ),
                           ),
                         ),

@@ -153,13 +153,15 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                   style: const TextStyle(fontSize: 15),
                                 ),
                                 const SizedBox(height: 20),
-                                const Center(
+                                 Center(
                                   child: Text(
                                     'Select Patient',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.greenColor),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
                                   ),
                                 ),
                                 const SizedBox(height: 10),
@@ -182,8 +184,10 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                       value: patient.id,
                                       child: Text(
                                         patient.patientFirstName ?? "",
-                                        style: const TextStyle(
-                                            color: AppColors.greenColor),
+                                        style:  TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
                                       ),
                                     );
                                   }).toList(),
@@ -196,13 +200,15 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                                   },
                                 ),
                                 const SizedBox(height: 20),
-                                const Center(
+                                 Center(
                                   child: Text(
                                     'Select Day',
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
-                                        color: AppColors.greenColor),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary),
                                   ),
                                 ),
                                 const SizedBox(height: 10),

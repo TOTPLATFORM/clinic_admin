@@ -16,8 +16,8 @@ class ProfileItem extends StatelessWidget {
       required this.iconCode,
       required this.onPressed,
       this.hasNotification = false,
-      this.textColor = AppColors.blackColor,
-      this.iconColor = AppColors.blackColor});
+      this.textColor = Colors.black,
+      this.iconColor = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ProfileItem extends StatelessWidget {
         width: MediaQuery.sizeOf(context).width,
         height: MediaQuery.sizeOf(context).height * 0.055,
         decoration: BoxDecoration(
-            color: AppColors.white, borderRadius: BorderRadius.circular(15)),
+            color: Colors.white, borderRadius: BorderRadius.circular(15)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -52,7 +52,7 @@ class ProfileItem extends StatelessWidget {
                     width: 50,
                     height: 50,
                     child: Card(
-                      color: AppColors.greenColor,
+                      color: Theme.of(context).colorScheme.primary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             16.0), // Set your desired border radius

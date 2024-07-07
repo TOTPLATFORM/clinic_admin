@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/routes/routes.dart';
-
 import '../widgets/doctor_item.dart';
 import '../widgets/tot_text_form_filed_search_atom.dart';
 
@@ -41,11 +40,11 @@ class _SearchPageState extends State<SearchPage> {
           child: Column(
             children: [
               TotTextFormFiledSearchAtom(
-                focusedBorderColor: AppColors.greenColor,
+                focusedBorderColor: Theme.of(context).colorScheme.primary,
                 controller: searchController,
                 radius: 16,
                 isPrefix: true,
-                borderColor: AppColors.grayShade100,
+                borderColor: Theme.of(context).colorScheme.surfaceDim,
                 onChanged: (p0) {
                   context.read<SearchBloc>().add(
                         SearchEvent.searchDoctorByText(

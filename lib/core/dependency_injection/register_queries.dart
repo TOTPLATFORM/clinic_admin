@@ -40,10 +40,12 @@ void registerQueries() {
 
   getIt.registerSingleton<GetSchedulesByDayQuery>(
       GetSchedulesByDayQueryImpl(scheduleRepo: getIt()));
-  getIt.registerSingleton<AddScheduleQuery >(
+  getIt.registerSingleton<AddScheduleQuery>(
       AddScheduleQueryImpl(scheduleRepo: getIt()));
-  getIt.registerSingleton<GetAllScheduleByDotorIdQuery  >(
+  getIt.registerSingleton<GetAllScheduleByDotorIdQuery>(
       GetAllScheduleByDotorIdQueryImpl(scheduleRepo: getIt()));
-  getIt.registerSingleton<GetAppointmentForDoctorQuery   >(
+  getIt.registerSingleton<GetAppointmentForDoctorQuery>(
       GetAppointmentForDoctorQueryImpl(appointmentRepo: getIt()));
+  getIt.registerSingleton<ChangePasswordQuery>(
+      ChangePasswordQueryImpl(authRepo: getIt()));
 }

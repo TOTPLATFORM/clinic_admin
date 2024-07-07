@@ -11,19 +11,19 @@ class CustomSnackBar extends StatefulWidget {
     this.messagePadding = const EdgeInsets.symmetric(horizontal: 24),
     this.icon = const Icon(
       Icons.sentiment_very_satisfied,
-      color: AppColors.white,
+      color: Colors.white,
       size: 120,
     ),
     this.textStyle = const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
-      color: AppColors.white,
+      color: Colors.white,
     ),
     this.maxLines = 2,
     this.iconRotationAngle = 32,
     this.iconPositionTop = -10,
     this.iconPositionLeft = -8,
-    this.backgroundColor = AppColors.totColor,
+    this.backgroundColor = Colors.green,
     this.boxShadow = kDefaultBoxShadow,
     this.borderRadius = kDefaultBorderRadius,
     this.textScaleFactor = 1.0,
@@ -42,7 +42,7 @@ class CustomSnackBar extends StatefulWidget {
     this.textStyle = const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
-      color: AppColors.white,
+      color: Colors.white,
     ),
     this.maxLines = 2,
     this.iconRotationAngle = 32,
@@ -67,7 +67,7 @@ class CustomSnackBar extends StatefulWidget {
     this.textStyle = const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
-      color: AppColors.white,
+      color: Colors.white,
     ),
     this.maxLines = 2,
     this.iconRotationAngle = 32,
@@ -145,7 +145,7 @@ class CustomSnackBarState extends State<CustomSnackBar> {
 
 const kDefaultBoxShadow = [
   BoxShadow(
-    color: AppColors.blackColorOpacity,
+    color: Colors.black,
     offset: Offset(0, 8),
     spreadRadius: 1,
     blurRadius: 30,

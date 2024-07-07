@@ -20,7 +20,7 @@ class SectionHeaderWidget extends StatelessWidget {
     this.titleColor = Colors.black,
     this.subTitleColor = Colors.black,
     this.subTitlePadding = const EdgeInsets.all(16),
-    this.iconColor = AppColors.greenColor,
+    this.iconColor = Colors.green,
     this.iconSize = 14,
   });
   final bool hasSubtitle;

@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: AppColors.transparent));
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(2),
                     width: 40,
                     height: 40,
-                    color: AppColors.white,
+                    color: Theme.of(context).colorScheme.primaryFixed,
                     child: Image.asset(
                       'assets/images/tot_logo.png',
                       width: 50,
@@ -60,10 +60,10 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  const Text(
+                   Text(
                     '',
                     style: TextStyle(
-                        color: AppColors.white,
+                        color: Theme.of(context).colorScheme.primaryFixed,
                         fontSize: 25,
                         fontWeight: FontWeight.bold),
                   ),
@@ -87,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                       });
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.white,
+                  backgroundColor: Theme.of(context).colorScheme.primaryFixed,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   fixedSize: Size(
@@ -96,9 +96,11 @@ class LoginScreen extends StatelessWidget {
                   ),
                   // Set the background color here
                 ),
-                child: const Text(
+                child:  Text(
                   'Login',
-                  style: TextStyle(color: AppColors.totColor, fontSize: 16),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 16),
                 ),
               ),
             ),
@@ -235,12 +237,14 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Password',
                                 style: TextStyle(
-                                    color: AppColors.blackColor,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
                                     fontSize: 12,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -254,20 +258,27 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                                 return null;
                               },
                               obscureText: isSecure,
-                              cursorColor: AppColors.totColor,
+                              cursorColor:
+                                  Theme.of(context).colorScheme.primary,
                               onChanged: (value) {},
                               decoration: InputDecoration(
                                 isDense: true,
                                 hintText: "Enter your password",
-                                border: const OutlineInputBorder(
+                                border:  OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: AppColors.blackColor)),
-                                focusedBorder: const OutlineInputBorder(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimaryContainer)),
+                                focusedBorder:  OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: AppColors.blackColor)),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimaryContainer)),
                                 suffixIcon: TOTIconButtonAtom.displayMedium(
                                   codePoint: isSecure ? 0xe6be : 0xe6bd,
-                                  iconColor: AppColors.blackColor,
+                                  iconColor: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer,
                                   onPressed: () {
                                     setState(
                                       () {
@@ -286,7 +297,8 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                         ElevatedButton(
                             onPressed: _onPressedMethod,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.totColor,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               fixedSize: Size(
@@ -296,20 +308,24 @@ class _LogInBtmSheetState extends State<_LogInBtmSheet> {
                             ),
                             child: state.maybeWhen(
                               orElse: () {
-                                return const Text(
+                                return  Text(
                                   'Login',
                                   style: TextStyle(
-                                    color: AppColors.white,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primaryFixed,
                                     fontSize: 16,
                                   ),
                                 );
                               },
                               loadInProgress: () {
-                                return const SizedBox(
+                                return  SizedBox(
                                   height: 20,
                                   width: 20,
                                   child: CircularProgressIndicator(
-                                    color: AppColors.white,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primaryFixed,
                                     strokeWidth: 3,
                                   ),
                                 );

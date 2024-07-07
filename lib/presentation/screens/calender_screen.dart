@@ -64,12 +64,13 @@ class _CalenderScreenState extends State<CalenderScreen>
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColors.grayShade200)),
+                        border: Border.all(
+                            color: Theme.of(context).colorScheme.surfaceDim)),
                     width: double.infinity,
                     child: Column(
                       children: [
                         DoctorItem(
-                          color: AppColors.grayShade200,
+                          color: Theme.of(context).colorScheme.surfaceDim,
                           imagePath: "assets/images/app_logo.png",
                           doctorDescription: appointment[index].patientName,
                           doctorName:
@@ -172,43 +173,11 @@ class _CalenderScreenState extends State<CalenderScreen>
                                         child: const Text(
                                           'Cancel',
                                           style: TextStyle(
-                                            color: AppColors.blackColor,
+                                            color: Colors.black,
                                             fontSize: 16,
                                           ),
                                         )),
                                   ),
-                                  // ElevatedButton(
-                                  //   onPressed: () {
-                                  //     context.pushNamed(Routes.updateAppointment,
-                                  //         extra: {
-                                  //           "appointmentId": value
-                                  //               .appointments[index].id
-                                  //               .toString(),
-                                  //           "patientId":
-                                  //               value.appointments[index].patientId,
-                                  //           "doctorId":
-                                  //               value.appointments[index].doctorId,
-                                  //           "scheduleId":
-                                  //               value.appointments[index].scheduleId
-                                  //         });
-                                  //   },
-                                  //   style: ElevatedButton.styleFrom(
-                                  //     backgroundColor: AppColors.totColor,
-                                  //     shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.circular(10)),
-                                  //     fixedSize: Size(
-                                  //       MediaQuery.sizeOf(context).width * 0.35,
-                                  //       50,
-                                  //     ),
-                                  //   ),
-                                  //   child: const Text(
-                                  //     'Reschedule',
-                                  //     style: TextStyle(
-                                  //       color: AppColors.white,
-                                  //       fontSize: 16,
-                                  //     ),
-                                  //   ),
-                                  // ),
                                 ],
                               )
                       ],

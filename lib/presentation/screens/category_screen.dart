@@ -34,10 +34,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
       //? add doctor
 
       // floatingActionButton: ElevatedButton(
-      //   style: ElevatedButton.styleFrom(backgroundColor: AppColors.greenColor),
+      //   style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.primary),
       //   child: const Icon(
       //     Icons.add,
-      //     color: AppColors.white,
+      //     color: Theme.of(context).colorScheme.primaryFixed,
       //   ),
       //   onPressed: () {
       //     showModalBottomSheet(
@@ -288,12 +288,14 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'Password',
                               style: TextStyle(
-                                  color: AppColors.blackColor,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -307,12 +309,14 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                               return null;
                             },
                             obscureText: isSecure,
-                            cursorColor: AppColors.totColor,
+                            cursorColor: Theme.of(context).colorScheme.primary,
                             onChanged: (value) {},
                             decoration: InputDecoration(
                               suffixIcon: TOTIconButtonAtom.displayMedium(
                                 codePoint: isSecure ? 0xe6be : 0xe6bd,
-                                iconColor: AppColors.blackColor,
+                                iconColor: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer,
                                 onPressed: () {
                                   setState(
                                     () {
@@ -321,12 +325,16 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                                   );
                                 },
                               ),
-                              border: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.totColor)),
-                              focusedBorder: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.grey)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary)),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceDim)),
                             ),
                           ),
                         ],
@@ -334,12 +342,14 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'Confirm Password',
                               style: TextStyle(
-                                  color: AppColors.blackColor,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -353,12 +363,14 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                               return null;
                             },
                             obscureText: isSecure,
-                            cursorColor: AppColors.totColor,
+                            cursorColor: Theme.of(context).colorScheme.primary,
                             onChanged: (value) {},
                             decoration: InputDecoration(
                               suffixIcon: TOTIconButtonAtom.displayMedium(
                                 codePoint: isSecure ? 0xe6be : 0xe6bd,
-                                iconColor: AppColors.blackColor,
+                                iconColor: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer,
                                 onPressed: () {
                                   setState(
                                     () {
@@ -367,12 +379,16 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                                   );
                                 },
                               ),
-                              border: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.totColor)),
-                              focusedBorder: const UnderlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: AppColors.grey)),
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary)),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .surfaceDim)),
                             ),
                           ),
                         ],
@@ -387,7 +403,8 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                               return ElevatedButton(
                                   onPressed: _onPressedMethod,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.totColor,
+                                    backgroundColor:
+                                        Theme.of(context).colorScheme.primary,
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
@@ -398,20 +415,24 @@ class _AddDocBtmSheetState extends State<_AddDocBtmSheet> {
                                   ),
                                   child: doctorState.maybeMap(
                                     orElse: () {
-                                      return const Text(
+                                      return Text(
                                         'Add Doctor',
                                         style: TextStyle(
-                                          color: AppColors.white,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primaryFixed,
                                           fontSize: 16,
                                         ),
                                       );
                                     },
                                     loadInProgress: (v) {
-                                      return const SizedBox(
+                                      return SizedBox(
                                         height: 20,
                                         width: 20,
                                         child: CircularProgressIndicator(
-                                          color: AppColors.white,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primaryFixed,
                                           strokeWidth: 3,
                                         ),
                                       );

@@ -98,7 +98,7 @@
 //                                         Text(
 //                                           "Time: ${schedule.timeSlot?.startTime}",
 //                                           style: const TextStyle(
-//                                               color: AppColors.greenColor),
+//                                               color: Theme.of(context).colorScheme.primary),
 //                                         ),
 //                                         Text("day: ${schedule.timeSlot?.day}"),
 //                                       ],
@@ -170,7 +170,7 @@
 //                         child: const Text(
 //                           'Save',
 //                           style: TextStyle(
-//                             color: AppColors.blackColor,
+//                             color: Theme.of(context).colorScheme.onPrimaryContainer,
 //                             fontSize: 16,
 //                           ),
 //                         )),

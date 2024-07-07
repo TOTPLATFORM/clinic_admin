@@ -47,8 +47,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
     return Scaffold(
       body: screens[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: AppColors.grey,
-        selectedItemColor: AppColors.greenColor,
+        unselectedItemColor: Theme.of(context).colorScheme.surfaceDim,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         currentIndex: selectedIndex,
         onTap: (value) {
           setState(() {

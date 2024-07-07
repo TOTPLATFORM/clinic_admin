@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFf4f5f8),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: AppColors.white,
+        backgroundColor: Colors.white,
         title: Row(
           children: [
             const TOTAvatarAtom.asset('assets/images/clinc_logo.png'),
@@ -47,14 +47,6 @@ class ProfileScreen extends StatelessWidget {
             },
           ),
 
-          // ProfileItem(
-          //   iconCode: 0xee2d,
-          //   text: "Time Slot",
-          //   hasNotification: false,
-          //   onPressed: () {
-          //     context.pushNamed(Routes.timeSlots);
-          //   },
-          // ),
         ]),
       ),
     );

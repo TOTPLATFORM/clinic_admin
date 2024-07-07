@@ -29,10 +29,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme customTextTheme = createTextTheme(context, 'Roboto', 'Roboto');
+    MaterialTheme materialTheme = MaterialTheme(customTextTheme);
     return MultiBlocProvider(
       providers: providers,
       child: MaterialApp.router(
         routerConfig: allRoutes,
+        theme: materialTheme.light(),
+        darkTheme: materialTheme.dark(),
         debugShowCheckedModeBanner: false,
       ),
     );

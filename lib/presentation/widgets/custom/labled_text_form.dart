@@ -22,8 +22,9 @@ class LabledTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    OutlineInputBorder outlineInputBorder = const OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.blackColor));
+    OutlineInputBorder outlineInputBorder =  OutlineInputBorder(
+        borderSide: BorderSide(
+            color: Theme.of(context).colorScheme.onPrimaryContainer));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -31,8 +32,8 @@ class LabledTextField extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title,
-            style: const TextStyle(
-              color: AppColors.blackColor,
+            style:  TextStyle(
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
               fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
@@ -43,7 +44,7 @@ class LabledTextField extends StatelessWidget {
           onTap: onTap,
           controller: controller,
           validator: validatee,
-          cursorColor: AppColors.blackColor,
+          cursorColor: Theme.of(context).colorScheme.onPrimaryContainer,
           decoration: InputDecoration(
             isDense: true,
             hintText: hintText,
@@ -51,10 +52,10 @@ class LabledTextField extends StatelessWidget {
             focusedBorder: outlineInputBorder,
             enabledBorder: outlineInputBorder,
             errorBorder: outlineInputBorder.copyWith(
-                borderSide: const BorderSide(color: AppColors.redColor)),
+                borderSide:  BorderSide(color: Theme.of(context).colorScheme.error)),
             disabledBorder: outlineInputBorder,
             focusedErrorBorder: outlineInputBorder.copyWith(
-                borderSide: const BorderSide(color: AppColors.redColor)),
+                borderSide:  BorderSide(color:Theme.of(context).colorScheme.error)),
           ),
         ),
       ],

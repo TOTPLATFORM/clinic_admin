@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
       physics: const NeverScrollableScrollPhysics(),
       child: Container(
         padding: const EdgeInsets.only(top: 50, bottom: 30),
-        color: AppColors.grayShade100,
+        color: Colors.white,
         child: Column(
           children: [
             Padding(
@@ -93,11 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: TotTextFormFiledSearchAtom(
                 onTap: () => context.pushNamed(Routes.search),
-                focusedBorderColor: AppColors.greenColor,
+                focusedBorderColor: Theme.of(context).colorScheme.primary,
                 controller: searchController,
                 radius: 16,
                 isPrefix: true,
-                borderColor: AppColors.grayShade100,
+                borderColor: Theme.of(context).colorScheme.surfaceDim,
                 onChanged: (p0) {
                   // context.pushNamed(Routes.search);
                 },
@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       showButton: true,
                       title: 'Categories',
                       // subtitle: 'View all',
-                      subTitleColor: AppColors.grey,
+                      subTitleColor: Theme.of(context).colorScheme.surfaceDim,
                       onTap: () {},
                       // themeIcon: Icons.keyboard_arrow_right_sharp,
                       iconSize: 30,
@@ -146,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 100,
                       margin: const EdgeInsets.only(top: 20.0),
                       alignment: Alignment.topLeft,
-                      color: AppColors.addCountColor,
+                      color: Colors.white,
                       child: ListView.builder(
                         itemCount: value.categories?.value?.data?.length ?? 0,
                         shrinkWrap: true,
@@ -213,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 showButton: true,
                 title: 'Recommendation',
                 // subtitle: 'View all',
-                subTitleColor: AppColors.grey,
+                subTitleColor: Theme.of(context).colorScheme.surfaceDim,
                 onTap: () {},
                 // themeIcon: Icons.keyboard_arrow_right_sharp,
                 iconSize: 30,
