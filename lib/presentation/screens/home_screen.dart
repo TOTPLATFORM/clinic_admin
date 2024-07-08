@@ -174,7 +174,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Colors.grey,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primaryContainer,
                                       border: Border.all(
                                         color: Colors.black,
                                       ),
@@ -246,6 +248,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
                                     final doctor = doctors[index];
                                     return DoctorItem(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondaryContainer,
                                       imagePath: "assets/images/app_logo.png",
                                       doctorDescription:
                                           doctor.doctorEmail ?? "",

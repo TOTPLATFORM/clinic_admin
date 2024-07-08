@@ -70,7 +70,8 @@ class _CalenderScreenState extends State<CalenderScreen>
                     child: Column(
                       children: [
                         DoctorItem(
-                          color: Theme.of(context).colorScheme.surfaceDim,
+                          color:
+                              Theme.of(context).colorScheme.secondaryContainer,
                           imagePath: "assets/images/app_logo.png",
                           doctorDescription: appointment[index].patientName,
                           doctorName:

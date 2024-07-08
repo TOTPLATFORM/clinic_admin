@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class DoctorItem extends StatelessWidget {
   final GestureTapCallback? onTap;
-  final void Function()? onDeleteButton;
   final String imagePath;
   final String doctorName;
   final String doctorType;
@@ -21,7 +20,6 @@ class DoctorItem extends StatelessWidget {
     this.price,
     this.showPrice = false,
     this.color,
-    this.onDeleteButton,
   });
 
   @override
@@ -29,7 +27,7 @@ class DoctorItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: color,
@@ -50,35 +48,35 @@ class DoctorItem extends StatelessWidget {
               children: [
                 Text(
                   doctorName,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
                 ),
                 Text(
                   doctorDescription,
-                  style: const TextStyle(fontSize: 15),
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
                 ),
                 Text(
                   doctorType,
-                  style: const TextStyle(fontSize: 15),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
                 ),
               ],
             ),
             const Spacer(),
-            // showPrice!
-            //     ? Text("$price EGP",
-            //         style: const TextStyle(
-            //             fontSize: 12,
-            //             color: AppColors.redColor,
-            //             fontWeight: FontWeight.bold))
-            //     : const SizedBox.shrink(),
-            // onDeleteButton != null
-            //     ? IconButton(
-            //         onPressed: () => onDeleteButton!.call(),
-            //         icon: const Icon(
-            //           Icons.delete_outlined,
-            //           color: AppColors.redColor,
-            //         ))
-            //     : const SizedBox.shrink()
+            showPrice!
+                ? Text("$price EGP",
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Theme.of(context).colorScheme.error,
+                        fontWeight: FontWeight.bold))
+                : const SizedBox.shrink(),
           ],
         ),
       ),

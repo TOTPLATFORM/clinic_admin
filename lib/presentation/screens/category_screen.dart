@@ -8,7 +8,6 @@ import '../../core/routes/routes.dart';
 import '../widgets/custom/labled_text_form.dart';
 import '../widgets/doctor_item.dart';
 import '../widgets/show_snack_bar.dart';
-import '../widgets/validation_alert_dialog.dart';
 
 class CategoryScreen extends StatefulWidget {
   final String categoryId;
@@ -93,13 +92,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       doctorType:
                           doctors[index].specialization?.specializationName ??
                               "",
-                      onDeleteButton: () {
-                        showValidationDialog(context, itemName: "this doctor",
-                            onYesPressed: () {
-                          // context.read<DoctorBloc>().add(
-                          //     DoctorEvent.deleteDoctor(id: doctors[index].id!));
-                        });
-                      },
                       onTap: () {
                         if (successState.doctors?.value?.data?[index].id !=
                             null) {

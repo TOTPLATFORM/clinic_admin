@@ -1,3 +1,5 @@
+import 'package:clinic_admin/presentation/widgets/empty_data_widget.dart';
+import 'package:clinic_admin/presentation/widgets/enter_to_search_widget.dart';
 import 'package:clinic_package/clinic_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,13 +67,17 @@ class _SearchPageState extends State<SearchPage> {
                       return BlocBuilder<SearchBloc, SearchState>(
                         builder: (context, state) {
                           return state.maybeMap(
-                              orElse: () => const SizedBox(),
+                              orElse: () => const EnterToSearchWidget(),
                               loadInProgress: (state) {
                                 return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               },
                               success: (searchValue) {
+                                if (searchValue.doctors?.value?.data?.isEmpty ??
+                                    true) {
+                                  return const EmptyDataWidget();
+                                }
                                 return SizedBox(
                                   height:
                                       MediaQuery.sizeOf(context).height * 0.75,
@@ -82,6 +88,8 @@ class _SearchPageState extends State<SearchPage> {
                                           0,
                                       itemBuilder: ((context, index) {
                                         return DoctorItem(
+                                                                                color: Theme.of(context).colorScheme.secondaryContainer,
+
                                           imagePath:
                                               "assets/images/app_logo.png",
                                           doctorDescription: searchValue

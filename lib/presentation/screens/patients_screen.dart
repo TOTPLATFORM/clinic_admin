@@ -53,6 +53,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         itemCount: value.patients.length,
                         itemBuilder: ((context, index) {
                           return DoctorItem(
+                                                                  color: Theme.of(context).colorScheme.secondaryContainer,
+
                             imagePath: "assets/images/app_logo.png",
                             doctorDescription:
                                 value.patients[index].patientEmail ?? "",
