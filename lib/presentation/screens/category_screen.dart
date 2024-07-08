@@ -93,11 +93,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           doctors[index].specialization?.specializationName ??
                               "",
                       onTap: () {
-                        if (successState.doctors?.value?.data?[index].id !=
+                        if (doctors[index].id !=
                             null) {
                           context.pushNamed(Routes.doctorDetails,
                               extra:
-                                  successState.doctors?.value?.data?[index].id);
+                                  doctors[index].id);
                         }
                       },
                     );
